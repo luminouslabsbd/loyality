@@ -1,0 +1,2108 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Reward Loyalty API",
+        "description": "API for the Reward Loyalty script.",
+        "contact": {
+            "email": "support@nowsquare.com"
+        },
+        "version": "1.3.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "Local API Server"
+        },
+        {
+            "url": "https://reward-loyalty-demo.nowsquare.com/api",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/{locale}/v1/member/register": {
+            "post": {
+                "tags": [
+                    "Member",
+                    "Authentication"
+                ],
+                "summary": "Register a new member",
+                "description": "This endpoint allows a new member to register an account.",
+                "operationId": "registerMember",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "The email of the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email",
+                            "example": "email@example.com"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "The name of the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 64,
+                            "example": "John Doe"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "The password of the member, if empty a password is generated",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 48,
+                            "minLength": 6,
+                            "example": "password123"
+                        }
+                    },
+                    {
+                        "name": "time_zone",
+                        "in": "query",
+                        "description": "The time zone of the member",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "example": "America/New_York"
+                        }
+                    },
+                    {
+                        "name": "locale",
+                        "in": "query",
+                        "description": "The locale of the member (e.g., `en_US`)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 12,
+                            "minLength": 5,
+                            "example": "en_US"
+                        }
+                    },
+                    {
+                        "name": "currency",
+                        "in": "query",
+                        "description": "The currency of the member (e.g., `USD`)",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "maxLength": 3,
+                            "minLength": 3,
+                            "example": "USD"
+                        }
+                    },
+                    {
+                        "name": "accepts_emails",
+                        "in": "query",
+                        "description": "Whether the member accepts marketing emails from a partner or not",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [
+                                0,
+                                1
+                            ],
+                            "example": 0
+                        }
+                    },
+                    {
+                        "name": "send_mail",
+                        "in": "query",
+                        "description": "Whether to send an email with the password to the newly created member",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "enum": [
+                                0,
+                                1
+                            ],
+                            "example": 0
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Member registration successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MemberRegistration"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/{locale}/v1/member/login": {
+            "post": {
+                "tags": [
+                    "Member",
+                    "Authentication"
+                ],
+                "summary": "Log in a member",
+                "description": "This endpoint allows a member to log in by providing their email and password.",
+                "operationId": "loginMember",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g. `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "The email of the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "The password of the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MemberLoginSuccess"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member/logout": {
+            "post": {
+                "tags": [
+                    "Member",
+                    "Authentication"
+                ],
+                "summary": "Log out a member",
+                "description": "This endpoint revokes all access tokens for the authenticated member.",
+                "operationId": "logoutMember",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Member logged out successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member": {
+            "get": {
+                "tags": [
+                    "Member",
+                    "Authentication"
+                ],
+                "summary": "Get member data",
+                "description": "This endpoint retrieves the data of the authenticated member.",
+                "operationId": "getMember",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Member data retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Member"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member/all-cards": {
+            "get": {
+                "tags": [
+                    "Member",
+                    "Card"
+                ],
+                "summary": "Fetches all cards followed and transacted by a member",
+                "description": "Endpoint for retrieving all cards that the authenticated member follows and has transacted with",
+                "operationId": "getAllCards",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, returns the array of followed and transacted cards",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access, invalid or missing member token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member/followed-cards": {
+            "get": {
+                "tags": [
+                    "Member",
+                    "Card"
+                ],
+                "summary": "Fetches all cards followed by a member",
+                "description": "Endpoint for retrieving all active cards tracked by the authenticated member",
+                "operationId": "getMemberFollowedCards",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, returns the array of followed cards",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access, invalid or missing member token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member/transacted-cards": {
+            "get": {
+                "tags": [
+                    "Member",
+                    "Card"
+                ],
+                "summary": "Fetches all cards member has transacted with",
+                "description": "Endpoint for retrieving all active cards that the authenticated member has interacted with transaction-wise",
+                "operationId": "getMemberTransactedCards",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, returns the array of cards with member's transactions",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access, invalid or missing member token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/member/balance/{cardId}": {
+            "get": {
+                "tags": [
+                    "Member",
+                    "Card"
+                ],
+                "summary": "Get the member's balance for a specific card",
+                "description": "Endpoint for retrieving the balance of the authenticated member for a specific card",
+                "operationId": "getMemberBalance",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "cardId",
+                        "in": "path",
+                        "description": "ID of the card",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, returns the member's balance for the specific card",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access, invalid or missing member token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "member_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/login": {
+            "post": {
+                "tags": [
+                    "Partner",
+                    "Authentication"
+                ],
+                "summary": "Log in a partner",
+                "description": "This endpoint allows a partner to log in by providing their email and password.",
+                "operationId": "loginPartner",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g. `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "The email of the partner",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "The password of the partner",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PartnerLoginSuccess"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/logout": {
+            "post": {
+                "tags": [
+                    "Partner",
+                    "Authentication"
+                ],
+                "summary": "Log out a partner",
+                "description": "This endpoint revokes all access tokens for the authenticated partner.",
+                "operationId": "logoutPartner",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Partner logged out successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Authentication"
+                ],
+                "summary": "Get partner data",
+                "description": "This endpoint retrieves the data of the authenticated partner.",
+                "operationId": "getPartner",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "The locale (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Partner data retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Partner"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/cards": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Card"
+                ],
+                "summary": "Fetch all active cards associated with a partner",
+                "description": "Endpoint to retrieve all active cards linked to the authenticated partner, where the associated club is also active",
+                "operationId": "getPartnerCards",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cards retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Card"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/cards/{cardId}": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Card"
+                ],
+                "summary": "Fetch an active card using its ID",
+                "description": "Endpoint for a partner to retrieve a specific active card that they own by its ID",
+                "operationId": "getCard",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "cardId",
+                        "in": "path",
+                        "description": "Unique identifier of the card to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Card details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Card"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Card not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/clubs": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Club"
+                ],
+                "summary": "Retrieve all active clubs associated with the partner",
+                "description": "Endpoint to fetch all clubs linked to the authenticated partner",
+                "operationId": "getPartnerClubs",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Clubs retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Club"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/clubs/{clubId}": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Club"
+                ],
+                "summary": "Retrieve details of an active club by its ID",
+                "description": "Endpoint to retrieve club details using clubId for an authenticated partner",
+                "operationId": "getPartnerClub",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "clubId",
+                        "in": "path",
+                        "description": "Club's unique identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Club details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Club"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Club not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/staff": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Staff"
+                ],
+                "summary": "Retrieve all staff members associated with the partner",
+                "description": "Endpoint to fetch all active staff members linked to the authenticated partner, where the associated club is also active",
+                "operationId": "getPartnerStaffMembers",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Staff members retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StaffMember"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/staff/{staffId}": {
+            "get": {
+                "tags": [
+                    "Partner",
+                    "Staff"
+                ],
+                "summary": "Retrieve details of a staff member by its ID",
+                "description": "Endpoint to retrieve active staff member details using staffId for an authenticated partner, where the associated club is also active",
+                "operationId": "getPartnerStaffMember",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "staffId",
+                        "in": "path",
+                        "description": "Staff member's unique identifier",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Staff member details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StaffMember"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Staff member not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/cards/{cardUID}/{memberUID}/transactions/purchases": {
+            "post": {
+                "tags": [
+                    "Partner",
+                    "Transaction",
+                    "Card",
+                    "Staff"
+                ],
+                "summary": "Add a new purchase to a card",
+                "description": "Endpoint for a partner to add a new purchase to a card that they own",
+                "operationId": "addPurchase",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "cardUID",
+                        "in": "path",
+                        "description": "Unique identifier of the card to which the transaction will be added",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "xxx-xxx-xxx-xxx",
+                            "example": "123-456-789-012"
+                        }
+                    },
+                    {
+                        "name": "memberUID",
+                        "in": "path",
+                        "description": "Unique identifier for the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "xxx-xxx-xxx-xxx",
+                            "example": "123-456-789-012"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Purchase data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "purchase_amount": {
+                                        "description": "The amount of money spent on the purchase",
+                                        "type": "number",
+                                        "example": 100
+                                    },
+                                    "image": {
+                                        "description": "The image associated with the transaction",
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "note": {
+                                        "description": "An optional note for the purchase",
+                                        "type": "string",
+                                        "example": "",
+                                        "nullable": true
+                                    },
+                                    "staffId": {
+                                        "description": "Staff ID",
+                                        "type": "string",
+                                        "format": "Kra8\\Snowflake\\HasSnowflakePrimary",
+                                        "example": "50510833641460081"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Purchase created successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Transaction"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Card not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        },
+        "/{locale}/v1/partner/cards/{cardUID}/{memberUID}/transactions/points": {
+            "post": {
+                "tags": [
+                    "Partner",
+                    "Transaction",
+                    "Card",
+                    "Staff"
+                ],
+                "summary": "Add new points to a card",
+                "description": "Endpoint for a partner to add new points to a card that they own",
+                "operationId": "addPoints",
+                "parameters": [
+                    {
+                        "name": "locale",
+                        "in": "path",
+                        "description": "Locale setting (e.g., `en-us`)",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "en-us"
+                        }
+                    },
+                    {
+                        "name": "cardUID",
+                        "in": "path",
+                        "description": "Unique identifier of the card to which the transaction will be added",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "xxx-xxx-xxx-xxx",
+                            "example": "123-456-789-012"
+                        }
+                    },
+                    {
+                        "name": "memberUID",
+                        "in": "path",
+                        "description": "Unique identifier for the member",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "xxx-xxx-xxx-xxx",
+                            "example": "123-456-789-012"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Points data",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "points": {
+                                        "description": "The number of points to add",
+                                        "type": "number",
+                                        "example": 100
+                                    },
+                                    "image": {
+                                        "description": "The image associated with the transaction",
+                                        "type": "string",
+                                        "example": ""
+                                    },
+                                    "note": {
+                                        "description": "An optional note for the points addition",
+                                        "type": "string",
+                                        "example": "",
+                                        "nullable": true
+                                    },
+                                    "staffId": {
+                                        "description": "Staff ID",
+                                        "type": "string",
+                                        "format": "Kra8\\Snowflake\\HasSnowflakePrimary",
+                                        "example": "50510833641460081"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Points added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Transaction"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized access",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnauthenticatedResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Card not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation errors",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "partner_auth_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ErrorResponse": {
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "The error message",
+                        "type": "string",
+                        "example": "The provided credentials are incorrect."
+                    },
+                    "code": {
+                        "description": "The error code",
+                        "type": "integer",
+                        "example": 400
+                    }
+                },
+                "type": "object"
+            },
+            "UnauthenticatedResponse": {
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "The error message",
+                        "type": "string",
+                        "example": "Unauthenticated."
+                    }
+                },
+                "type": "object"
+            },
+            "NotFoundResponse": {
+                "required": [
+                    "message"
+                ],
+                "properties": {
+                    "message": {
+                        "description": "The error message",
+                        "type": "string",
+                        "example": "Not found."
+                    }
+                },
+                "type": "object"
+            },
+            "ValidationErrorResponse": {
+                "properties": {
+                    "message": {
+                        "description": "The error message",
+                        "type": "string",
+                        "example": "The email must be a valid email address."
+                    },
+                    "errors": {
+                        "description": "The validation errors",
+                        "properties": {
+                            "email": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": [
+                                    "The email must be a valid email address."
+                                ]
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "PartnerLoginSuccess": {
+                "required": [
+                    "token"
+                ],
+                "properties": {
+                    "token": {
+                        "description": "The generated token for the partner",
+                        "type": "string",
+                        "example": "21|5XDpYGurS96daVl7LSr34s03tqn37kfPzkbkqP6D"
+                    }
+                },
+                "type": "object"
+            },
+            "MemberLoginSuccess": {
+                "required": [
+                    "token"
+                ],
+                "properties": {
+                    "token": {
+                        "description": "The generated token for the member",
+                        "type": "string",
+                        "example": "21|5XDpYGurS96daVl7LSr34s03tqn37kfPzkbkqP6D"
+                    }
+                },
+                "type": "object"
+            },
+            "MemberRegistration": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "email@example.com"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "example": "John Doe"
+                    },
+                    "password": {
+                        "type": "string",
+                        "maxLength": 48,
+                        "example": "mypassword",
+                        "nullable": true
+                    },
+                    "time_zone": {
+                        "type": "string",
+                        "example": "America/New_York",
+                        "nullable": true
+                    },
+                    "locale": {
+                        "type": "string",
+                        "maxLength": 12,
+                        "minLength": 5,
+                        "example": "en_US",
+                        "nullable": true
+                    },
+                    "currency": {
+                        "type": "string",
+                        "maxLength": 3,
+                        "minLength": 3,
+                        "example": "USD",
+                        "nullable": true
+                    },
+                    "accepts_emails": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "example": 1,
+                        "nullable": true
+                    },
+                    "send_mail": {
+                        "description": "If 1, send an email with the password to the newly created member.",
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "example": 0,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Member": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "50510834128001805"
+                    },
+                    "unique_identifier": {
+                        "type": "string",
+                        "example": "700-857-223-945"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "example": "Member Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "member@example.com"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-06-20T09:12:01.000000Z"
+                    },
+                    "locale": {
+                        "type": "string",
+                        "maxLength": 12,
+                        "minLength": 5,
+                        "example": "en_US",
+                        "nullable": true
+                    },
+                    "currency": {
+                        "type": "string",
+                        "maxLength": 3,
+                        "minLength": 3,
+                        "example": "USD",
+                        "nullable": true
+                    },
+                    "time_zone": {
+                        "type": "string",
+                        "example": "America/New_York",
+                        "nullable": true
+                    },
+                    "accepts_emails": {
+                        "type": "integer",
+                        "enum": [
+                            0,
+                            1
+                        ],
+                        "example": 0,
+                        "nullable": true
+                    },
+                    "number_of_times_logged_in": {
+                        "type": "integer",
+                        "example": 6
+                    },
+                    "last_login_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-13T13:20:57.000000Z"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-06-20T09:12:01.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-13T13:20:57.000000Z"
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Partner": {
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "50510833079424500"
+                    },
+                    "network_id": {
+                        "type": "string",
+                        "example": "50510725860431444"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 64,
+                        "example": "Partner Name"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "partner@example.com"
+                    },
+                    "email_verified_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-06-20T09:12:01.000000Z"
+                    },
+                    "locale": {
+                        "type": "string",
+                        "maxLength": 12,
+                        "minLength": 5,
+                        "example": "en_US",
+                        "nullable": true
+                    },
+                    "currency": {
+                        "type": "string",
+                        "maxLength": 3,
+                        "minLength": 3,
+                        "example": "USD",
+                        "nullable": true
+                    },
+                    "time_zone": {
+                        "type": "string",
+                        "example": "America/New_York",
+                        "nullable": true
+                    },
+                    "number_of_times_logged_in": {
+                        "type": "integer",
+                        "example": 6
+                    },
+                    "last_login_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-13T13:20:57.000000Z"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-06-20T09:12:01.000000Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-07-13T13:20:57.000000Z"
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Club": {
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "51209532520667617"
+                    },
+                    "name": {
+                        "type": "string",
+                        "maxLength": 120,
+                        "example": "Club name"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Card": {
+                "required": [
+                    "id",
+                    "club_id",
+                    "name",
+                    "head",
+                    "title",
+                    "description",
+                    "unique_identifier",
+                    "issue_date",
+                    "expiration_date",
+                    "bg_color",
+                    "bg_color_opacity",
+                    "text_color",
+                    "text_label_color",
+                    "qr_color_light",
+                    "qr_color_dark",
+                    "currency",
+                    "initial_bonus_points",
+                    "points_expiration_months",
+                    "currency_unit_amount",
+                    "points_per_currency",
+                    "min_points_per_purchase",
+                    "max_points_per_purchase",
+                    "is_visible_by_default",
+                    "is_visible_when_logged_in",
+                    "total_amount_purchased",
+                    "number_of_points_issued",
+                    "last_points_issued_at",
+                    "number_of_points_redeemed",
+                    "number_of_rewards_redeemed",
+                    "last_reward_redeemed_at",
+                    "views",
+                    "last_view",
+                    "created_by",
+                    "created_at",
+                    "updated_at"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "Unique identifier for the Card",
+                        "type": "string",
+                        "example": "50510829749146291"
+                    },
+                    "club_id": {
+                        "description": "Unique identifier for the Club",
+                        "type": "string",
+                        "example": "51209532520667617"
+                    },
+                    "name": {
+                        "description": "Name of the Card",
+                        "type": "string"
+                    },
+                    "head": {
+                        "description": "Multilingual card name",
+                        "properties": {
+                            "de_DE": {
+                                "type": "string",
+                                "example": "Gesunde Ernährung"
+                            },
+                            "en_US": {
+                                "type": "string",
+                                "example": "Healthy Eats"
+                            },
+                            "es_ES": {
+                                "type": "string",
+                                "example": "Comida Saludable"
+                            },
+                            "fr_FR": {
+                                "type": "string",
+                                "example": "Repas Sains"
+                            },
+                            "nl_NL": {
+                                "type": "string",
+                                "example": "Gezond Eten"
+                            },
+                            "pt_BR": {
+                                "type": "string",
+                                "example": "Comidas Saudáveis"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "title": {
+                        "description": "Multilingual card title",
+                        "properties": {
+                            "de_DE": {
+                                "type": "string",
+                                "example": "Salat Ersparnisse"
+                            },
+                            "en_US": {
+                                "type": "string",
+                                "example": "Salad Savings"
+                            },
+                            "es_ES": {
+                                "type": "string",
+                                "example": "Ahorros en Ensaladas"
+                            },
+                            "fr_FR": {
+                                "type": "string",
+                                "example": "Économies sur les Salades"
+                            },
+                            "nl_NL": {
+                                "type": "string",
+                                "example": "Salade Besparingen"
+                            },
+                            "pt_BR": {
+                                "type": "string",
+                                "example": "Economia em Salada"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "description": {
+                        "description": "Multilingual card description",
+                        "properties": {
+                            "de_DE": {
+                                "type": "string",
+                                "example": "Belohnung für gesunde Entscheidungen!"
+                            },
+                            "en_US": {
+                                "type": "string",
+                                "example": "Get rewarded for healthy choices!"
+                            },
+                            "es_ES": {
+                                "type": "string",
+                                "example": "¡Obtén recompensas por elecciones saludables!"
+                            },
+                            "fr_FR": {
+                                "type": "string",
+                                "example": "Soignez vos choix et soyez récompensé(e) !"
+                            },
+                            "nl_NL": {
+                                "type": "string",
+                                "example": "Word beloond voor gezonde keuzes!"
+                            },
+                            "pt_BR": {
+                                "type": "string",
+                                "example": "Seja recompensado por escolhas saudáveis!"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "unique_identifier": {
+                        "description": "Unique identifier of the Card",
+                        "type": "string"
+                    },
+                    "issue_date": {
+                        "description": "Issue date of the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "expiration_date": {
+                        "description": "Expiration date of the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "bg_color": {
+                        "description": "Background color of the Card",
+                        "type": "string",
+                        "example": "#CCCCCC"
+                    },
+                    "bg_color_opacity": {
+                        "description": "Background color opacity of the Card",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 80
+                    },
+                    "text_color": {
+                        "description": "Text color of the Card",
+                        "type": "string",
+                        "example": "#333333"
+                    },
+                    "text_label_color": {
+                        "description": "Text label color of the Card",
+                        "type": "string",
+                        "example": "#333333"
+                    },
+                    "qr_color_light": {
+                        "description": "QR code light color of the Card",
+                        "type": "string",
+                        "example": "#CCCCCC"
+                    },
+                    "qr_color_dark": {
+                        "description": "QR code dark color of the Card",
+                        "type": "string",
+                        "example": "#222222"
+                    },
+                    "currency": {
+                        "description": "Currency of the Card",
+                        "type": "string",
+                        "example": "USD"
+                    },
+                    "initial_bonus_points": {
+                        "description": "Initial bonus points of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "points_expiration_months": {
+                        "description": "Points expiration months of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "currency_unit_amount": {
+                        "description": "Currency unit amount of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "points_per_currency": {
+                        "description": "Points per currency of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "min_points_per_purchase": {
+                        "description": "Minimum points per purchase of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "max_points_per_purchase": {
+                        "description": "Maximum points per purchase of the Card",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "is_visible_by_default": {
+                        "description": "Status of the Card if it's visible by default",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "is_visible_when_logged_in": {
+                        "description": "Status of the Card if it's visible when logged in",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "total_amount_purchased": {
+                        "description": "Total amount purchased of the Card",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "number_of_points_issued": {
+                        "description": "Number of points issued for the Card",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "last_points_issued_at": {
+                        "description": "Last time points were issued for the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "number_of_points_redeemed": {
+                        "description": "Number of points redeemed from the Card",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "number_of_rewards_redeemed": {
+                        "description": "Number of rewards redeemed from the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "last_reward_redeemed_at": {
+                        "description": "Last time a reward was redeemed from the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "views": {
+                        "description": "Number of views of the Card",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "last_view": {
+                        "description": "Last view of the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "meta": {
+                        "description": "Meta of the Card",
+                        "type": "object",
+                        "nullable": true
+                    },
+                    "created_at": {
+                        "description": "Creation date of the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "description": "Update date of the Card",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "balance": {
+                        "description": "The member's balance. This field has a value of 0 or higher for API calls where a member is authenticated. If the balance is not applicable or unavailable, its value is -1.",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": -1
+                    }
+                },
+                "type": "object"
+            },
+            "StaffMember": {
+                "properties": {
+                    "id": {
+                        "description": "The unique identifier of the staff member",
+                        "type": "string",
+                        "example": "50510833641460081"
+                    },
+                    "club_id": {
+                        "description": "The unique identifier of the club",
+                        "type": "string",
+                        "example": "50510725994647600"
+                    },
+                    "name": {
+                        "description": "The name of the staff member",
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "description": "The email of the staff member",
+                        "type": "string",
+                        "format": "email",
+                        "example": "johndoe@example.com"
+                    },
+                    "time_zone": {
+                        "description": "The time zone of the staff member",
+                        "type": "string",
+                        "example": "America/New_York"
+                    },
+                    "number_of_times_logged_in": {
+                        "description": "The number of times the staff member has logged in",
+                        "type": "integer",
+                        "example": 5
+                    },
+                    "last_login_at": {
+                        "description": "The timestamp of the staff member's last login",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-01T00:00:00Z"
+                    },
+                    "created_at": {
+                        "description": "The timestamp of when the staff member was created",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-01T00:00:00Z"
+                    },
+                    "updated_at": {
+                        "description": "The timestamp of the last update of the staff member",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-01-01T00:00:00Z"
+                    },
+                    "avatar": {
+                        "description": "The URL to the avatar image of the staff member",
+                        "type": "string",
+                        "format": "uri",
+                        "example": "https://example.com/files/31/icon-80x80-v2.png"
+                    }
+                },
+                "type": "object"
+            },
+            "PurchaseRequest": {
+                "required": [
+                    "purchase_amount"
+                ],
+                "properties": {
+                    "purchase_amount": {
+                        "description": "The amount of money that was spent on the purchase.",
+                        "type": "number"
+                    },
+                    "note": {
+                        "description": "An optional note that can be added to the purchase.",
+                        "type": "string",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Transaction": {
+                "properties": {
+                    "staff_id": {
+                        "description": "The unique identifier of the staff member who created the transaction",
+                        "type": "string",
+                        "example": "50510833641460081"
+                    },
+                    "member_id": {
+                        "description": "The unique identifier of the member who made the purchase",
+                        "type": "string",
+                        "example": "50510834128001805"
+                    },
+                    "card_id": {
+                        "description": "The unique identifier of the card that was used for the purchase",
+                        "type": "string",
+                        "example": "50510826515340561"
+                    },
+                    "partner_name": {
+                        "description": "The name of the partner",
+                        "type": "string",
+                        "example": "Partner Name"
+                    },
+                    "partner_email": {
+                        "description": "The email of the partner",
+                        "type": "string",
+                        "example": "partner@example.com"
+                    },
+                    "purchase_amount": {
+                        "description": "The amount of money that was spent on the purchase",
+                        "type": "number"
+                    },
+                    "note": {
+                        "description": "An optional note that can be added to the purchase",
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "points_issued": {
+                        "description": "The number of points issued for the purchase",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "reward_redeemed": {
+                        "description": "Indicates whether a reward was redeemed for the purchase",
+                        "type": "boolean"
+                    },
+                    "reward_id": {
+                        "description": "The unique identifier of the reward that was redeemed",
+                        "type": "string",
+                        "example": "50510834538491954"
+                    },
+                    "transaction_date": {
+                        "description": "The timestamp of the transaction",
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "created_at": {
+                        "description": "The timestamp of when the transaction was created",
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "partner_auth_token": {
+                "type": "http",
+                "description": "Bearer {your_auth_token_here}",
+                "name": "Authorization",
+                "scheme": "bearer"
+            },
+            "member_auth_token": {
+                "type": "http",
+                "description": "Bearer {your_auth_token_here}",
+                "name": "Authorization",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
