@@ -22,7 +22,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 <body class="antialiased bg-gray-50 dark:bg-gray-900" x-data="{}" x-cloak x-show="true">
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
-        {{-- <header class="">
+        <header class="member-header" id="member-header">
             <nav class="bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b">
                 <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
 
@@ -134,7 +134,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                 </div>
             </nav>
-        </header> --}}
+        </header>
 
         @auth('member')
             <!-- drawer -->
@@ -168,7 +168,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
         </div>
 
         <!-- footer -->
-        {{-- <footer class="bg-white dark:bg-gray-800">
+        <footer class="member-footer bg-white dark:bg-gray-800" id="member-footer">
             <div class="p-4 py-6 mx-auto max-w-screen-xl md:p-8 lg:p-10">
                 <div class="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-3">
                     <div>
@@ -227,13 +227,25 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </span>
                 </div>
             </div>
-        </footer> --}}
+        </footer>
     </div>
 
     <x-ui.toast />
     <x-ui.lightbox />
     @include('includes.demo')
     @include('includes.cookie_consent')
+    
+    <script>
+        const header = document.getElementById("member-header");
+        const footer = document.getElementById("member-footer");
+        const pathsToCheck = ["/login", "/password", "/register"];
+        const currentPathname = window.location.pathname;
+
+        if (pathsToCheck.some(path => currentPathname.includes(path))) {
+            header.style.display = "none";
+            footer.style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
