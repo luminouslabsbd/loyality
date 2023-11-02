@@ -21,7 +21,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
         <!-- header -->
         <header class="member-header" id="member-header">
             <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-[11]">
-                <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
+                <div class="flex flex-wrap justify-between items-center px-6 py-2.5">
 
                     @auth('admin')
                     {{-- <div class="block md:hidden flex-initial mr-3">
@@ -42,24 +42,26 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                     @endauth
 
-                    <a href="{{ route('admin.index') }}" class="flex-1 items-center">
-                        @if(config('default.app_demo'))
-                            <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
-                            <img src="{{ asset('assets/img/logo-dark.svg') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
-                        @elseif(config('default.app_logo') != '')
-                            @if(config('default.app_logo_dark') != '')
-                                <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
-                                <img src="{{ config('default.app_logo_dark') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                    <div class="flex-1 items-center">
+                        <a href="{{ route('admin.index') }}" class="inline-block w-fit">
+                            @if(config('default.app_demo'))
+                                <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
+                                <img src="{{ asset('assets/img/logo-dark.svg') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                            @elseif(config('default.app_logo') != '')
+                                @if(config('default.app_logo_dark') != '')
+                                    <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
+                                    <img src="{{ config('default.app_logo_dark') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                                @else
+                                    <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block" alt="{{ config('default.app_name') }} Logo" />
+                                @endif
                             @else
-                                <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block" alt="{{ config('default.app_name') }} Logo" />
+                                <!--<div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>-->
+                                <div class="ll-nav-logo">
+                                    <img src="{{ asset('assets/ll_imgs/logo.png') }}" alt="Brand Logo">
+                                </div>
                             @endif
-                        @else
-                            <!--<div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>-->
-                            <div class="ml-5 ll-nav-logo">
-                                <img src="{{ asset('assets/ll_imgs/logo.png') }}" alt="Brand Logo">
-                            </div>
-                        @endif
-                    </a>
+                        </a>
+                    </div>
 
                     <div class="flex items-center">
                         @auth('admin')
@@ -274,7 +276,9 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         </div>
                     </aside>
                 @endauth
-                @yield('content')
+                <div class="sm:ml-64" style="margin-top: 60px">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>

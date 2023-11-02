@@ -52,6 +52,10 @@ body{
     font-size: 15px;
 }
 
+#ll-sidebar .h-full > ul > li > a{
+    padding: 10px 15px 10px 1.5rem;
+}
+
 #ll-sidebar ul li a:hover,
 #ll-sidebar ul li a.active {
     color: var(--ll-text-dark);
