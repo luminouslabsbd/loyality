@@ -9,6 +9,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <meta charset="utf-8">
     <title>@yield('page_title')</title>
     <script src="{{ route('javascript.include.language') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <meta name="robots" content="noindex, nofollow" />
     <x-meta.generic />
@@ -19,15 +20,24 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
         <header class="member-header" id="member-header">
-            <nav class="bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b">
+            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-[11]">
                 <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
 
                     @auth('admin')
-                    <div class="block md:hidden flex-initial mr-3">
+                    {{-- <div class="block md:hidden flex-initial mr-3">
                         <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-expanded="false">
                             <span class="sr-only">{{ trans('common.open') }}</span>
                             <x-ui.icon icon="bars-4" class="w-6 h-6" />
                             <x-ui.icon icon="close" class="hidden w-6 h-6" />
+                        </button>
+                    </div> --}}
+
+                    <div class="block md:hidden flex-initial mr-3">
+                        <button data-drawer-target="ll-sidebar" data-drawer-toggle="ll-sidebar" aria-controls="ll-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                            <span class="sr-only">Open sidebar</span>
+                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                            </svg>
                         </button>
                     </div>
                     @endauth
@@ -45,7 +55,9 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                             @endif
                         @else
                             <!--<div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>-->
-                            <div class="ml-5 text-3xl font-bold text-gray-900 dark:text-gray-50" style="color: #2963FF">Keos</div>
+                            <div class="ml-5 ll-nav-logo">
+                                <img src="{{ asset('assets/ll_imgs/logo.png') }}" alt="Brand Logo">
+                            </div>
                         @endif
                     </a>
 
@@ -124,7 +136,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                 </div>
             </nav>
-            @auth('admin')
+            {{-- @auth('admin')
                 <nav class="hidden md:block bg-gray-100 border-gray-200 dark:bg-gray-700 dark:border-gray-600 border-b">
                     <div class="grid py-4 px-4 mx-auto max-w-screen-2xl lg:grid-cols-2 md:px-6">
 
@@ -153,10 +165,10 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         </div>
                     </div>
                 </nav>
-            @endauth
+            @endauth --}}
         </header>
 
-        @auth('admin')
+        {{-- @auth('admin')
             <!-- drawer -->
             <div id="drawer-navigation" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800 transition-transform left-0 top-0 -translate-x-full" tabindex="-1">
                 <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">{{ trans('common.menu') }}</h5>
@@ -197,10 +209,73 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 
                 </div>
             </div>
-        @endauth
+        @endauth --}}
 
         <div class="w-full mx-auto flex flex-grow">
-            @yield('content')
+            <div class="w-full">
+                @auth('admin')
+                    <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                        <div class="h-full overflow-y-auto">
+                            <ul class="space-y-2 font-medium">
+                                <li>
+                                    <a href="{{ route('admin.index') }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'admin.index') active @endif">
+                                        <i class="fa-solid fa-chart-line"></i><span class="ml-2">Dashboard</span>
+                                    </a>
+                                </li>
+                                @if (auth('admin')->user()->role == 1)
+                                    <li>
+                                        <a href="{{ route('admin.data.list', ['name' => 'admins']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'admins') active @endif">
+                                            <i class="fa-solid fa-lock"></i><span class="ml-2">Administrators</span>
+                                        </a>
+                                    </li>
+            
+                                    <li>
+                                        <a href="{{ route('admin.data.list', ['name' => 'networks']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'networks') active @endif">
+                                            <i class="fa-solid fa-network-wired"></i><span class="ml-2">Networks</span>
+                                        </a>
+                                    </li>
+                                @endif
+            
+                                <li>
+                                    <a href="{{ route('admin.data.list', ['name' => 'partners']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'partners') active @endif">
+                                        <i class="fa-solid fa-handshake"></i><span class="ml-2">Partners</span>
+                                    </a>
+                                </li>
+            
+                                @if (auth('admin')->user()->role == 1)
+                                    <li>
+                                        <a href="{{ route('admin.data.list', ['name' => 'members']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif">
+                                            <i class="fa-solid fa-users"></i><span class="ml-2">Members</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                {{-- dropdown menu item example start --}}
+                                {{-- <li>
+                                    <button type="button" class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
+                                        <span class="flex-1 ml-3 text-left whitespace-nowrap">E-commerce</span>
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                                        </svg>
+                                    </button>
+                                    <ul id="dropdown-example" class="hidden py-2 space-y-2">
+                                        <li>
+                                            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
+                                        </li>
+                                    </ul>
+                                </li> --}}
+                                {{-- dropdown menu item example end --}}
+                            </ul>
+                        </div>
+                    </aside>
+                @endauth
+                @yield('content')
+            </div>
         </div>
     </div>
 

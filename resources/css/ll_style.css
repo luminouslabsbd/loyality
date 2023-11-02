@@ -3,6 +3,7 @@
     --ll-text-dark: #121212;
     --ll-text-grey: #727272;
     --ll-primary-color: #2963FF;
+    --ll-primary-light-color: #EAEFFF;
 }
   
 
@@ -16,6 +17,50 @@ body{
 }
 
 .text-link{
+    color: var(--ll-primary-color);
+}
+
+/* navbar design */
+.ll-nav-logo img{
+    width: 80px;
+}
+
+.ll-nav-bar {
+    border: none;
+    background-color: var(--ll-color-white);
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 5px -10px;
+}
+
+/* sidebar design */
+#ll-sidebar {
+    background-color: var(--ll-color-white);
+    box-shadow: 4.5px 0.5px 12px -6px #d5d5d5;
+}
+
+#ll-sidebar.transform-none {
+    top: 0;
+}
+
+#ll-sidebar ul li{
+    margin: 0;
+}
+
+#ll-sidebar ul li a{
+    padding: 10px 15px;
+    border: none;
+    color: #737373;
+    font-size: 15px;
+}
+
+#ll-sidebar ul li a:hover,
+#ll-sidebar ul li a.active {
+    color: var(--ll-text-dark);
+    background-color: var(--ll-primary-light-color);
+    border-right: 3px solid var(--ll-primary-color);
+}
+
+#ll-sidebar ul li a:hover > i,
+#ll-sidebar ul li a.active > i {
     color: var(--ll-primary-color);
 }
 

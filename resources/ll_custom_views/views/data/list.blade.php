@@ -11,8 +11,8 @@ if($settings['overrideTitle']) {
 @section('page_title', $pageTitle . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <div class="w-full">
-        <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg m-0 sm:m-4"
+    <div class="sm:ml-64" style="margin-top: 60px">
+        <div class="relative bg-white shadow-md dark:bg-gray-800 sm:rounded-lg m-0"
             @if ($settings['multiSelect']) x-data="{
                 selectAll: false,
                 selected: [],
@@ -333,6 +333,5 @@ if($settings['overrideTitle']) {
                 }
             </script>
         </div>
-
     </div>
 @stop
