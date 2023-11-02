@@ -1,0 +1,74 @@
+:root {
+    --ll-color-white: #ffffff;
+    --ll-text-dark: #121212;
+    --ll-text-grey: #727272;
+    --ll-primary-color: #2963FF;
+}
+  
+
+
+body{
+    background-color: var(--ll-color-white) !important;
+}
+
+.ll-text-primary-color{
+    color: var(--ll-text-dark) !important;
+}
+
+.text-link{
+    color: var(--ll-primary-color);
+}
+
+/* login page design */
+.ll-login-left{
+    background-color: #e8e8e8;
+}
+
+.ll-login-right{
+    position: relative;
+}
+
+.ll-input-container input{
+    background-color: var(--ll-color-white);
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.ll-input-container input[type="password"]{
+    padding-right: 40px;
+}
+
+.ll-input-container > .flex{
+    position: relative;
+    align-items: center;
+}
+
+.ll-input-container input#password_changed + button[type="button"]{
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    position: absolute;
+    right: 0;
+    border-radius: 0px;
+}
+
+.ll-input-container input#password_changed + button[type="button"]:focus{
+    border: 0;
+    outline: none;
+    box-shadow: none;
+}
+
+.ll-form-container .btn-primary.btn-lg{
+    font-size: 0.875rem !important;
+}
+
+.ll-terms-policy label{
+    color: var(--ll-text-grey);
+}
+
+.ll-login-bottom-logo img{
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+}

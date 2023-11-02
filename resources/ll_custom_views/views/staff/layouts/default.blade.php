@@ -18,7 +18,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 <body class="antialiased bg-gray-50 dark:bg-gray-900" x-data="{}" x-cloak x-show="true">
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
-        <header class="">
+        {{-- <header class="">
             <nav class="bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b">
                 <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
 
@@ -146,7 +146,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                 </nav>
             @endauth
-        </header>
+        </header> --}}
 
         @auth('staff')
             <!-- drawer -->
@@ -181,7 +181,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
             </div>
         @endauth
 
-        <div class="w-full mx-auto flex flex-grow max-w-screen-2xl">
+        <div class="w-full mx-auto flex flex-grow">
             @yield('content')
         </div>
     </div>

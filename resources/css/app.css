@@ -7,6 +7,8 @@
 @import "tailwindcss/utilities";
 /* @import "./custom-utilities.css";*/
 
+@import "./ll_style.css";
+
 @font-face {
     font-family: 'Inter';
     src: url('/public/assets/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');

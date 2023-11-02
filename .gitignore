@@ -14,8 +14,8 @@ public/hot
 # Laravel 5 & Lumen specific with changed public path
 public_html/storage
 public_html/hot
-
-storage/*.key
+/storage
+/storage/*.key
 .env
 Homestead.yaml
 Homestead.json
@@ -23,3 +23,4 @@ Homestead.json
 .phpunit.result.cache
 /storage/debugbar
 /public/.DS_Store
+/public/build/assets/
