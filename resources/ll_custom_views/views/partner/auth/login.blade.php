@@ -52,13 +52,13 @@
                         :required="true"
                     />
                     <div class="flex items-center justify-between">
-                        {{-- <div class="flex items-start">
+                        <div class="flex items-start">
                             <x-forms.checkbox
                                 name="remember"
                                 :checked="($email && $password) ? true : false"
                                 :label="trans('common.remember_me')"
                             />
-                        </div> --}}
+                        </div>
                         <a href="{{ route('partner.forgot_password') }}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" style="color: #2963FF">{{ trans('common.forgot_password') }}</a>
                     </div>
                     <x-forms.button :label="trans('common.log_in')" button-class="w-full" />
