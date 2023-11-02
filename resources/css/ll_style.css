@@ -72,3 +72,28 @@ body{
     left: 50%;
     transform: translateX(-50%);
 }
+
+
+
+
+
+/* responsive design */
+
+@media only screen and (max-width: 1023px){
+    .ll-login-container,
+    .ll-login-container > .grid{
+        height: 100%;
+    }
+
+    .ll-login-bottom-logo img {
+        bottom: 50px;
+    }
+    
+    .ll-login-left img.login-img {
+        display: none;
+    }
+    
+    .ll-login-left {
+        display: none;
+    }
+}
