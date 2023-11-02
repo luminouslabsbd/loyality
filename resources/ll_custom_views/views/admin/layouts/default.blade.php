@@ -18,7 +18,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 <body class="antialiased bg-gray-50 dark:bg-gray-900" x-data="{}" x-cloak x-show="true">
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
-        {{-- <header class="">
+        <header class="member-header" id="member-header">
             <nav class="bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b">
                 <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
 
@@ -154,7 +154,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                 </nav>
             @endauth
-        </header> --}}
+        </header>
 
         @auth('admin')
             <!-- drawer -->
@@ -208,5 +208,15 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <x-ui.lightbox />
     @include('includes.demo')
 
+    <script>
+        const header = document.getElementById("member-header");
+        
+        const pathsToCheck = ["/login", "/password"];
+        const currentPathname = window.location.pathname;
+        
+        if (pathsToCheck.some(path => currentPathname.includes(path))) {
+            header.style.display = "none";
+        }
+    </script>
 </body>
 </html>
