@@ -12,6 +12,10 @@ body{
     background-color: var(--ll-color-white) !important;
 }
 
+thead{
+    background-color: var(--ll-primary-light-color) !important;
+}
+
 .ll-text-primary-color{
     color: var(--ll-text-dark) !important;
 }
@@ -122,6 +126,9 @@ body{
     transform: translateX(-50%);
 }
 
+.overflow-x-auto:has(> #formDataDefinition){
+    border-radius: 10px;
+}
 
 
 
