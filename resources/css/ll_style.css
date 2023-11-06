@@ -130,8 +130,10 @@ thead{
     border-radius: 10px;
 }
 
-
-
+.amdin-content-container:has(> .admin-login-page),
+.amdin-content-container:has(> .admin-forgot-page) {
+    margin: 0px !important;
+}
 
 /* responsive design */
 
