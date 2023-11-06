@@ -3,7 +3,7 @@
 @section('page_title', ((auth('admin')->user()->role == 1) ? trans('common.administrator') : trans('common.manager')) . config('default.page_title_delimiter') . trans('common.dashboard') . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-<section class="bg-gray-50 dark:bg-gray-900">
+<section class="">
     <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-4">
         </div>

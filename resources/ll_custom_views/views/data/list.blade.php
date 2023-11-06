@@ -11,7 +11,7 @@ if($settings['overrideTitle']) {
 @section('page_title', $pageTitle . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <div class="relative bg-white dark:bg-gray-800 sm:rounded-lg m-0"
+    <div class="relative bg-white dark:bg-gray-800 sm:rounded-lg m-0 px-4"
         @if ($settings['multiSelect']) x-data="{
             selectAll: false,
             selected: [],
@@ -28,7 +28,7 @@ if($settings['overrideTitle']) {
             }
         }" @endif>
         <div
-            class="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
+            class="flex flex-col px-0 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
             <div class="w-full flex items-center space-x-3">
                 <h5 class="dark:text-white font-semibold flex items-center">
                     @if($settings['icon'])
@@ -163,7 +163,7 @@ if($settings['overrideTitle']) {
                                 @foreach ($tableData['columns'] as $column)
                                     @if (!$column['hidden'])
                                         <td @if ($settings['multiSelect'] && !in_array($column['type'], ['impersonate', 'qr'])) @click="selected[{{ $i }}] = !selected[{{ $i }}]" @endif
-                                            class="px-6 py-4  cursor-default @if ($column['highlight']) font-medium text-gray-900 whitespace-nowrap dark:text-white @endif
+                                            class="ahad px-6 py-4  cursor-default @if ($column['highlight']) font-medium text-gray-900 whitespace-nowrap dark:text-white @endif
                         @if (in_array($column['type'], ['boolean', 'impersonate', 'qr'])) text-center align-middle @endif
                         @if ($column['type'] == 'number' || $column['format'] == 'number') text-right @endif
                         @if ($column['classes::list']) {{ $column['classes::list'] }} @endif
@@ -184,14 +184,14 @@ if($settings['overrideTitle']) {
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex flex-nowrap justify-end space-x-2">
                                             @if ($settings['view'])
-                                                <a href="{{ route($settings['guard'].'.data.view', ['name' => $dataDefinition->name, 'id' => $row['id']]) }}" data-fb="tooltip" title="{{ trans('common.view') }}" class="whitespace-nowrap items-center flex px-2 py-2 text-xs text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"><x-ui.icon icon="magnifying-glass" class="h-3.5 w-3.5" /></a>
+                                                <a href="{{ route($settings['guard'].'.data.view', ['name' => $dataDefinition->name, 'id' => $row['id']]) }}" data-fb="tooltip" title="{{ trans('common.view') }}" class="ll-action-btn ll-primary whitespace-nowrap items-center flex px-2 py-2 text-xs border focus:outline-none font-medium rounded text-center"><x-ui.icon icon="magnifying-glass" class="h-3.5 w-3.5" /></a>
                                             @endif
                                             @if ($settings['edit'])
-                                                <a href="{{ route($settings['guard'].'.data.edit', ['name' => $dataDefinition->name, 'id' => $row['id']]) }}" data-fb="tooltip" title="{{ trans('common.edit') }}" class="whitespace-nowrap items-center flex px-2 py-2 text-xs text-yellow-400 hover:text-white border border-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-center dark:border-yellow-300 dark:text-yellow-300 dark:hover:text-white dark:hover:bg-yellow-400 dark:focus:ring-yellow-900"><x-ui.icon icon="pencil" class="h-3.5 w-3.52" /></a>
+                                                <a href="{{ route($settings['guard'].'.data.edit', ['name' => $dataDefinition->name, 'id' => $row['id']]) }}" data-fb="tooltip" title="{{ trans('common.edit') }}" class="ll-action-btn ll-warning whitespace-nowrap items-center flex px-2 py-2 text-xs focus:outline-none font-medium rounded text-center"><x-ui.icon icon="pencil" class="h-3.5 w-3.52" /></a>
                                             @endif
                                             @if ($settings['delete'])
                                                 <a href="javascript:void(0);" data-fb="tooltip" title="{{ trans('common.delete') }}"
-                                                    class="whitespace-nowrap items-center flex px-2 py-2 text-xs text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                                                    class="ll-action-btn ll-danger whitespace-nowrap items-center flex px-2 py-2 text-xs focus:outline-none font-medium rounded text-center"
                                                     @click="deleteItem('{{ $row['id'] }}', '{{ $settings['subject_column'] ? str_replace("'", "\'", parse_attr($row[$settings['subject_column']])) : null }}')"><x-ui.icon icon="trash" class="h-3.5 w-3.5" /></a>
                                             @endif
                                         </div>
@@ -219,7 +219,7 @@ if($settings['overrideTitle']) {
         </div>
 
         @if (($tableData['data']->total() > 0 && $settings['multiSelect']) || $tableData['data']->hasPages())
-            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center">
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center ll-table-footer">
                 <div class="m-4">
                     @if ($settings['multiSelect'])
                         <select id="table-with-selected" x-data x-bind:disabled="!anySelected()"

@@ -4,6 +4,9 @@
     --ll-text-grey: #727272;
     --ll-primary-color: #2963FF;
     --ll-primary-light-color: #EAEFFF;
+    --ll-light-grey: #FAFAFA;
+    --ll-dark-grey: #BEBEBE;
+    --ll-light-bg-grey: #E8E8E8;
 }
   
 
@@ -16,12 +19,39 @@ thead{
     background-color: var(--ll-primary-light-color) !important;
 }
 
+thead tr th{
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+}
+
 .ll-text-primary-color{
     color: var(--ll-text-dark) !important;
 }
 
 .text-link{
     color: var(--ll-primary-color);
+}
+
+.ll-action-btn{
+    background-color: var(--ll-light-bg-grey);
+    border-radius: 50%;
+    color: var(--ll-dark-grey);
+    transition: all 0.3s ease;
+}
+
+.ll-action-btn.ll-primary:hover{
+    background-color: #d7e6ff;
+    color: #0054dd;
+}
+
+.ll-action-btn.ll-warning:hover{
+    background-color: #fff0d3;
+    color: #f3a400;
+}
+
+.ll-action-btn.ll-danger:hover{
+    background-color: #ffd7db;
+    color: #db0013;
 }
 
 /* navbar design */
@@ -74,7 +104,7 @@ thead{
 
 /* login page design */
 .ll-login-left{
-    background-color: #e8e8e8;
+    background-color: var(--ll-light-bg-grey);
 }
 
 .ll-login-right{
@@ -127,7 +157,14 @@ thead{
 }
 
 .overflow-x-auto:has(> #formDataDefinition){
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.ll-table-footer{
+    background-color: var(--ll-light-grey);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 .amdin-content-container:has(> .admin-login-page),
