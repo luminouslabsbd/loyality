@@ -14,13 +14,15 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <meta name="robots" content="noindex, nofollow" />
     <x-meta.generic />
     <x-meta.favicons />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="antialiased bg-gray-50 dark:bg-gray-900" x-data="{}" x-cloak x-show="true">
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
         <header class="member-header" id="member-header">
-            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-[11]">
+            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-20">
                 <div class="flex flex-wrap justify-between items-center px-6 py-2.5">
 
                     @auth('admin')
@@ -276,7 +278,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         </div>
                     </aside>
                 @endauth
-                <div class="sm:ml-64 amdin-content-container h-full" style="margin-top: 60px">
+                <div class="sm:ml-64 ll-amdin-content-container" style="margin-top: 60px">
                     @yield('content')
                 </div>
             </div>
