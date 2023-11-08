@@ -2,7 +2,9 @@
     --ll-color-white: #ffffff;
     --ll-text-dark: #121212;
     --ll-text-grey: #727272;
+    --ll-text-dark-grey: #454C52;
     --ll-primary-color: #2963FF;
+    --ll-primary-dark-color: #1756ff;
     --ll-primary-light-color: #EAEFFF;
     --ll-light-grey: #FAFAFA;
     --ll-dark-grey: #BEBEBE;
@@ -30,6 +32,28 @@ thead tr th{
 
 .text-link{
     color: var(--ll-primary-color);
+}
+
+.ll-primary-btn{
+    background-color: var(--ll-primary-color);
+    transition: all 0.3s ease;
+}
+
+.ll-primary-btn:hover{
+    background-color: var(--ll-primary-dark-color);
+}
+
+.ll-btn-white{
+    transition: all .2s ease;
+}
+
+.ll-back-btn{
+    color: var(--ll-text-dark-grey);
+}
+
+.ll-back-btn svg{
+    color: var(--ll-primary-color);
+    width: 1rem;
 }
 
 .ll-action-btn{
@@ -111,9 +135,25 @@ thead tr th{
     position: relative;
 }
 
-.ll-input-container input{
+.ll-input-container input,
+.ll-btn-white,
+.ll-input-container .flex > button:last-child{
     background-color: var(--ll-color-white);
     border: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.ll-input-container input:focus {
+    border: 1px solid var(--ll-primary-color) !important;
+    box-shadow: none;
+}
+
+.ll-input-container .flex > button:last-child{
+    height: 40px;
+}
+
+.ll-input-container .flex > button:last-child:focus{
+    box-shadow: none;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
@@ -133,6 +173,14 @@ thead tr th{
     position: absolute;
     right: 0;
     border-radius: 0px;
+}
+
+.ll-user-add-form-inputs .ll-input-container input#password_changed + button[type="button"] {
+    right: 50px;
+}
+
+.ll-user-add-form-inputs .ll-input-container > div.mt-3 {
+    margin-top: 1.75rem;
 }
 
 .ll-input-container input#password_changed + button[type="button"]:focus{
@@ -167,12 +215,51 @@ thead tr th{
     border-bottom-right-radius: 10px;
 }
 
-.amdin-content-container:has(> .admin-login-page),
-.amdin-content-container:has(> .admin-forgot-page) {
+.ll-amdin-content-container:has(> .admin-login-page),
+.ll-amdin-content-container:has(> .admin-forgot-page) {
     margin: 0px !important;
 }
 
+.ll-amdin-content-container{
+    height: calc(100% - 60px);
+}
+
+/* user add page design */
+.ll-user-add-form-inputs label{
+    color: var(--ll-text-dark-grey) !important;
+}
+
+.ll-upload-img button.remove-image{
+    z-index: 11;
+}
+
 /* responsive design */
+
+@media only screen and (max-width: 1279px){
+    .ll-user-add-form-inputs.grid-cols-7 {
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    .ll-user-add-form-inputs.grid-cols-7 .ll-upload-img {
+        grid-column: span 8 / span 8;
+    }
+
+    .ll-user-add-form-inputs .col-span-3 {
+        grid-column: span 4 / span 4;
+    }
+
+    .ll-user-add-form-footer{
+        grid-template-columns: repeat(8, minmax(0, 1fr));
+    }
+
+    .ll-user-add-form-footer .col-span-3 {
+        grid-column: span 4 / span 4;
+    }
+
+    .ll-user-add-form-footer .ll-user-form-empty{
+        display: none;
+    }
+}
 
 @media only screen and (max-width: 1023px){
     .ll-login-container,

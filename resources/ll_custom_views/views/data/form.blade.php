@@ -11,6 +11,7 @@ $value = $form['data']->getTranslation($column['name'], $languages['current']['l
 @endphp
         @if ($column['type'] == 'string')
             <x-forms.input
+                class="ll-input-container mb-7"
                 :value="$value"
                 :type="$column['format']"
                 :prefix="$column['prefix']"
@@ -19,7 +20,6 @@ $value = $form['data']->getTranslation($column['name'], $languages['current']['l
                 :max="$column['max']"
                 :step="$column['step']"
                 :name="$column['name'] . '[' . $languages['current']['locale'] . ']'"
-                :icon="$column['format'] == 'email' ? 'envelope' : null"
                 :label="$label"
                 :help="$column['help']"
                 :placeholder="$column['placeholder']"
@@ -35,7 +35,6 @@ $value = $form['data']->getTranslation($column['name'], $languages['current']['l
                 :max="$column['max']"
                 :step="$column['step']"
                 :name="$column['name'] . '[' . $languages['current']['locale'] . ']'"
-                :icon="$column['format'] == 'email' ? 'envelope' : null"
                 :label="$label"
                 :help="$column['help']"
                 :placeholder="$column['placeholder']"
@@ -52,7 +51,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
 @endphp
                 @if ($column['type'] == 'string')
                     <x-forms.input
-                        class="mt-6"
+                        class="mt-6 ll-input-container mb-7"
                         :value="$value"
                         :type="$column['format']"
                         :prefix="$column['prefix']"
@@ -61,7 +60,6 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
                         :max="$column['max']"
                         :step="$column['step']"
                         :name="$column['name'] . '[' . $language['locale'] . ']'"
-                        :icon="$column['format'] == 'email' ? 'envelope' : null"
                         :label="$label"
                         :help="$column['help']"
                         :placeholder="$column['placeholder']"
@@ -78,7 +76,6 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
                         :max="$column['max']"
                         :step="$column['step']"
                         :name="$column['name'] . '[' . $language['locale'] . ']'"
-                        :icon="$column['format'] == 'email' ? 'envelope' : null"
                         :label="$label"
                         :help="$column['help']"
                         :placeholder="$column['placeholder']"
@@ -93,6 +90,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     @else
         @if ($column['type'] == 'string')
             <x-forms.input
+                class="ll-input-container mb-7"
                 :value="$form['data']->{$column['name']} ?? $column['default']"
                 :type="$column['format']"
                 :prefix="$column['prefix']"
@@ -101,7 +99,6 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
                 :max="$column['max']"
                 :step="$column['step']"
                 :name="$column['name']"
-                :icon="$column['format'] == 'email' ? 'envelope' : null"
                 :label="$column['text']"
                 :help="$column['help']"
                 :placeholder="$column['placeholder']"
@@ -117,7 +114,6 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
                 :max="$column['max']"
                 :step="$column['step']"
                 :name="$column['name']"
-                :icon="$column['format'] == 'email' ? 'envelope' : null"
                 :label="$column['text']"
                 :help="$column['help']"
                 :placeholder="$column['placeholder']"
@@ -129,10 +125,10 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     <x-forms.input 
         value=""
         type="password"
+        class="ll-input-container mb-7"
         :prefix="$column['prefix']"
         :suffix="$column['suffix']"
         :name="$column['name']"
-        icon="key"
         :generate-password="$column['generatePasswordButton']"
         :mail-password="$column['mailUserPassword']"
         :mail-password-checked="$column['mailUserPasswordChecked']"
@@ -144,6 +140,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     />
 @elseif($column['type'] == 'image' || $column['type'] == 'avatar')
     <x-forms.image
+        class="mb-7"
         :value="$form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']}"
         :type="$column['type'] == 'avatar' ? 'avatar' : 'image'" 
         :name="$column['name']"
@@ -156,6 +153,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     />
 @elseif($column['type'] == 'boolean')
     <x-forms.checkbox
+        class="ll-checkbox"
         :name="$column['name']"
         :checked="$form['data']->{$column['name']} ?? $column['default'] == 1 ? 1 : 0"
         :label="$column['text']"
@@ -164,6 +162,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     />
 @elseif(in_array($column['type'], ['time_zone', 'currency', 'locale', 'select', 'belongsToMany', 'hasMany', 'belongsTo']))
     <x-forms.select
+        class="ll-input-container mb-7"
         :type="$column['type']"
         :multiselect="(in_array($column['type'], ['belongsToMany', 'hasMany'])) ? true : false"
         :name="$column['name']"
