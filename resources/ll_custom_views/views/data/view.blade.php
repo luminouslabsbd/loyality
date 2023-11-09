@@ -88,10 +88,7 @@ if($settings['overrideTitle']) {
                                         </script>
                                         <a @click="$dispatch('img-modal', {  imgModalSrc: imgModalSrc_{{ $column['name'] }}, imgModalDesc: imgModalDesc_{{ $column['name'] }} })"
                                             class="cursor-pointer w-fit inline-block">
-                                            {{-- <img src="{{ $form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']} }}"
-                                                alt="{{ parse_attr($column['text']) }}"
-                                                class="h-auto max-w-xs {{ $column['type'] == 'avatar' ? 'rounded-full w-32 h-32' : 'rounded-lg' }}' shadow-xl dark:shadow-gray-800"> --}}
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyz-77X11MoGE22xVjjPhbpW6lPj6I0SkcTQ&usqp=CAU"
+                                            <img src="{{ $form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']} }}"
                                                 alt="{{ parse_attr($column['text']) }}"
                                                 class="h-auto max-w-xs {{ $column['type'] == 'avatar' ? 'rounded-[43px] ll-user-view-avatar' : 'rounded-lg' }}">
                                         </a>
