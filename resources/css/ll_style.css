@@ -10,6 +10,7 @@
     --ll-dark-grey: #BEBEBE;
     --ll-light-bg-grey: #E8E8E8;
     --ll-danger-color: #D92D20;
+    --ll-warning-color: #f19f00;
 }
   
 
@@ -52,6 +53,16 @@ thead tr th{
 
 .ll-danger-btn:hover{
     background-color: #c70011;
+}
+
+.ll-warning-btn{
+    background-color: var(--ll-warning-color);
+    color: var(--ll-color-white);
+    transition: all 0.3s ease;
+}
+
+.ll-warning-btn:hover{
+    background-color: #dd9200;
 }
 
 
@@ -236,13 +247,55 @@ thead tr th{
     height: calc(100% - 60px);
 }
 
-/* user add page design */
-.ll-user-add-form-inputs label{
+/* user page design */
+.ll-user-add-form-inputs label,
+.ll-label{
     color: var(--ll-text-dark-grey) !important;
 }
 
 .ll-upload-img button.remove-image{
     z-index: 11;
+}
+
+.ll-user-view-page {
+    border-bottom: 2px dashed var(--ll-dark-grey);
+    padding-bottom: 20px;
+}
+
+.ll-user-view-avatar{
+    width: 267px;
+    height: 267px;
+    object-fit: cover;
+}
+
+.ll-user-others-info > div.ll-user-other-info-left > div,
+.ll-user-others-info > div.ll-user-other-info-right > div {
+    display: flex;
+    gap: 5px;
+    color: var(--ll-text-dark-grey);
+    font-weight: 600;
+}
+
+.ll-user-view-page .ll-label > span:first-child {
+    display: inline-block;
+    min-width: 120px;
+    font-weight: normal;
+}
+
+.ll-user-main-info > div:first-child,
+.ll-user-main-info > div:last-child{
+    color: var(--ll-text-dark-grey);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.ll-user-main-info > div:last-child{
+    font-size: 16px;
+}
+
+.ll-user-main-info > div:first-child > div.ll-label,
+.ll-user-main-info > div:last-child > div.ll-label{
+    display: none;
 }
 
 /* responsive design */
@@ -271,6 +324,11 @@ thead tr th{
     .ll-user-add-form-footer .ll-user-form-empty{
         display: none;
     }
+
+    .ll-user-others-info {
+        grid-template-columns: repeat(1, minmax(0px, 1fr)) !important;
+        gap: 0rem !important;
+    }
 }
 
 @media only screen and (max-width: 1023px){
@@ -289,5 +347,47 @@ thead tr th{
     
     .ll-login-left {
         display: none;
+    }
+
+    .ll-user-view-page {
+        align-items: start;
+    }
+
+    .ll-user-view-avatar {
+        width: 167px;
+        height: 167px;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    .ll-user-view-page {
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ll-user-other-info-left,
+    .ll-user-other-info-right {
+        width: 100%;
+    }
+
+    .ll-user-main-info {
+        text-align: center;
+    }
+
+    .ll-user-others-info > div.ll-user-other-info-left > div,
+    .ll-user-others-info > div.ll-user-other-info-right > div{
+        justify-content: center;
+    }
+
+    .ll-user-view-page .ll-label > span:first-child{
+        min-width: auto;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    .ll-user-others-info > div.ll-user-other-info-left > div, .ll-user-others-info > div.ll-user-other-info-right > div{
+        word-break: break-all;
     }
 }

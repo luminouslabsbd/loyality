@@ -13,9 +13,37 @@ if($settings['overrideTitle']) {
 
 @section('content')
     <div class="w-full">
-        <div class="relative bg-white shadow-md dark:bg-gray-800 m-0 sm:m-4 sm:rounded-lg">
-            <div
-                class="flex flex-col px-4 py-3 space-y-3 md:flex-row md:items-center md:justify-between md:space-y-0 md:space-x-4 border-b dark:border-gray-700">
+        <div class="relative bg-white p-4 lg:p-6">
+            <div class="mb-5">
+                <div class="w-full flex flex-row items-center justify-between">
+                    @if($settings['list'])
+                        <div class="mb-5">
+                            <a href="{{ route($settings['guard'].'.data.list', ['name' => $dataDefinition->name]) }}"
+                                class="ll-back-btn w-fit flex text-sm items-center justify-start">
+                                <x-ui.icon icon="left" class="h-3.5 w-3.5 mr-2" />
+                                {{ trans('common.back_to_list') }}
+                            </a>
+                        </div>
+                    @endif
+
+                    <div class="flex flex-row items-center justify-end">
+                        @if ($settings['edit'])
+                            <a href="{{ route($settings['guard'].'.data.edit', ['name' => $dataDefinition->name, 'id' => $form['data']->id]) }}"
+                                class="w-full flex items-center btn-sm text-sm mr-2 btn-warning ll-warning-btn">
+                                <x-ui.icon class="h-3.5 w-3.5 mr-2" icon="pencil" />
+                                {{ trans('common.edit') }}
+                            </a>
+                        @endif
+                        @if ($settings['delete'])
+                            <button type="button" class="w-full flex items-center btn-sm btn-danger text-sm ll-danger-btn"
+                                @click="deleteItem('{{ $form['data']->id }}', '{{ $settings['subject_column'] ? str_replace("'", "\'", parse_attr($form['data']->{$settings['subject_column']})) : null }}')">
+                                <x-ui.icon class="h-3.5 w-3.5 mr-2" icon="trash" />
+                                {{ trans('common.delete') }}
+                            </button>
+                        @endif
+                    </div>
+                </div>
+
                 <div class="w-full flex items-center space-x-3">
                     @if($settings['list'])
                         <a href="{{ route($settings['guard'].'.data.list', ['name' => $dataDefinition->name]) }}">
@@ -39,31 +67,8 @@ if($settings['overrideTitle']) {
                         </div>
                     @endif
                 </div>
-                <div class="w-full flex flex-row items-center justify-end space-x-3">
-                    @if($settings['list'])
-                        <a href="{{ route($settings['guard'].'.data.list', ['name' => $dataDefinition->name]) }}"
-                            class="w-full md:w-auto flex btn-dark text-sm px-3 py-2 whitespace-nowrap text-ellipsis">
-                            <x-ui.icon icon="left" class="h-3.5 w-3.5 mr-2" />
-                            {{ trans('common.back_to_list') }}
-                        </a>
-                    @endif
-                    @if ($settings['edit'])
-                        <a href="{{ route($settings['guard'].'.data.edit', ['name' => $dataDefinition->name, 'id' => $form['data']->id]) }}"
-                            class="w-full md:w-auto flex btn-warning text-sm px-3 py-2">
-                            <x-ui.icon class="h-3.5 w-3.5 mr-2" icon="pencil" />
-                            {{ trans('common.edit') }}
-                        </a>
-                    @endif
-                    @if ($settings['delete'])
-                        <button type="button" class="w-full md:w-auto flex btn-danger text-sm px-3 py-2"
-                            @click="deleteItem('{{ $form['data']->id }}', '{{ $settings['subject_column'] ? str_replace("'", "\'", parse_attr($form['data']->{$settings['subject_column']})) : null }}')">
-                            <x-ui.icon class="h-3.5 w-3.5 mr-2" icon="trash" />
-                            {{ trans('common.delete') }}
-                        </button>
-                    @endif
-                </div>
             </div>
-            <div class="text-gray-900 dark:text-white p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 gap-y-8">
+            <div class="ll-user-view-page flex items-center gap-x-4">
                 @if ($form['columns'])
                     @foreach ($form['columns'] as $column)
                         @if (!$column['hidden'])
@@ -74,7 +79,7 @@ if($settings['overrideTitle']) {
                                 <div class="{{ $column['classes::view'] }}">
                             @endif
                             <div>
-                                <div class="mb-2 font-semibold text-gray-900 dark:text-gray-400">{{ $column['text'] }}</div>
+                                <div class="mb-2 ll-label {{($column['type'] == 'image' || $column['type'] == 'avatar') ? 'hidden' : ''}}"><span>{{ $column['text'] }}</span><span>:</span></div>
                                 @if ($column['type'] == 'image' || $column['type'] == 'avatar')
                                     @if ($form['data']->{$column['name']})
                                         <script>
@@ -82,10 +87,13 @@ if($settings['overrideTitle']) {
                                             let imgModalDesc_{{ $column['name'] }} = "{{ parse_attr($column['text']) }}";
                                         </script>
                                         <a @click="$dispatch('img-modal', {  imgModalSrc: imgModalSrc_{{ $column['name'] }}, imgModalDesc: imgModalDesc_{{ $column['name'] }} })"
-                                            class="cursor-pointer">
-                                            <img src="{{ $form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']} }}"
+                                            class="cursor-pointer w-fit inline-block">
+                                            {{-- <img src="{{ $form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']} }}"
                                                 alt="{{ parse_attr($column['text']) }}"
-                                                class="h-auto max-w-xs {{ $column['type'] == 'avatar' ? 'rounded-full w-32 h-32' : 'rounded-lg' }}' shadow-xl dark:shadow-gray-800">
+                                                class="h-auto max-w-xs {{ $column['type'] == 'avatar' ? 'rounded-full w-32 h-32' : 'rounded-lg' }}' shadow-xl dark:shadow-gray-800"> --}}
+                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyz-77X11MoGE22xVjjPhbpW6lPj6I0SkcTQ&usqp=CAU"
+                                                alt="{{ parse_attr($column['text']) }}"
+                                                class="h-auto max-w-xs {{ $column['type'] == 'avatar' ? 'rounded-[43px] ll-user-view-avatar' : 'rounded-lg' }}">
                                         </a>
                                     @else
                                         <x-ui.icon icon="no-symbol" class="w-5 h-5" />
@@ -130,4 +138,31 @@ if($settings['overrideTitle']) {
             }
         </script>
     @endif
+
+    <script>
+        $(document).ready(function() {
+            // first wrapping
+            $('.ll-user-view-page > div:first').wrap('<div class="ll-user-avatar-container"></div');
+
+            const remainingDivs = $('.ll-user-view-page > div:not(:first)');
+            remainingDivs.wrapAll('<div class="ll-user-details-container w-full"></div');
+
+            // second time wrapping
+            $('.ll-user-details-container > div:first-child, .ll-user-details-container > div:first-child + div').wrapAll('<div class="ll-user-main-info mb-8"></div>');
+            $(".ll-user-details-container > div:not(.ll-user-main-info)").wrapAll("<div class='ll-user-others-info grid grid-cols-1 sm:grid-cols-2 gap-4'></div>");
+
+
+            // third time wrapping
+            const userOthersInfo = $('.ll-user-others-info');
+            const childDivs = userOthersInfo.children('div');
+            const divCount = childDivs.length;
+
+            const secondDivCount = Math.floor(divCount / 2);
+            const thirdDivCount = divCount - secondDivCount;
+            console.log(secondDivCount, thirdDivCount);
+
+            childDivs.slice(0, secondDivCount + 1).wrapAll('<div class="ll-user-other-info-left"></div>');
+            childDivs.slice(secondDivCount + 1).wrapAll('<div class="ll-user-other-info-right"></div>');
+        });
+    </script>
     @stop
