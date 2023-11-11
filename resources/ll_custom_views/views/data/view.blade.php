@@ -138,28 +138,40 @@ if($settings['overrideTitle']) {
 
     <script>
         $(document).ready(function() {
-            // first wrapping
-            $('.ll-user-view-page > div:first').wrap('<div class="ll-user-avatar-container"></div');
+            const pathsToCheck = ["/networks/view"];
+            const currentPathname = window.location.pathname;
+            if (pathsToCheck.some(path => currentPathname.includes(path))) {
+                $('body').addClass('networks-view-page');
 
-            const remainingDivs = $('.ll-user-view-page > div:not(:first)');
-            remainingDivs.wrapAll('<div class="ll-user-details-container w-full"></div');
-
-            // second time wrapping
-            $('.ll-user-details-container > div:first-child, .ll-user-details-container > div:first-child + div').wrapAll('<div class="ll-user-main-info mb-8"></div>');
-            $(".ll-user-details-container > div:not(.ll-user-main-info)").wrapAll("<div class='ll-user-others-info grid grid-cols-1 sm:grid-cols-2 gap-4'></div>");
-
-
-            // third time wrapping
-            const userOthersInfo = $('.ll-user-others-info');
-            const childDivs = userOthersInfo.children('div');
-            const divCount = childDivs.length;
-
-            const secondDivCount = Math.floor(divCount / 2);
-            const thirdDivCount = divCount - secondDivCount;
-            console.log(secondDivCount, thirdDivCount);
-
-            childDivs.slice(0, secondDivCount + 1).wrapAll('<div class="ll-user-other-info-left"></div>');
-            childDivs.slice(secondDivCount + 1).wrapAll('<div class="ll-user-other-info-right"></div>');
+                const childDivs = $('.ll-user-view-page > div');
+                const divCount = childDivs.length;
+                const secondDivCount = Math.floor(divCount / 2) + 1;
+                const thirdDivCount = divCount - secondDivCount;
+                
+                childDivs.slice(0, secondDivCount).wrapAll('<div class="ll-user-other-info-left w-1/2"></div>');
+                childDivs.slice(secondDivCount).wrapAll('<div class="ll-user-other-info-right w-1/2"></div>');
+            } else{
+                // first wrapping
+                $('.ll-user-view-page > div:first').wrap('<div class="ll-user-avatar-container"></div');
+                
+                const remainingDivs = $('.ll-user-view-page > div:not(:first)');
+                remainingDivs.wrapAll('<div class="ll-user-details-container w-full"></div');
+    
+                // second time wrapping
+                $('.ll-user-details-container > div:first-child, .ll-user-details-container > div:first-child + div').wrapAll('<div class="ll-user-main-info mb-8"></div>');
+                $(".ll-user-details-container > div:not(.ll-user-main-info)").wrapAll("<div class='ll-user-others-info grid grid-cols-1 sm:grid-cols-2 gap-4'></div>");
+    
+                // third time wrapping
+                const userOthersInfo = $('.ll-user-others-info');
+                const childDivs = userOthersInfo.children('div');
+                const divCount = childDivs.length;
+    
+                const secondDivCount = Math.floor(divCount / 2);
+                const thirdDivCount = divCount - secondDivCount;
+    
+                childDivs.slice(0, secondDivCount + 1).wrapAll('<div class="ll-user-other-info-left"></div>');
+                childDivs.slice(secondDivCount + 1).wrapAll('<div class="ll-user-other-info-right"></div>');
+            }
         });
     </script>
     @stop

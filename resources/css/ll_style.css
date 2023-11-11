@@ -269,7 +269,9 @@ thead tr th{
 }
 
 .ll-user-others-info > div.ll-user-other-info-left > div,
-.ll-user-others-info > div.ll-user-other-info-right > div {
+.ll-user-others-info > div.ll-user-other-info-right > div,
+body.networks-view-page div.ll-user-other-info-left > div,
+body.networks-view-page div.ll-user-other-info-right > div {
     display: flex;
     gap: 5px;
     color: var(--ll-text-dark-grey);
@@ -317,6 +319,10 @@ body.networks-edit-page .ll-user-add-form-footer .col-span-3 {
 
 body.networks-edit-page .ll-user-add-form-footer .ll-user-form-empty {
     display: none;
+}
+
+body.networks-view-page .ll-user-view-page {
+    align-items: start;
 }
 
 /* responsive design */
