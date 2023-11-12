@@ -273,6 +273,7 @@ thead tr th{
 body.networks-view-page div.ll-user-other-info-left > div,
 body.networks-view-page div.ll-user-other-info-right > div {
     display: flex;
+    align-items: center;
     gap: 5px;
     color: var(--ll-text-dark-grey);
     font-weight: 600;
@@ -433,7 +434,8 @@ body.networks-view-page .ll-user-view-page {
 }
 
 @media only screen and (max-width: 400px){
-    .ll-user-others-info > div.ll-user-other-info-left > div, .ll-user-others-info > div.ll-user-other-info-right > div{
+    .ll-user-others-info > div.ll-user-other-info-left > div,
+    .ll-user-others-info > div.ll-user-other-info-right > div{
         word-break: break-all;
     }
 }

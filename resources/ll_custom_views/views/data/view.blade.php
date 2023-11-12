@@ -78,8 +78,8 @@ if($settings['overrideTitle']) {
                             @if($column['classes::view'])
                                 <div class="{{ $column['classes::view'] }}">
                             @endif
-                            <div>
-                                <div class="mb-2 ll-label {{($column['type'] == 'image' || $column['type'] == 'avatar') ? 'hidden' : ''}}"><span>{{ $column['text'] }}</span><span>:</span></div>
+                            <div class="mb-2">
+                                <div class="ll-label {{($column['type'] == 'image' || $column['type'] == 'avatar') ? 'hidden' : ''}}"><span>{{ $column['text'] }}</span><span>:</span></div>
                                 @if ($column['type'] == 'image' || $column['type'] == 'avatar')
                                     @if ($form['data']->{$column['name']})
                                         <script>
@@ -138,11 +138,11 @@ if($settings['overrideTitle']) {
 
     <script>
         $(document).ready(function() {
-            const pathsToCheck = ["/networks/view"];
+            const pathsToCheck = ["/networks/view", "/partners/view"];
             const currentPathname = window.location.pathname;
             if (pathsToCheck.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-view-page');
-
+                
                 const childDivs = $('.ll-user-view-page > div');
                 const divCount = childDivs.length;
                 const secondDivCount = Math.floor(divCount / 2) + 1;
@@ -150,6 +150,7 @@ if($settings['overrideTitle']) {
                 
                 childDivs.slice(0, secondDivCount).wrapAll('<div class="ll-user-other-info-left w-1/2"></div>');
                 childDivs.slice(secondDivCount).wrapAll('<div class="ll-user-other-info-right w-1/2"></div>');
+                $('body.networks-view-page .ll-user-other-info-left .ll-label').removeClass('hidden');
             } else{
                 // first wrapping
                 $('.ll-user-view-page > div:first').wrap('<div class="ll-user-avatar-container"></div');
