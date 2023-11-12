@@ -4,6 +4,7 @@
     --ll-text-grey: #727272;
     --ll-text-dark-grey: #454C52;
     --ll-primary-color: #2963FF;
+    --ll-success-color: #00a16e;
     --ll-primary-dark-color: #0448ff;
     --ll-primary-light-color: #EAEFFF;
     --ll-light-grey: #FAFAFA;
@@ -41,6 +42,10 @@ thead tr th{
     transition: all 0.3s ease;
 }
 
+.ll-primary-btn:focus{
+    box-shadow: none;
+}
+
 .ll-primary-btn:hover{
     background-color: var(--ll-primary-dark-color);
 }
@@ -55,6 +60,10 @@ thead tr th{
     background-color: #c70011;
 }
 
+.ll-danger-btn:focus{
+    box-shadow: none;
+}
+
 .ll-warning-btn{
     background-color: var(--ll-warning-color);
     color: var(--ll-color-white);
@@ -65,9 +74,17 @@ thead tr th{
     background-color: #dd9200;
 }
 
+.ll-warning-btn:focus{
+    box-shadow: none;
+}
+
 
 .ll-btn-white{
     transition: all .2s ease;
+}
+
+.ll-btn-white:focus{
+    box-shadow: none;
 }
 
 .ll-back-btn{
@@ -99,6 +116,11 @@ thead tr th{
 .ll-action-btn.ll-danger:hover{
     background-color: #ffd7db;
     color: var(--ll-danger-color);
+}
+
+.ll-action-btn.ll-success:hover{
+    background-color: #d8f8ec;
+    color: var(--ll-success-color);
 }
 
 /* navbar design */

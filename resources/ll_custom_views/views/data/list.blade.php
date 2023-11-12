@@ -76,13 +76,13 @@ if($settings['overrideTitle']) {
 
                 @if ($settings['insert'])
                     <a href="{{ route($settings['guard'].'.data.insert', ['name' => $dataDefinition->name]) }}"
-                        class="whitespace-nowrap w-full md:w-auto flex text-sm px-3 py-2 items-center rounded-lg" style="background: #2963FF; color: white;" onmouseover="this.style.background='blue';" onmouseout="this.style.background='#2963FF';">
+                        class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
                         <x-ui.icon icon="plus" class="h-3.5 w-3.5 mr-2" />
                         {{ trans('common.add_new_item') }}
                     </a>
                 @endif
                 @if ($settings['export'])
-                    <a href="{{ route($settings['guard'].'.data.export', ['name' => $dataDefinition->name]) }}" class="btn-dark text-sm px-3 py-2">
+                    <a href="{{ route($settings['guard'].'.data.export', ['name' => $dataDefinition->name]) }}" class="btn text-sm ll-btn-white">
                         <x-ui.icon icon="export" class="h-3.5 w-3.5 mr-2" />
                         {{ trans('common.export') }}
                     </a>

@@ -857,7 +857,7 @@ class DataDefinition
         $iconComponent = new Icon('key', 'h-3.5 w-3.5');
         $icon = $iconComponent->render()->render(); // The second render() call is to render the View object to a string
 
-        $value = '<a href="'.route($settings['guard'].'.data.impersonate', ['name' => $dateDefinitionName, 'guard' => $column['guard'], 'id' => $row->id]).'" data-fb="tooltip" title="'.trans('common.log_in_to_account').'" class="inline-flex items-center whitespace-nowrap btn-dark btn-xs p-2">'.$icon.'</a>';
+        $value = '<a href="'.route($settings['guard'].'.data.impersonate', ['name' => $dateDefinitionName, 'guard' => $column['guard'], 'id' => $row->id]).'" data-fb="tooltip" title="'.trans('common.log_in_to_account').'" class="ll-action-btn ll-success whitespace-nowrap items-center flex px-2 py-2 text-xs border focus:outline-none font-medium rounded text-center">'.$icon.'</a>';
 
         return $value;
     }
