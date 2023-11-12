@@ -148,20 +148,31 @@ if($settings['overrideTitle']) {
 
     <script>
         $(document).ready(function() {
-            const formInputs = $('.ll-user-add-form-inputs');
-            const childDivs = formInputs.children('div');
-            const divCount = childDivs.length;
+            const networksPath = ["/networks/insert"];
+            const partnersPath = ["/partners/insert"];
+            const currentPathname = window.location.pathname;
+            if (networksPath.some(path => currentPathname.includes(path))) {
+                $('body').addClass('networks-edit-page');
+            } else{
+                if(partnersPath.some(path => currentPathname.includes(path))){
+                    $('body').addClass('partners-add-page');
+                }
+                
+                const formInputs = $('.ll-user-add-form-inputs');
+                const childDivs = formInputs.children('div');
+                const divCount = childDivs.length;
 
-            // Select the first div inside the form and wrap it with a new div
-            childDivs.eq(0).wrap('<div class="ll-upload-img"></div>');
+                // Select the first div inside the form and wrap it with a new div
+                childDivs.eq(0).wrap('<div class="ll-upload-img"></div>');
 
-            // Calculate the number of divs for the second and third divs
-            const secondDivCount = Math.floor((divCount - 1) / 2);
-            const thirdDivCount = divCount - 1 - secondDivCount;
+                // Calculate the number of divs for the second and third divs
+                const secondDivCount = Math.floor((divCount - 1) / 2);
+                const thirdDivCount = divCount - 1 - secondDivCount;
 
-            // Select the remaining div elements and wrap them in two separate divs
-            childDivs.slice(1, secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
-            childDivs.slice(secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
+                // Select the remaining div elements and wrap them in two separate divs
+                childDivs.slice(1, secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
+                childDivs.slice(secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
+            }
         });
     </script>
 @stop

@@ -205,6 +205,7 @@ if($settings['overrideTitle']) {
     <script>
         $(document).ready(function() {
             const pathsToCheck = ["/networks/edit"];
+            const partnersPath = ["/partners/edit"];
             const currentPathname = window.location.pathname;
             const formInputs = $('.ll-user-add-form-inputs');
             const childDivs = formInputs.children('div');
@@ -213,6 +214,10 @@ if($settings['overrideTitle']) {
             if (pathsToCheck.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-edit-page');
             }else{
+                if(partnersPath.some(path => currentPathname.includes(path))){
+                    $('body').addClass('partners-add-page');
+                }
+
                 childDivs.eq(0).wrap('<div class="ll-upload-img"></div>');
 
                 const secondDivCount = Math.floor((divCount - 1) / 2);
