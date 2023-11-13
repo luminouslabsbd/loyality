@@ -291,7 +291,7 @@ html.dark .ll-dashboard-grid > a{
 
 .ll-input-container .flex > button:last-child:focus{
     box-shadow: none;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    box-shadow: rgba(37, 30, 30, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
 .ll-input-container input[type="password"]{
@@ -303,24 +303,31 @@ html.dark .ll-dashboard-grid > a{
     align-items: center;
 }
 
-.ll-input-container input#password_changed + button[type="button"]{
+.ll-input-container input#password_changed + button[type="button"],
+.ll-input-container.change-password input + button[type="button"]{
     margin: 0;
     border: 0;
     background-color: transparent;
     position: absolute;
     right: 0;
     border-radius: 0px;
+    box-shadow: none !important;
 }
 
 .ll-user-add-form-inputs .ll-input-container input#password_changed + button[type="button"] {
     right: 50px;
 }
 
+body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#password_changed + button[type="button"] {
+    right: 0;
+}
+
 .ll-user-add-form-inputs .ll-input-container > div.mt-3 {
     margin-top: 1.75rem;
 }
 
-.ll-input-container input#password_changed + button[type="button"]:focus{
+.ll-input-container input#password_changed + button[type="button"]:focus,
+.ll-input-container.change-password input#password_changed + button[type="button"]:focus{
     border: 0;
     outline: none;
     box-shadow: none;

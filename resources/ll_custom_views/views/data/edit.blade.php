@@ -134,18 +134,17 @@ if($settings['overrideTitle']) {
                             @endif
                             
                             @if ($settings['editRequiresPassword'])
-                                <div class="p-6 text-sm rounded-lg bg-gray-50 dark:bg-gray-900 border dark:border-gray-700">
-                                    <x-forms.input 
-                                        value=""
-                                        class-label="mb-4"
-                                        type="password"
-                                        name="current_password_required_to_save_changes"
-                                        icon="key"
-                                        :label="trans('common.current_password_to_save_changes')"
-                                        :placeholder="trans('common.current_password')"
-                                        :required="true"
-                                    />
-                                </div>
+                                <x-forms.input 
+                                    value=""
+                                    class="ll-input-container change-password mb-7"
+                                    class-label=""
+                                    type="password"
+                                    name="current_password_required_to_save_changes"
+                                    icon="key"
+                                    :label="trans('common.current_password_to_save_changes')"
+                                    :placeholder="trans('common.current_password')"
+                                    :required="true"
+                                />
                             @endif
                         </div>
                         <div class="grid grid-cols-7 ll-user-add-form-footer gap-x-5">
@@ -206,6 +205,7 @@ if($settings['overrideTitle']) {
         $(document).ready(function() {
             const pathsToCheck = ["/networks/edit"];
             const partnersPath = ["/partners/edit"];
+            const accountEditPath = ["/manage/account/edit"];
             const currentPathname = window.location.pathname;
             const formInputs = $('.ll-user-add-form-inputs');
             const childDivs = formInputs.children('div');
@@ -216,6 +216,10 @@ if($settings['overrideTitle']) {
             }else{
                 if(partnersPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
+                }
+                
+                if (accountEditPath.some(path => currentPathname.includes(path))){
+                    $('body').addClass('account-edit-page');
                 }
 
                 childDivs.eq(0).wrap('<div class="ll-upload-img"></div>');
