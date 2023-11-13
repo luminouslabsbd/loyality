@@ -44,7 +44,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                     @endauth
 
-                    <div class="flex-1 items-center">
+                    <div class="flex-1 items-center ll-nav-logo">
                         <a href="{{ route('admin.index') }}" class="inline-block w-fit">
                             @if(config('default.app_demo'))
                                 <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
@@ -58,7 +58,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                                 @endif
                             @else
                                 <!--<div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>-->
-                                <div class="ll-nav-logo">
+                                <div class="">
                                     <img src="{{ asset('assets/ll_imgs/logo.png') }}" alt="Brand Logo">
                                 </div>
                             @endif
@@ -223,33 +223,33 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                             <ul class="space-y-2 font-medium">
                                 <li>
                                     <a href="{{ route('admin.index') }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'admin.index') active @endif">
-                                        <i class="fa-solid fa-chart-line"></i><span class="ml-2">Dashboard</span>
+                                        <x-ui.icon icon="home" class="" /><span class="ml-2">{{ trans('common.dashboard') }}</span>
                                     </a>
                                 </li>
                                 @if (auth('admin')->user()->role == 1)
                                     <li>
                                         <a href="{{ route('admin.data.list', ['name' => 'admins']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'admins') active @endif">
-                                            <i class="fa-solid fa-lock"></i><span class="ml-2">Administrators</span>
+                                            <x-ui.icon icon="users" class="" /><span class="ml-2">{{ trans('common.administrators') }}</span>
                                         </a>
                                     </li>
             
                                     <li>
                                         <a href="{{ route('admin.data.list', ['name' => 'networks']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'networks') active @endif">
-                                            <i class="fa-solid fa-network-wired"></i><span class="ml-2">Networks</span>
+                                            <x-ui.icon icon="cube-transparent" class="" /><span class="ml-2">{{ trans('common.networks') }}</span>
                                         </a>
                                     </li>
                                 @endif
             
                                 <li>
                                     <a href="{{ route('admin.data.list', ['name' => 'partners']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'partners') active @endif">
-                                        <i class="fa-solid fa-handshake"></i><span class="ml-2">Partners</span>
+                                        <x-ui.icon icon="building-storefront" class="" /><span class="ml-2">{{ trans('common.partners') }}</span>
                                     </a>
                                 </li>
             
                                 @if (auth('admin')->user()->role == 1)
                                     <li>
                                         <a href="{{ route('admin.data.list', ['name' => 'members']) }}" class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif">
-                                            <i class="fa-solid fa-users"></i><span class="ml-2">Members</span>
+                                            <x-ui.icon icon="user-group" class="" /><span class="ml-2">{{ trans('common.members') }}</span>
                                         </a>
                                     </li>
                                 @endif

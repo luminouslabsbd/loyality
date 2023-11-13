@@ -52,8 +52,8 @@ html.dark input[name="search"]:focus {
 
 html.dark .text-link,
 html.dark .ll-action-btn.ll-primary:hover,
-html.dark #ll-sidebar ul li a:hover > i,
-html.dark #ll-sidebar ul li a.active > i,
+html.dark #ll-sidebar ul li a:hover > svg,
+html.dark #ll-sidebar ul li a.active > svg,
 html.dark .ll-table-footer,
 html.dark .ll-dashboard-grid > a svg,
 html.dark .ll-dashboard-grid > a h3{
@@ -259,9 +259,15 @@ html.dark .ll-dashboard-grid > a{
     border-right: 3px solid var(--ll-primary-color);
 }
 
-#ll-sidebar ul li a:hover > i,
-#ll-sidebar ul li a.active > i {
+#ll-sidebar ul li a:hover > svg,
+#ll-sidebar ul li a.active > svg {
     color: var(--ll-primary-color);
+}
+
+#ll-sidebar ul li a > svg,
+#ll-sidebar ul li a > svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* login page design */
