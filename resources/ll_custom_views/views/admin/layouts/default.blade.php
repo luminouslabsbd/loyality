@@ -278,7 +278,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         </div>
                     </aside>
                 @endauth
-                <div class="sm:ml-64 ll-amdin-content-container" style="margin-top: 60px">
+                <div class="sm:ml-64 ll-amdin-content-container" style="margin-top: 56px">
                     @yield('content')
                 </div>
             </div>

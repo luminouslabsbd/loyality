@@ -110,7 +110,7 @@
                 </svg>
             </button>
             @if($generatePassword)
-                <button type="button" tabindex="-1" class="flex-1 btn px-3 focus:ring-2 focus:ring-primary-600 borderfocus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 border border-gray-300 dark:border-gray-600"
+                <button type="button" tabindex="-1" class="ll-generate-password-btn flex-1 btn px-3 focus:ring-2 focus:ring-primary-600 borderfocus:border-primary-600 dark:focus:ring-primary-500 dark:focus:border-primary-500 border border-gray-300 dark:border-gray-600"
                     onClick="document.getElementById('{{ $id }}').value = generatePassword(8)">
                     <x-ui.icon icon="refresh" class="w-4 h-4" data-fb="tooltip" title="{!! parse_attr(trans('common.generate_password')) !!}" />
                 </button>

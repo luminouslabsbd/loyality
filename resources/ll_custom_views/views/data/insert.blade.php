@@ -12,7 +12,7 @@ if($settings['overrideTitle']) {
 
 @section('content')
     <div class="w-full" @onclicktab="window.appSetImageUploadHeight()">
-        <div class="relative bg-white p-4 lg:p-6">
+        <div class="relative p-4 lg:p-6">
             <div
                 class="mb-3">
                 @if($settings['list'])
@@ -157,7 +157,7 @@ if($settings['overrideTitle']) {
                 if(partnersPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
                 }
-                
+
                 const formInputs = $('.ll-user-add-form-inputs');
                 const childDivs = formInputs.children('div');
                 const divCount = childDivs.length;

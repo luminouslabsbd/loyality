@@ -11,7 +11,7 @@ if($settings['overrideTitle']) {
 @section('page_title', $pageTitle . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <div class="relative bg-white dark:bg-gray-800 sm:rounded-lg m-0 px-4"
+    <div class="relative dark:bg-gray-800 m-0 px-4"
         @if ($settings['multiSelect']) x-data="{
             selectAll: false,
             selected: [],

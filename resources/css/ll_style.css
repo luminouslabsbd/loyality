@@ -12,6 +12,9 @@
     --ll-light-bg-grey: #E8E8E8;
     --ll-danger-color: #D92D20;
     --ll-warning-color: #f19f00;
+    --ll-primary-dark-theme-color: #1b2937;
+    --ll-secondary-dark-theme-color: #334151;
+    --ll-dark-theme-text-color: #9aa3af;
 }
   
 
@@ -28,6 +31,94 @@ thead tr th{
     padding-top: 20px !important;
     padding-bottom: 20px !important;
 }
+
+/* Dark theme design start */
+html.dark thead tr,
+html.dark thead tr th,
+html.dark .ll-action-btn,
+html.dark .ll-action-btn:hover,
+html.dark .ll-generate-password-btn{
+    background-color: var(--ll-secondary-dark-theme-color) !important;
+}
+
+html.dark .ll-nav-bar{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 5px;
+}
+
+html.dark input[name="search"]:focus {
+    border-color: var(--ll-primary-color) !important;
+    box-shadow: none;
+}
+
+html.dark .text-link,
+html.dark .ll-action-btn.ll-primary:hover,
+html.dark #ll-sidebar ul li a:hover > i,
+html.dark #ll-sidebar ul li a.active > i,
+html.dark .ll-table-footer,
+html.dark .ll-dashboard-grid > a svg,
+html.dark .ll-dashboard-grid > a h3{
+    color: #2d9aff !important;
+}
+
+html.dark .ll-dark-theme-light-blue{
+    color: #2d9aff !important;
+}
+
+/* html.dark a{
+    color: #2d9aff;
+} */
+
+html.dark #ll-sidebar,
+html.dark body{
+    background-color: var(--ll-primary-dark-theme-color) !important;
+}
+
+html.dark #ll-sidebar {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 5px 20px;
+}
+
+html.dark #ll-sidebar ul li a:hover,
+html.dark #ll-sidebar ul li a.active{
+    background-color: var(--ll-secondary-dark-theme-color);
+    color: var(--ll-dark-theme-text-color);
+    border-color: #2d9aff;
+}
+
+html.dark .ll-amdin-content-container{
+    background-color: var(--ll-primary-dark-theme-color);
+}
+
+html.dark .ll-back-btn,
+html.dark .ll-user-add-form-inputs label,
+html.dark .ll-label,
+html.dark #ll-sidebar ul li a,
+html.dark .ll-user-others-info > div.ll-user-other-info-left > div,
+html.dark .ll-user-others-info > div.ll-user-other-info-right > div,
+html.dark body.networks-view-page div.ll-user-other-info-left > div,
+html.dark body.networks-view-page div.ll-user-other-info-right > div,
+html.dark .ll-user-main-info > div:first-child,
+html.dark .ll-user-main-info > div:last-child{
+    color: var(--ll-dark-theme-text-color) !important;
+}
+
+html.dark .ll-primary-btn{
+    background-color: var(--ll-primary-color);
+}
+
+html.dark .ll-primary-btn:hover{
+    background-color: var(--ll-primary-dark-color);
+}
+
+html.dark .ll-danger-btn,
+html.dark .ll-warning-btn{
+    color: var(--ll-color-white) !important;
+}
+
+html.dark .ll-table-footer,
+html.dark .ll-dashboard-grid > a{
+    background-color: var(--ll-secondary-dark-theme-color);
+}
+/* Dark theme design end */
 
 .ll-text-primary-color{
     color: var(--ll-text-dark) !important;
@@ -98,6 +189,7 @@ thead tr th{
 
 .ll-action-btn{
     background-color: var(--ll-light-bg-grey);
+    border: none;
     border-radius: 50%;
     color: var(--ll-dark-grey);
     transition: all 0.3s ease;

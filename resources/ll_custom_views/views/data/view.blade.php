@@ -13,7 +13,7 @@ if($settings['overrideTitle']) {
 
 @section('content')
     <div class="w-full">
-        <div class="relative bg-white p-4 lg:p-6">
+        <div class="relative p-4 lg:p-6">
             <div class="mb-5">
                 <div class="w-full flex flex-row items-center justify-between">
                     @if($settings['list'])

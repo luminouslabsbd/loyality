@@ -11,12 +11,12 @@
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ trans('common.welcome_user', ['user' => (auth('admin')->user()->role == 1) ? trans('common.administrator') : trans('common.manager')]) }} {{ Arr::random(['😎', '🤠', '😊', '😃', '🙃', '🤩', '😉']) }}</h2>
             @if(auth('admin')->user()->role == 1)
-            <p class="font-semibold text-gray-500 dark:text-gray-400 sm:text-xl mb-2">{!! trans('common.current_version_in_use', ['version' => '<span class="px-2.5 py-0.5 rounded dark:bg-yellow-800 dark:text-yellow-300" style="background: #eef3ff; color: #2963FF">' . config('version.current') . '</span>']) !!} @if($hasMigrations) <a href="{{ route('admin.migrate') }}" class="text-link underline">{{ trans('common.database_update') }}</a> @else {{ trans('common.database_up_to_date') }} @endif</p>
+            <p class="font-semibold text-gray-500 dark:text-gray-400 sm:text-xl mb-2">{!! trans('common.current_version_in_use', ['version' => '<span class="ll-dark-theme-light-blue px-2.5 py-0.5 rounded dark:bg-yellow-800 dark:text-yellow-300" style="background: #eef3ff; color: #2963FF">' . config('version.current') . '</span>']) !!} @if($hasMigrations) <a href="{{ route('admin.migrate') }}" class="text-link underline">{{ trans('common.database_update') }}</a> @else {{ trans('common.database_up_to_date') }} @endif</p>
             @endif
             <p class="font-light text-gray-500 dark:text-gray-400 sm:text-xl">{!! (auth('admin')->user()->role == 1) ? trans('common.adminDashboardBlocksTitle') : trans('common.managerDashboardBlocksTitle') !!}</p>
         </div>
 
-        <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 xl:gap-8 md:space-y-0">
+        <div class="space-y-8 ll-dashboard-grid md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 xl:gap-8 md:space-y-0">
             @foreach($dashboardBlocks as $block)
             <a href="{{ $block['link'] }}" class="group block p-6 bg-white rounded shadow dark:bg-gray-800">
                 <div class="flex justify-center items-center mb-4 w-10 h-10 rounded lg:h-12 lg:w-12 dark:bg-primary-900" style="background: #eef3ff">
