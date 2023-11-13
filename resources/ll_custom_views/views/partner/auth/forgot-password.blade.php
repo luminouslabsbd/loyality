@@ -19,7 +19,7 @@
                         <x-forms.input class="ll-input-container" type="email" name="email" :label="trans('common.email_address')" :placeholder="trans('common.your_email')"
                             :required="true" />
 
-                        <x-forms.button :label="trans('common.send_reset_link')" button-class="w-full btn-sm" />
+                        <x-forms.button :label="trans('common.send_reset_link')" button-class="ll-primary-btn w-full btn-sm" />
                         <x-forms.form-close />
                     @endif
 

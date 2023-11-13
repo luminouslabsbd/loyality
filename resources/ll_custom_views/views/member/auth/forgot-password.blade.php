@@ -17,7 +17,7 @@
                         <x-forms.form-open class="ll-form-container space-y-4 md:space-y-6" :action="route('member.forgot_password.post')" method="POST" />
                         <x-forms.input class="ll-input-container" type="email" name="email" :label="trans('common.email_address')" :placeholder="trans('common.your_email')"
                             :required="true" />
-                        <x-forms.button :label="trans('common.send_reset_link')" button-class="w-full btn-sm" />
+                        <x-forms.button :label="trans('common.send_reset_link')" button-class="ll-primary-btn w-full btn-sm" />
                         <x-forms.form-close />
                     @endif
                     <div class="space-y-2 md:space-y-4 divide-y divide-gray-200 dark:divide-gray-700 pt-4">

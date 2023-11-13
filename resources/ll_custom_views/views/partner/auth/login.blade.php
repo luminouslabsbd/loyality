@@ -61,7 +61,7 @@
                         </div>
                         <a href="{{ route('partner.forgot_password') }}" class="ll-dark-theme-light-blue text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" style="color: #2963FF">{{ trans('common.forgot_password') }}</a>
                     </div>
-                    <x-forms.button :label="trans('common.log_in')" button-class="w-full" />
+                    <x-forms.button :label="trans('common.log_in')" button-class="ll-primary-btn w-full" />
                     <x-forms.form-close />
                     <div class="ll-login-bottom-logo">
                         <img class="login-img" src="{{ asset('assets/ll_imgs/logo_grey.png') }}" alt="Logo">

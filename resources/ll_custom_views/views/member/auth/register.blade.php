@@ -61,7 +61,7 @@
                         />
                     
                         <x-forms.checkbox class="ll-terms-policy" name="accepts_emails" :label="trans('common.registration_accepts_emails')" />
-                        <x-forms.button :label="trans('common.create_account')" button-class="w-full" />
+                        <x-forms.button :label="trans('common.create_account')" button-class="ll-primary-btn w-full" />
                         <x-forms.form-close />
                     @endif
                     <p class="text-sm font-light ll-text-primary-color">

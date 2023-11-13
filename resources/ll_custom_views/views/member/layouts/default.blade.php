@@ -91,9 +91,9 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         <span class="hidden md:block mr-3 w-px h-5 bg-gray-200 dark:bg-gray-600 lg:inline"></span>
                         @else
                             <a rel="nofollow" href="{{ route('member.login') }}"
-                                class="text-sm font-medium text-primary-600 md:mr-0 mr-3 dark:text-primary-500 hover:underline">{{ trans('common.log_in') }}</a>
+                                class="text-sm text-link font-medium md:mr-0 mr-3 ll-dark-theme-light-blue hover:underline">{{ trans('common.log_in') }}</a>
                             <a rel="nofollow" href="{{ route('member.register') }}"
-                                class="ml-5 mr-2 hidden md:block text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-3 py-2 lg:px-4 lg:py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">{{ trans('common.register') }}</a>
+                                class="ml-5 mr-2 hidden md:block ll-primary-btn font-medium rounded-lg text-sm px-3 py-2 lg:px-4 lg:py-2 text-white">{{ trans('common.register') }}</a>
                         @endauth
 
                         @if (count($languages['all']) > 1)
