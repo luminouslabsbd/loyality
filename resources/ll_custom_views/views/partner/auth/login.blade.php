@@ -59,7 +59,7 @@
                                 :label="trans('common.remember_me')"
                             />
                         </div>
-                        <a href="{{ route('partner.forgot_password') }}" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" style="color: #2963FF">{{ trans('common.forgot_password') }}</a>
+                        <a href="{{ route('partner.forgot_password') }}" class="ll-dark-theme-light-blue text-sm font-medium text-primary-600 hover:underline dark:text-primary-500" style="color: #2963FF">{{ trans('common.forgot_password') }}</a>
                     </div>
                     <x-forms.button :label="trans('common.log_in')" button-class="w-full" />
                     <x-forms.form-close />

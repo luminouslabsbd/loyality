@@ -97,7 +97,8 @@ html.dark .ll-user-others-info > div.ll-user-other-info-right > div,
 html.dark body.networks-view-page div.ll-user-other-info-left > div,
 html.dark body.networks-view-page div.ll-user-other-info-right > div,
 html.dark .ll-user-main-info > div:first-child,
-html.dark .ll-user-main-info > div:last-child{
+html.dark .ll-user-main-info > div:last-child,
+html.dark .ll-text-primary-color{
     color: var(--ll-dark-theme-text-color) !important;
 }
 
@@ -362,6 +363,7 @@ body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#passwo
 .ll-amdin-content-container:has(> .admin-login-page),
 .ll-amdin-content-container:has(> .admin-forgot-page) {
     margin: 0px !important;
+    height: 100%;
 }
 
 .ll-amdin-content-container{
