@@ -9,44 +9,59 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <meta charset="utf-8">
     <title>@yield('page_title')</title>
     <script src="{{ route('javascript.include.language') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <meta name="robots" content="noindex, nofollow" />
     <x-meta.generic />
     <x-meta.favicons />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body class="antialiased bg-gray-50 dark:bg-gray-900" x-data="{}" x-cloak x-show="true">
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
         <header class="member-header" id="member-header">
-            <nav class="bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b">
-                <div class="flex flex-wrap justify-between items-center px-3 md:px-3 py-2.5">
+            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-20">
+                <div class="flex flex-wrap justify-between items-center px-6 py-2.5">
 
                     @auth('staff')
-                    <div class="block md:hidden flex-initial mr-3">
+                    {{-- <div class="block md:hidden flex-initial mr-3">
                         <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-expanded="false">
                             <span class="sr-only">{{ trans('common.open') }}</span>
                             <x-ui.icon icon="bars-4" class="w-6 h-6" />
                             <x-ui.icon icon="close" class="hidden w-6 h-6" />
                         </button>
+                    </div> --}}
+
+                    <div class="block md:hidden flex-initial mr-3">
+                        <button data-drawer-target="ll-sidebar" data-drawer-toggle="ll-sidebar" aria-controls="ll-sidebar" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                            <span class="sr-only">Open sidebar</span>
+                            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                            </svg>
+                        </button>
                     </div>
                     @endauth
 
-                    <a href="{{ route('staff.index') }}" class="flex-1 items-center">
-                        @if(config('default.app_demo'))
-                            <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
-                            <img src="{{ asset('assets/img/logo-dark.svg') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
-                        @elseif(config('default.app_logo') != '')
-                            @if(config('default.app_logo_dark') != '')
-                                <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
-                                <img src="{{ config('default.app_logo_dark') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                    <div class="flex-1 items-center ll-nav-logo">
+                        <a href="{{ route('staff.index') }}" class="inline-block w-fit">
+                            @if(config('default.app_demo'))
+                                <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
+                                <img src="{{ asset('assets/img/logo-dark.svg') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                            @elseif(config('default.app_logo') != '')
+                                @if(config('default.app_logo_dark') != '')
+                                    <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block dark:hidden" alt="{{ config('default.app_name') }} Logo" />
+                                    <img src="{{ config('default.app_logo_dark') }}" class="h-6 sm:h-7 hidden dark:block" alt="{{ config('default.app_name') }} Logo" />
+                                @else
+                                    <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block" alt="{{ config('default.app_name') }} Logo" />
+                                @endif
                             @else
-                                <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block" alt="{{ config('default.app_name') }} Logo" />
+                                <div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>
                             @endif
-                        @else
-                            <div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>
-                        @endif
-                    </a>
+                        </a>
+                    </div>
+
                     <div class="flex items-center">
                         @auth('staff')
                         <a href="{{ route('staff.qr.scanner') }}" class="md:hidden flex text-sm rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -126,7 +141,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                     </div>
                 </div>
             </nav>
-            @auth('staff')
+            {{-- @auth('staff')
                 <nav class="hidden md:block bg-gray-100 border-gray-200 dark:bg-gray-700 dark:border-gray-600 border-b">
                     <div class="grid py-4 px-4 mx-auto max-w-screen-2xl lg:grid-cols-2 md:px-6">
 
@@ -145,10 +160,10 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         </div>
                     </div>
                 </nav>
-            @endauth
+            @endauth --}}
         </header>
 
-        @auth('staff')
+        {{-- @auth('staff')
             <!-- drawer -->
             <div id="drawer-navigation" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800 transition-transform left-0 top-0 -translate-x-full" tabindex="-1">
                 <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">{{ trans('common.menu') }}</h5>
@@ -179,10 +194,39 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 
                 </div>
             </div>
-        @endauth
+        @endauth --}}
 
         <div class="w-full mx-auto flex flex-grow">
-            @yield('content')
+            <div>
+                @auth('staff')
+                <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                    <div class="h-full overflow-y-auto">
+                        <ul class="space-y-2 font-medium">
+                            <li>
+                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.index') active @endif" href="{{ route('staff.index') }}"><x-ui.icon icon="home" class="" /><span class="ml-2">{{ trans('common.dashboard') }}</span></a>
+                            </li>
+                            
+                            <li>
+                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.qr.scanner') active @endif" href="{{ route('staff.qr.scanner') }}"><x-ui.icon icon="qr-code" class="" /><span class="ml-2">{{ trans('common.scan_qr') }}</span></a>
+                            </li>
+
+                            <li>
+                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif" href="{{ route('staff.data.list', ['name' => 'members']) }}"><x-ui.icon icon="user-group" class="" /><span class="ml-2">{{ trans('common.members') }}</span></a>
+                            </li>
+                            
+                            <li>
+                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'account') active @endif" href="{{ route('staff.data.list', ['name' => 'account']) }}"><x-ui.icon icon="user-circle" class="" /><span class="ml-2">{{ trans('common.account_settings') }}</span></a>
+                            </li>
+                            
+                            <li><a class="ll-sidebar-link flex items-center p-2 group" href="{{ route('staff.logout') }}"><x-ui.icon icon="power" class="" /><span class="ml-2">{{ trans('common.logout') }}</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            @endauth
+
+            <div class="sm:ml-64 ll-amdin-content-container w-full" style="margin-top: 56px">
+                @yield('content')
+            </div>
         </div>
     </div>
 
