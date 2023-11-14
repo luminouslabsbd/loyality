@@ -176,6 +176,9 @@ html.dark .ll-dashboard-grid > a{
 
 
 .ll-btn-white{
+    background-color: var(--ll-color-white) !important;
+    border: 0 !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
     transition: all .2s ease;
 }
 
@@ -286,9 +289,9 @@ html.dark .ll-dashboard-grid > a{
 .ll-input-container input,
 .ll-btn-white,
 .ll-input-container .flex > button:last-child{
-    background-color: var(--ll-color-white) !important;
-    border: 0 !important;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
+    background-color: var(--ll-color-white);
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
 }
 
 .ll-input-container input:focus {
