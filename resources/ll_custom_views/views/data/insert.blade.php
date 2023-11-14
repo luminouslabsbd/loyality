@@ -49,14 +49,14 @@ if($settings['overrideTitle']) {
             @php
             $hasTabs = !empty($form['tabs']);
             @endphp
-            <div class="@if($hasTabs) pt-1 @endif">
+            <div>
                 <x-forms.messages class="mt-4" />
                 <x-forms.form-open :novalidate="$hasTabs" action="{{ route($settings['guard'].'.data.insert.post', ['name' => $dataDefinition->name]) }}"
                     enctype="multipart/form-data" id="formDataDefinition" method="POST" class="ll-user-add-form space-y-4 md:space-y-6" />
                 @if ($form['columns'])
                     <div class="ll-user-add-form-inputs grid grid-cols-7 gap-x-5">
                         @if($hasTabs)
-                            <x-ui.tabs :tabs="array_values($form['tabs'])" active-tab="1" class="space-y-4 md:space-y-6 py-6">
+                            <x-ui.tabs :tabs="array_values($form['tabs'])" active-tab="1" class="ll-tab-content-container space-y-4 md:space-y-6 py-6">
                             @php
                             $previousTab = null;
                             @endphp
@@ -151,13 +151,26 @@ if($settings['overrideTitle']) {
             const networksPath = ["/networks/insert"];
             const partnersInsertPath = ["/partners/insert"];
             const clubsInsertPath = ["/partner/manage/clubs/insert"];
+            const partnerCardInsertPath = ["/partner/manage/cards/insert"];
             const currentPathname = window.location.pathname;
 
             if (networksPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-edit-page');
             } else if (clubsInsertPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-club-insert-page');
-            } else{
+            } else if (partnerCardInsertPath.some(path => currentPathname.includes(path))) {
+                $('body').addClass('partner-card-insert-page');
+
+                
+                // const inputsContainer = $('.ll-tab-content-container');
+                // const childDivs = inputsContainer.children('div');
+                // const divCount = childDivs.length;
+
+                // Wrap the first two ll-input-container divs in a new div with class "first"
+                // $(".ll-tab-content-container .ll-input-container:lt(2)").wrapAll('<div class="grid grid-cols-2 gap-4"></div>');
+
+                // // Wrap the next ll-input-container and ll-checkbox in a new div with class "second"
+            }else{
                 if(partnersInsertPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
                 }
