@@ -513,9 +513,9 @@ ul.tabs-underline li a {
 
 ul.tabs-underline li a.active,
 ul.tabs-underline li a:hover {
-    color: var(--ll-primary-color);
-    border-color: var(--ll-primary-color);
-    font-weight: 600;
+    color: var(--ll-primary-color) !important;
+    border-color: var(--ll-primary-color) !important;
+    font-weight: 600 !important;
 }
 
 body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
