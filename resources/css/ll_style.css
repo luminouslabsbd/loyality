@@ -45,7 +45,7 @@ html.dark .ll-nav-bar{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 5px;
 }
 
-html.dark input[name="search"]:focus {
+.ll-amdin-content-container input[name="search"]:focus {
     border-color: var(--ll-primary-color) !important;
     box-shadow: none;
 }
@@ -62,6 +62,10 @@ html.dark .ll-dashboard-grid > a h3{
 
 html.dark .ll-dark-theme-light-blue{
     color: #2d9aff !important;
+}
+
+html.dark .ll-btn-white {
+    background-color: var(--ll-secondary-dark-theme-color) !important;
 }
 
 /* html.dark a{
