@@ -206,6 +206,7 @@ if($settings['overrideTitle']) {
             const pathsToCheck = ["/networks/edit"];
             const partnersPath = ["/partners/edit"];
             const accountEditPath = ["/manage/account/edit"];
+            const clubsEditPath = ["/partner/manage/clubs/edit"];
             const currentPathname = window.location.pathname;
             const formInputs = $('.ll-user-add-form-inputs');
             const childDivs = formInputs.children('div');
@@ -213,7 +214,9 @@ if($settings['overrideTitle']) {
             
             if (pathsToCheck.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-edit-page');
-            }else{
+            }else if (clubsEditPath.some(path => currentPathname.includes(path))) {
+                $('body').addClass('partner-club-insert-page');
+            } else{
                 if(partnersPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
                 }
