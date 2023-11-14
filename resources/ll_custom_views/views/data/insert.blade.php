@@ -149,12 +149,16 @@ if($settings['overrideTitle']) {
     <script>
         $(document).ready(function() {
             const networksPath = ["/networks/insert"];
-            const partnersPath = ["/partners/insert"];
+            const partnersInsertPath = ["/partners/insert"];
+            const clubsInsertPath = ["/partner/manage/clubs/insert"];
             const currentPathname = window.location.pathname;
+
             if (networksPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-edit-page');
+            } else if (clubsInsertPath.some(path => currentPathname.includes(path))) {
+                $('body').addClass('partner-club-insert-page');
             } else{
-                if(partnersPath.some(path => currentPathname.includes(path))){
+                if(partnersInsertPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
                 }
 

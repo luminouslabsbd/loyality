@@ -441,7 +441,8 @@ body.networks-edit-page .ll-user-add-form-inputs .ll-checkbox {
     margin-bottom: 5px;
 }
 
-body.partners-add-page .ll-checkbox {
+body.partners-add-page .ll-checkbox,
+body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox {
     height: 68px;
     display: flex;
     align-items: end;
@@ -454,15 +455,19 @@ body.partners-add-page .ll-checkbox:last-child {
     margin-top: 3px;
 }
 
-body.networks-edit-page .ll-user-add-form-footer {
+body.networks-edit-page .ll-user-add-form-footer,
+body.partner-club-insert-page .ll-user-add-form-footer,
+body.partner-club-insert-page .ll-user-add-form-inputs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-body.networks-edit-page .ll-user-add-form-footer .col-span-3 {
+body.networks-edit-page .ll-user-add-form-footer .col-span-3,
+body.partner-club-insert-page .ll-user-add-form-footer .col-span-3 {
     grid-column: unset;
 }
 
-body.networks-edit-page .ll-user-add-form-footer .ll-user-form-empty {
+body.networks-edit-page .ll-user-add-form-footer .ll-user-form-empty,
+body.partner-club-insert-page .ll-user-add-form-footer .ll-user-form-empty {
     display: none;
 }
 
@@ -559,8 +564,13 @@ body.networks-view-page .ll-user-view-page {
 }
 
 @media only screen and (max-width: 639px){
-    body.networks-edit-page .ll-user-add-form-inputs {
+    body.networks-edit-page .ll-user-add-form-inputs,
+    body.partner-club-insert-page .ll-user-add-form-inputs {
         grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox {
+        height: auto;
     }
 }
 
