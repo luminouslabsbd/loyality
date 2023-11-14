@@ -511,6 +511,10 @@ ul.tabs-underline li a:hover {
     font-weight: 600;
 }
 
+body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
+    display: block;
+}
+
 /* responsive design */
 
 @media only screen and (max-width: 1279px){
