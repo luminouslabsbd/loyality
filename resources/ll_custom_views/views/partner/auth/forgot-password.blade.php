@@ -3,7 +3,7 @@
 @section('page_title', trans('common.forgot_password') . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <section class="w-full place-self-center mx-auto lg:h-full ll-login-container">
+    <section class="w-full place-self-center mx-auto lg:h-full partner-forgot-page ll-login-container">
         <div class="grid lg:grid-cols-2 lg:h-full">
             <div class="ll-login-left flex justify-center items-center py-6 px-4 g:py-0 sm:px-0">
                 <img class="login-img" src="{{ asset('assets/ll_imgs/login.png') }}" alt="Image">

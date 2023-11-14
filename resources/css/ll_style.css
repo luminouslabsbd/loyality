@@ -367,7 +367,9 @@ body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#passwo
 }
 
 .ll-amdin-content-container:has(> .admin-login-page),
-.ll-amdin-content-container:has(> .admin-forgot-page) {
+.ll-amdin-content-container:has(> .admin-forgot-page),
+.ll-amdin-content-container:has(> .partner-login-page),
+.ll-amdin-content-container:has(> .partner-forgot-page) {
     margin: 0px !important;
     height: 100%;
 }
