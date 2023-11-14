@@ -282,9 +282,9 @@ html.dark .ll-dashboard-grid > a{
 .ll-input-container input,
 .ll-btn-white,
 .ll-input-container .flex > button:last-child{
-    background-color: var(--ll-color-white);
-    border: 0;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    background-color: var(--ll-color-white) !important;
+    border: 0 !important;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px !important;
 }
 
 .ll-input-container input:focus {
@@ -472,14 +472,16 @@ body.partner-card-insert-page .ll-user-add-form-footer .col-span-3{
 }
 
 body.partner-card-insert-page .ll-user-add-form-footer,
-body.partner-club-insert-page .ll-user-add-form-footer {
+body.partner-club-insert-page .ll-user-add-form-footer,
+body.networks-edit-page .ll-user-add-form-footer {
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
 body.partner-card-insert-page .ll-user-add-form-footer .col-span-3,
-body.partner-club-insert-page .ll-user-add-form-footer .col-span-3 {
+body.partner-club-insert-page .ll-user-add-form-footer .col-span-3,
+body.networks-edit-page .ll-user-add-form-footer .col-span-3 {
     max-width: 200px;
     width: 100%;
 }

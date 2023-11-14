@@ -38,7 +38,7 @@ window.appAlert = function(content, opts = {}) {
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center justify-end p-6 space-x-2 border-t- border-none border-gray-200 rounded-b dark:border-gray-600">
-                        <button type="button" class="btn" @click="close" id="${id}-focusButton">
+                        <button type="button" class="btn text-sm ll-btn-white" @click="close" id="${id}-focusButton">
                             ${btnCloseText}
                         </button>
                     </div>

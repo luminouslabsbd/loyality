@@ -902,7 +902,7 @@ document.getElementById('qr-$id').addEventListener('click', (event) => {
 </script>
 EOD;
 
-        $value = '<a href="javascript:void(0);" id="qr-'.$id.'" class="inline-flex items-center whitespace-nowrap btn-dark btn-xs p-1">'.$icon.'</a>' . $script;
+        $value = '<a href="javascript:void(0);" id="qr-'.$id.'" class="ll-action-btn ll-success whitespace-nowrap items-center flex px-2 py-2 text-xs border focus:outline-none font-medium rounded text-center">'.$icon.'</a>' . $script;
 
         return $value;
     }
