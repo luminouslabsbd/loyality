@@ -471,13 +471,15 @@ body.partner-card-insert-page .ll-user-add-form-footer .col-span-3{
     grid-column: unset;
 }
 
-body.partner-card-insert-page .ll-user-add-form-footer {
+body.partner-card-insert-page .ll-user-add-form-footer,
+body.partner-club-insert-page .ll-user-add-form-footer {
     display: flex;
     justify-content: end;
     align-items: center;
 }
 
-body.partner-card-insert-page .ll-user-add-form-footer .col-span-3 {
+body.partner-card-insert-page .ll-user-add-form-footer .col-span-3,
+body.partner-club-insert-page .ll-user-add-form-footer .col-span-3 {
     max-width: 200px;
     width: 100%;
 }

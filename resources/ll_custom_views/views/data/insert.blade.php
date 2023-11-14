@@ -151,7 +151,7 @@ if($settings['overrideTitle']) {
             const networksPath = ["/networks/insert"];
             const partnersInsertPath = ["/partners/insert"];
             const clubsInsertPath = ["/partner/manage/clubs/insert"];
-            const partnerCardInsertPath = ["/partner/manage/cards/insert"];
+            const partnerCardInsertPath = ["/partner/manage/cards/insert", "/partner/manage/rewards/insert"];
             const currentPathname = window.location.pathname;
 
             if (networksPath.some(path => currentPathname.includes(path))) {

@@ -207,7 +207,9 @@ if($settings['overrideTitle']) {
             const partnersPath = ["/partners/edit"];
             const accountEditPath = ["/manage/account/edit"];
             const clubsEditPath = ["/partner/manage/clubs/edit"];
+            const partnerCardEditPath = ["/partner/manage/cards/edit", "/partner/manage/rewards/edit"];
             const currentPathname = window.location.pathname;
+
             const formInputs = $('.ll-user-add-form-inputs');
             const childDivs = formInputs.children('div');
             const divCount = childDivs.length;
@@ -216,6 +218,8 @@ if($settings['overrideTitle']) {
                 $('body').addClass('networks-edit-page');
             }else if (clubsEditPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-club-insert-page');
+            }else if (partnerCardEditPath.some(path => currentPathname.includes(path))) {
+                $('body').addClass('partner-card-insert-page');
             } else{
                 if(partnersPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
