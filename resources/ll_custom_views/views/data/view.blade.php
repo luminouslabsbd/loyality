@@ -138,7 +138,7 @@ if($settings['overrideTitle']) {
 
     <script>
         $(document).ready(function() {
-            const pathsToCheck = ["/networks/view", "/partners/view", "/members/view"];
+            const pathsToCheck = ["/networks/view", "/partners/view", "/members/view", "/partner/manage/clubs/view"];
             const currentPathname = window.location.pathname;
             if (pathsToCheck.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-view-page');
