@@ -8,7 +8,7 @@
         <div class="max-w-md mx-auto">
             <div class="flex items-center mb-6">
                 <a href="{{ route('partner.data.list', ['name' => 'members']) }}"
-                    class="flex btn-dark btn-md mr-3 whitespace-nowrap text-ellipsis">
+                    class="btn text-sm ll-btn-white flex mr-3 whitespace-nowrap text-ellipsis">
                     <x-ui.icon icon="user-group" class="h-5 w-5 mr-2" />
                     {{ trans('common.members') }}
                 </a>
