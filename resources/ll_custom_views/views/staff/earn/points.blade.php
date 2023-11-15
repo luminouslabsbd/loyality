@@ -8,7 +8,7 @@
         <div class="max-w-md mx-auto">
             @if($member && $card)
             <x-forms.messages />
-            <x-forms.form-open action="{{ route('staff.earn.points.post', ['member_identifier' => $member->unique_identifier, 'card_identifier' => $card->unique_identifier]) }}" enctype="multipart/form-data" method="POST" />
+            <x-forms.form-open class="ll-input-container" action="{{ route('staff.earn.points.post', ['member_identifier' => $member->unique_identifier, 'card_identifier' => $card->unique_identifier]) }}" enctype="multipart/form-data" method="POST" />
                 <div class="grid gap-4 sm:col-span-2 md:gap-6 sm:grid-cols-2 mb-6">
                     <div>
                         <x-forms.input
@@ -19,8 +19,8 @@
                             inputmode="decimal"
                             :prefix="$currency['symbol_native']"
                             :suffix="$card->currency"
-                            affix-class="text-gray-400 dark:text-gray-500 text-xl"
-                            input-class="text-xl"
+                            affix-class="text-gray-400 dark:text-gray-500 text-lg"
+                            input-class="text-lg"
                             :min="0"
                             :step="$currency['step']"
                             :placeholder="$currency['placeholder']"
@@ -42,8 +42,8 @@
                             :label="trans('common.points')"
                             type="number"
                             icon="coins"
-                            affix-class="text-gray-400 dark:text-gray-500 text-xl"
-                            input-class="text-xl cursor-not-allowed"
+                            affix-class="text-gray-400 dark:text-gray-500 text-lg"
+                            input-class="text-lg cursor-not-allowed"
                             :min="$card->min_points_per_purchase"
                             :max="$card->max_points_per_purchase"
                             step="1"
@@ -70,14 +70,14 @@
                         name="note"
                         value=""
                         type="text"
-                        input-class="text-xl"
+                        input-class="text-lg"
                         :placeholder="trans('common.optional_note')"
                         :required="false"
                     />
                 </div>
 
                 <div class="mb-6">
-                    <button type="submit" class="btn-primary btn-lg w-full h-16">{{ trans('common.add_points_to_balance') }}</button>
+                    <button type="submit" class="btn-primary btn-md w-full h-16 text-lg ll-primary-btn">{{ trans('common.add_points_to_balance') }}</button>
                 </div>
             <x-forms.form-close />
 
