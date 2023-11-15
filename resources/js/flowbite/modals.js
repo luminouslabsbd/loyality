@@ -17,7 +17,7 @@ window.appAlert = function(content, opts = {}) {
     // Create modal DOM element
     const dom = document.createElement("div");
     dom.innerHTML = `
-        <div id="${id}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden max-w-sm mx-auto w-full p-0 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-auto" x-data="modal">
+        <div id="${id}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden max-w-x-lg mx-auto w-full p-0 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-auto" x-data="modal">
             <div class="select-none relative w-full h-full max-w-2xl md:h-auto">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow-2xl dark:bg-gray-800">
@@ -102,7 +102,7 @@ window.appConfirm = function (title, content, opts = {}) {
     // Create modal DOM element
     const dom = document.createElement("div");
     dom.innerHTML = `
-        <div id="${id}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden max-w-sm mx-auto w-full p-0 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-auto" x-data="modal">
+        <div id="${id}" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden max-w-x-lg mx-auto w-full p-0 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-auto" x-data="modal">
             <div class="select-none relative w-full h-full max-w-2xl md:h-auto">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow-2xl dark:bg-gray-800">
@@ -127,11 +127,11 @@ window.appConfirm = function (title, content, opts = {}) {
                     </div>
                     <!-- Modal footer -->
                     <div class="flex items-center justify-end p-6 space-x-2 border-t- border-none border-gray-200 rounded-b dark:border-gray-600">
-                        <button type="button" class="btn-primary" @click="confirm" x-bind:disabled="loading" id="${id}-focusButton">
-                            ${btnConfirmText}
-                        </button>
-                        <button type="button" class="btn" @click="close" x-bind:disabled="loading">
+                        <button type="button" class="btn text-sm w-full ll-btn-white" @click="close" x-bind:disabled="loading">
                             ${btnCancelText}
+                        </button>
+                        <button type="button" class="btn text-sm w-full ll-primary-btn" @click="confirm" x-bind:disabled="loading" id="${id}-focusButton">
+                            ${btnConfirmText}
                         </button>
                     </div>
                 </div>

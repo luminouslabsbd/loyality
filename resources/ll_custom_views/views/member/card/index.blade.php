@@ -70,7 +70,7 @@
   
                 <x-ui.share class="mt-6" :text="$card->head" />
 
-                <x-member.follow-card class="mt-6" :card="$card" />
+                <x-member.follow-card class="mt-6 ll-gradient-btn" :card="$card" />
 
                 <x-ui.tabs :tabs="[trans('common.rewards'), trans('common.history'), trans('common.rules')]" active-tab="1" style="tabs-underline-full-width" tab-class="mt-6">
                     <x-slot name="tab1">

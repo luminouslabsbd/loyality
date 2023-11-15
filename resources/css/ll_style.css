@@ -136,6 +136,8 @@ html.dark .ll-dashboard-grid > a{
 .ll-primary-btn{
     background-color: var(--ll-primary-color);
     transition: all 0.3s ease;
+    border: none;
+    color: var(--ll-color-white);
 }
 
 .ll-primary-btn:focus{
@@ -144,6 +146,7 @@ html.dark .ll-dashboard-grid > a{
 
 .ll-primary-btn:hover{
     background-color: var(--ll-primary-dark-color);
+    color: var(--ll-color-white);
 }
 
 .ll-danger-btn{
@@ -503,16 +506,21 @@ body.networks-view-page .ll-user-view-page {
     align-items: start;
 }
 
-ul.tabs-underline li{
+ul.tabs-underline li,
+ul.tabs-underline-full-width li{
     margin: 0px;
+    width: auto;
 }
 
-ul.tabs-underline li a {
+ul.tabs-underline li a,
+ul.tabs-underline-full-width li a {
     padding: 10px 15px;
 }
 
 ul.tabs-underline li a.active,
-ul.tabs-underline li a:hover {
+ul.tabs-underline li a:hover,
+ul.tabs-underline-full-width li a.active,
+ul.tabs-underline-full-width li a:hover {
     color: var(--ll-primary-color) !important;
     border-color: var(--ll-primary-color) !important;
     font-weight: 600 !important;
@@ -537,7 +545,7 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 }
 
 .ll-gradient-btn:focus{
-    box-shadow: none;
+    box-shadow: none !important;
 }
 
 .ll-member-history li > span.absolute.ring-gray-50{
