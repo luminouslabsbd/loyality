@@ -553,6 +553,10 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     color: var(--ll-color-white);
 }
 
+.ll-modal .text-base.leading-relaxed svg{
+    margin: 0px auto;
+}
+
 
 /* responsive design */
 
