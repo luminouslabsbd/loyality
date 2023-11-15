@@ -450,7 +450,8 @@ body.networks-edit-page .ll-user-add-form-inputs .ll-checkbox {
 }
 
 body.partners-add-page .ll-checkbox,
-body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox {
+body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox,
+.ll-member-user-settings-page .ll-user-add-form-inputs .ll-checkbox {
     height: 68px;
     display: flex;
     align-items: end;
