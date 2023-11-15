@@ -6,6 +6,8 @@
     --ll-primary-color: #2963FF;
     --ll-success-color: #00a16e;
     --ll-primary-dark-color: #0448ff;
+    --ll-primary-colors-light-color:#2d9aff;
+    --ll-primary-light-bg-color: #eef3ff;
     --ll-primary-light-color: #EAEFFF;
     --ll-light-grey: #FAFAFA;
     --ll-dark-grey: #BEBEBE;
@@ -57,11 +59,11 @@ html.dark #ll-sidebar ul li a.active > svg,
 html.dark .ll-table-footer,
 html.dark .ll-dashboard-grid > a svg,
 html.dark .ll-dashboard-grid > a h3{
-    color: #2d9aff !important;
+    color: var(--ll-primary-colors-light-color) !important;
 }
 
 html.dark .ll-dark-theme-light-blue{
-    color: #2d9aff !important;
+    color: var(--ll-primary-colors-light-color) !important;
 }
 
 html.dark .ll-btn-white {
@@ -69,7 +71,7 @@ html.dark .ll-btn-white {
 }
 
 /* html.dark a{
-    color: #2d9aff;
+    color: var(--ll-primary-colors-light-color);
 } */
 
 html.dark #ll-sidebar,
@@ -85,7 +87,7 @@ html.dark #ll-sidebar ul li a:hover,
 html.dark #ll-sidebar ul li a.active{
     background-color: var(--ll-secondary-dark-theme-color);
     color: var(--ll-dark-theme-text-color);
-    border-color: #2d9aff;
+    border-color: var(--ll-primary-colors-light-color);
 }
 
 html.dark .ll-amdin-content-container{
@@ -558,6 +560,14 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 }
 
 
+.ll-dashboard-grid > a svg,
+.ll-dashboard-grid > a h3{
+    color: var(--ll-primary-dark-color) !important;
+}
+
+.ll-dashboard-grid .ll-dashboard-icon-wrapper{
+    background-color: var(--ll-primary-light-bg-color) !important;
+}
 /* responsive design */
 
 @media only screen and (max-width: 1279px){

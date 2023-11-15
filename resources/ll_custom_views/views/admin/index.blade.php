@@ -19,7 +19,7 @@
         <div class="space-y-8 ll-dashboard-grid md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 xl:gap-8 md:space-y-0">
             @foreach($dashboardBlocks as $block)
             <a href="{{ $block['link'] }}" class="group block p-6 bg-white rounded shadow dark:bg-gray-800">
-                <div class="flex justify-center items-center mb-4 w-10 h-10 rounded lg:h-12 lg:w-12 dark:bg-primary-900" style="background: #eef3ff">
+                <div class="ll-dashboard-icon-wrapper flex justify-center items-center mb-4 w-10 h-10 rounded lg:h-12 lg:w-12 dark:bg-primary-900">
                     <x-ui.icon :icon="$block['icon']" class="w-5 h-5 lg:w-6 lg:h-6 dark:text-primary-300" style="color: #2963FF"/>
                 </div>
                 <h3 class="mb-2 text-xl font-bold dark:text-white group-hover:underline" style="color: #2963FF">{!! $block['title'] !!}</h3>
