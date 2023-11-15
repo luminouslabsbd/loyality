@@ -522,6 +522,25 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     display: block;
 }
 
+button.scan-qr{
+    background: radial-gradient(circle at 100% 100%, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 0% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 0 100%, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 100% 0%/8px 8px no-repeat,
+    radial-gradient(circle at 100% 0, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 0% 100%/8px 8px no-repeat,
+    radial-gradient(circle at 0 0, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 100% 100%/8px 8px no-repeat,
+    linear-gradient(var(--ll-primary-dark-theme-color), var(--ll-primary-dark-theme-color)) 50% 50%/calc(100% - 10px) calc(100% - 16px) no-repeat,
+    linear-gradient(var(--ll-primary-dark-theme-color), var(--ll-primary-dark-theme-color)) 50% 50%/calc(100% - 16px) calc(100% - 10px) no-repeat,
+    linear-gradient(334deg, #759aff 0%, #0045ff 100%);
+}
+
+button.scan-qr:hover{
+    background: linear-gradient(334deg, #759aff 0%, #0045ff 100%);
+}
+
+button.scan-qr:focus{
+    box-shadow: none;
+}
+
+
 /* responsive design */
 
 @media only screen and (max-width: 1279px){

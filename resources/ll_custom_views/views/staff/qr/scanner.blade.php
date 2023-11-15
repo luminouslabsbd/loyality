@@ -3,7 +3,7 @@
 @section('page_title', trans('common.scan_qr') . config('default.page_title_delimiter') . trans('common.dashboard') . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-<section class="bg-gray-50 dark:bg-gray-900 w-full">
+<section class="">
     <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
 
