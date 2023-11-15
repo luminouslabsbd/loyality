@@ -4,7 +4,6 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 @endphp
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
-
 <head>
     <meta charset="utf-8">
     <title>@yield('page_title')</title>
@@ -197,35 +196,36 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
         @endauth --}}
 
         <div class="w-full mx-auto flex flex-grow">
-            <div>
+            <div @if (($routeName == 'staff.login') || ($routeName == 'staff.forgot_password')) class="w-full" @endif>
                 @auth('staff')
-                <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                    <div class="h-full overflow-y-auto">
-                        <ul class="space-y-2 font-medium">
-                            <li>
-                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.index') active @endif" href="{{ route('staff.index') }}"><x-ui.icon icon="home" class="" /><span class="ml-2">{{ trans('common.dashboard') }}</span></a>
-                            </li>
-                            
-                            <li>
-                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.qr.scanner') active @endif" href="{{ route('staff.qr.scanner') }}"><x-ui.icon icon="qr-code" class="" /><span class="ml-2">{{ trans('common.scan_qr') }}</span></a>
-                            </li>
+                    <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                        <div class="h-full overflow-y-auto">
+                            <ul class="space-y-2 font-medium">
+                                <li>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.index') active @endif" href="{{ route('staff.index') }}"><x-ui.icon icon="home" class="" /><span class="ml-2">{{ trans('common.dashboard') }}</span></a>
+                                </li>
+                                
+                                <li>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'staff.qr.scanner') active @endif" href="{{ route('staff.qr.scanner') }}"><x-ui.icon icon="qr-code" class="" /><span class="ml-2">{{ trans('common.scan_qr') }}</span></a>
+                                </li>
 
-                            <li>
-                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif" href="{{ route('staff.data.list', ['name' => 'members']) }}"><x-ui.icon icon="user-group" class="" /><span class="ml-2">{{ trans('common.members') }}</span></a>
-                            </li>
-                            
-                            <li>
-                                <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'account') active @endif" href="{{ route('staff.data.list', ['name' => 'account']) }}"><x-ui.icon icon="user-circle" class="" /><span class="ml-2">{{ trans('common.account_settings') }}</span></a>
-                            </li>
-                            
-                            <li><a class="ll-sidebar-link flex items-center p-2 group" href="{{ route('staff.logout') }}"><x-ui.icon icon="power" class="" /><span class="ml-2">{{ trans('common.logout') }}</span></a></li>
-                        </ul>
+                                <li>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif" href="{{ route('staff.data.list', ['name' => 'members']) }}"><x-ui.icon icon="user-group" class="" /><span class="ml-2">{{ trans('common.members') }}</span></a>
+                                </li>
+                                
+                                <li>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'account') active @endif" href="{{ route('staff.data.list', ['name' => 'account']) }}"><x-ui.icon icon="user-circle" class="" /><span class="ml-2">{{ trans('common.account_settings') }}</span></a>
+                                </li>
+                                
+                                <li><a class="ll-sidebar-link flex items-center p-2 group" href="{{ route('staff.logout') }}"><x-ui.icon icon="power" class="" /><span class="ml-2">{{ trans('common.logout') }}</span></a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-            @endauth
+                @endauth
 
-            <div class="sm:ml-64 ll-amdin-content-container w-full" style="margin-top: 56px">
-                @yield('content')
+                <div class="sm:ml-64 ll-amdin-content-container w-full" style="margin-top: 56px">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
