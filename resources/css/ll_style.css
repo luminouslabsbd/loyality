@@ -522,7 +522,7 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     display: block;
 }
 
-button.scan-qr{
+.ll-gradient-btn{
     background: radial-gradient(circle at 100% 100%, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 0% 0%/8px 8px no-repeat,
     radial-gradient(circle at 0 100%, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 100% 0%/8px 8px no-repeat,
     radial-gradient(circle at 100% 0, var(--ll-primary-dark-theme-color) 0, var(--ll-primary-dark-theme-color) 3px, transparent 3px) 0% 100%/8px 8px no-repeat,
@@ -532,11 +532,11 @@ button.scan-qr{
     linear-gradient(334deg, #759aff 0%, #0045ff 100%);
 }
 
-button.scan-qr:hover{
+.ll-gradient-btn:hover{
     background: linear-gradient(334deg, #759aff 0%, #0045ff 100%);
 }
 
-button.scan-qr:focus{
+.ll-gradient-btn:focus{
     box-shadow: none;
 }
 

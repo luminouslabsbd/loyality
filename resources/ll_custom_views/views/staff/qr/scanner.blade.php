@@ -8,7 +8,7 @@
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
 
             <x-ui.button
-                class="scan-qr disable-on-scan mb-6"
+                class="scan-qr ll-gradient-btn disable-on-scan mb-6"
                 :text="trans('common.scan_qr')"
                 icon="qr-code"
             />
