@@ -9,7 +9,7 @@
     --ll-primary-colors-light-color:#2d9aff;
     --ll-primary-light-bg-color: #eef3ff;
     --ll-primary-light-color: #EAEFFF;
-    --ll-light-grey: #FAFAFA;
+    --ll-light-grey: #F8F8F8;
     --ll-dark-grey: #BEBEBE;
     --ll-light-bg-grey: #E8E8E8;
     --ll-danger-color: #D92D20;
@@ -39,17 +39,13 @@ html.dark thead tr,
 html.dark thead tr th,
 html.dark .ll-action-btn,
 html.dark .ll-action-btn:hover,
-html.dark .ll-generate-password-btn{
+html.dark .ll-generate-password-btn,
+html.dark .ll-amdin-content-container input[name="search"]{
     background-color: var(--ll-secondary-dark-theme-color) !important;
 }
 
 html.dark .ll-nav-bar{
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 5px;
-}
-
-.ll-amdin-content-container input[name="search"]:focus {
-    border-color: var(--ll-primary-color) !important;
-    box-shadow: none;
 }
 
 html.dark .text-link,
@@ -570,6 +566,15 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 .ll-purchase-text{
     background-color: var(--ll-primary-light-bg-color) !important;
 }
+
+.ll-amdin-content-container input[name="search"] {
+    background-color: var(--ll-light-grey);
+}
+
+.ll-amdin-content-container input[name="search"]:focus {
+    border: 1px solid var(--ll-primary-color) !important;
+    box-shadow: none;
+}
 /* responsive design */
 
 @media only screen and (max-width: 1279px){
@@ -632,6 +637,11 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 }
 
 @media only screen and (max-width: 767px){
+    .ll-main-content-container{
+        flex-direction: column;
+        row-gap: 12px;
+    }
+
     .ll-user-view-page {
         flex-direction: column;
         gap: 10px;

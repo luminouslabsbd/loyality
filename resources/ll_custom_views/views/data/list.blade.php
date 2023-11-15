@@ -11,7 +11,7 @@ if($settings['overrideTitle']) {
 @section('page_title', $pageTitle . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <div class="relative dark:bg-gray-800 m-0 px-4"
+    <div class="relative dark:bg-gray-800 m-0 px-5"
         @if ($settings['multiSelect']) x-data="{
             selectAll: false,
             selected: [],
@@ -27,9 +27,8 @@ if($settings['overrideTitle']) {
                 return this.selected.some(item => item);
             }
         }" @endif>
-        <div
-            class="flex flex-col px-0 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
-            <div class="w-full flex items-center space-x-3">
+        <div class="px-0 py-3">
+            <div class="w-full flex items-center space-x-3 my-3">
                 <h5 class="dark:text-white font-semibold flex items-center">
                     @if($settings['icon'])
                         <x-ui.icon :icon="$settings['icon']" class="inline-block w-5 h-5 mr-2 dark:text-white" />
@@ -58,7 +57,7 @@ if($settings['overrideTitle']) {
                 */ ?>
             </div>
 
-            <div class="w-full flex flex-row items-center justify-end space-x-3">
+            <div class="ll-main-content-container w-full flex flex-row items-center justify-between gap-x-7">
 
                 <div class="w-full">
                     <form class="flex items-center">
@@ -68,25 +67,27 @@ if($settings['overrideTitle']) {
                                 <x-ui.icon icon="magnifying-glass" class="w-5 h-5 text-gray-500 dark:text-gray-400" />
                             </div>
                             <input type="search" name="search" id="tableDataDefinition-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                placeholder="{{ trans('common.search') }}" value="{{ request()->get('search') }}">
+                                class="bg-gray-50 text-gray-900 text-sm block w-full pl-10 border-0 p-2 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white"
+                                placeholder="{{ trans('common.search') }}" value="{{ request()->get('search') }}" style="border-radius: 100vmax;">
                         </div>
                     </form>
                 </div>
 
-                @if ($settings['insert'])
-                    <a href="{{ route($settings['guard'].'.data.insert', ['name' => $dataDefinition->name]) }}"
-                        class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
-                        <x-ui.icon icon="plus" class="h-3.5 w-3.5 mr-2" />
-                        {{ trans('common.add_new_item') }}
-                    </a>
-                @endif
-                @if ($settings['export'])
-                    <a href="{{ route($settings['guard'].'.data.export', ['name' => $dataDefinition->name]) }}" class="btn text-sm ll-btn-white">
-                        <x-ui.icon icon="export" class="h-3.5 w-3.5 mr-2" />
-                        {{ trans('common.export') }}
-                    </a>
-                @endif
+                <div class="flex flex-row items-center justify-between gap-x-5">
+                    @if ($settings['insert'])
+                        <a href="{{ route($settings['guard'].'.data.insert', ['name' => $dataDefinition->name]) }}"
+                            class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
+                            <x-ui.icon icon="plus" class="h-3.5 w-3.5 mr-2" />
+                            {{ trans('common.add_new_item') }}
+                        </a>
+                    @endif
+                    @if ($settings['export'])
+                        <a href="{{ route($settings['guard'].'.data.export', ['name' => $dataDefinition->name]) }}" class="btn text-sm ll-btn-white">
+                            <x-ui.icon icon="export" class="h-3.5 w-3.5 mr-2" />
+                            {{ trans('common.export') }}
+                        </a>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="overflow-x-auto">
