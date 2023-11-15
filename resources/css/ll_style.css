@@ -540,6 +540,11 @@ button.scan-qr:focus{
     box-shadow: none;
 }
 
+.ll-member-history li > span.absolute.ring-gray-50{
+    background-color: var(--ll-primary-color);
+    color: var(--ll-color-white);
+}
+
 
 /* responsive design */
 

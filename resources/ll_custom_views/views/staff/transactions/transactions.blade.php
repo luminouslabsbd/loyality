@@ -21,11 +21,11 @@
                 </a>
             @endif
             @if($card && $member)
-                <a href="{{ route('staff.earn.points', ['member_identifier' => $member->unique_identifier, 'card_identifier' => $card->unique_identifier]) }}" class="mb-6 btn-primary btn-lg flex">{{ trans('common.add_transaction') }}</a>
+                <a href="{{ route('staff.earn.points', ['member_identifier' => $member->unique_identifier, 'card_identifier' => $card->unique_identifier]) }}" class="mb-6 btn-primary ll-primary-btn btn-lg flex">{{ trans('common.add_transaction') }}</a>
             @endif
             @if($member)
                <x-member.member-card class="mb-6" :member="$member" />
-               <x-member.history :card="$card" :show-notes="true" :show-attachments="true" :member="$member" />
+               <x-member.history class="ll-member-history" :card="$card" :show-notes="true" :show-attachments="true" :member="$member" />
             @endif
         </div>
     </div>
