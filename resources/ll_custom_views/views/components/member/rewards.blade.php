@@ -2,7 +2,7 @@
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <tbody>
             @foreach ($card->activeRewards as $reward)
-                <tr data-clickable-href="{{ route('member.card.reward', ['card_id' => $card->id, 'reward_id' => $reward->id]) }}" class="@if(!$loop->last) border-b @endif dark:border-gray-700 @if($currentReward && $currentReward->id == $reward->id) bg-gray-200 hover:bg-gray-200 dark:bg-gray-900 dark:hover:bg-800 @else hover:bg-gray-100 bg-white dark:bg-gray-800 dark:hover:bg-gray-800/50 @endif cursor-pointer">
+                <tr data-clickable-href="{{ route('member.card.reward', ['card_id' => $card->id, 'reward_id' => $reward->id]) }}" class="@if(!$loop->last) border-b @endif dark:border-gray-700 @if($currentReward && $currentReward->id == $reward->id) bg-gray-200 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-800 @else hover:bg-gray-100 bg-white dark:bg-gray-700 dark:hover:bg-gray-700/50 @endif cursor-pointer">
                     @if($reward->image1)
                         <td class="w-32">
                             <div class="p-3 sm:p-4 flex items-center justify-center h-full">

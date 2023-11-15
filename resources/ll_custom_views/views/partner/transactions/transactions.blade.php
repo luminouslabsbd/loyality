@@ -29,7 +29,7 @@
             @endif
             @if($member)
                <x-member.member-card class="my-6" :member="$member" />
-               <x-member.history :card="$card" :show-notes="true" :show-attachments="true" :show-staff="true" :member="$member" />
+               <x-member.history class="ll-member-history" :card="$card" :show-notes="true" :show-attachments="true" :show-staff="true" :member="$member" />
             @endif
         </div>
     </div>

@@ -561,11 +561,13 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 
 
 .ll-dashboard-grid > a svg,
-.ll-dashboard-grid > a h3{
+.ll-dashboard-grid > a h3,
+.ll-purchase-text{
     color: var(--ll-primary-dark-color) !important;
 }
 
-.ll-dashboard-grid .ll-dashboard-icon-wrapper{
+.ll-dashboard-grid .ll-dashboard-icon-wrapper,
+.ll-purchase-text{
     background-color: var(--ll-primary-light-bg-color) !important;
 }
 /* responsive design */

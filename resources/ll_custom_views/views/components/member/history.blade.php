@@ -32,7 +32,7 @@
                         {!! trans('common.received_initial_bonus_points', ['points' => '<span class=\'format-number\'>' . $transaction->points . '</span>']) !!}
                     @elseif($transaction->event == 'staff_credited_points_for_purchase')
                         {!! trans('common.purchase') !!}
-                    <span class="text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-1 @if($transactionExpired) bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-300 @else bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300 @endif">{{ $transaction->purchase_amount_formatted }}</span>
+                    <span class="ll-purchase-text text-sm font-medium mr-2 px-2.5 py-0.5 rounded ml-1 @if($transactionExpired) bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-300 @else bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300 @endif">{{ $transaction->purchase_amount_formatted }}</span>
                     @elseif($transaction->event == 'staff_credited_points')
                     {!! trans('common.points_issued') !!}
                     @elseif($transaction->event == 'staff_redeemed_points_for_reward')

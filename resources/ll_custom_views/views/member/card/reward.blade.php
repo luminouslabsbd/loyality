@@ -67,7 +67,7 @@
                                 <span class="text-3xl font-bold text-gray-900 dark:text-white format-number">{{ $reward->points }}</span>
                             </div>
                             @if(auth('member')->check())
-                                <a rel="nofollow" href="{{ route('member.card.reward.claim', ['card_id' => $card->id, 'reward_id' => $reward->id]) }}" class="btn-primary flex items-center justify-between"><x-ui.icon icon="arrow-right" class="w-5 h-5 mr-2" /> {{ trans('common.claim_reward') }}</a>
+                                <a rel="nofollow" href="{{ route('member.card.reward.claim', ['card_id' => $card->id, 'reward_id' => $reward->id]) }}" class="btn-primary ll-primary-btn flex items-center justify-between"><x-ui.icon icon="arrow-right" class="w-5 h-5 mr-2" /> {{ trans('common.claim_reward') }}</a>
                             @else
                             <a rel="nofollow" href="{{ route('member.login') }}" class="flex items-center text-link">
                                 {{ trans('common.log_in_to_claim_reward') }}
