@@ -5,13 +5,11 @@ if($settings['overrideTitle']) {
     $pageTitle = trans('common.edit_item_', ['item' => $settings['subject_column'] ? parse_attr($form['data']->{$settings['subject_column']}) : trans('common.item')]) . config('default.page_title_delimiter') . $settings['title'];
 }
 @endphp
-{{-- @dd($settings['guard']) --}}
 @extends($settings['guard'].'.layouts.default')
 
 @section('page_title', $pageTitle . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <div class="w-full @if (request()->route()->getName() == 'member.data.edit') ll-member-user-settings-page @endif" @onclicktab="window.appSetImageUploadHeight()">
         <div class="relative p-4 lg:p-6">
             <div

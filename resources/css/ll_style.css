@@ -322,7 +322,7 @@ html.dark .ll-dashboard-grid > a{
 .ll-input-container.change-password input + button[type="button"]{
     margin: 0;
     border: 0;
-    background-color: transparent;
+    background-color: var(--ll-color-white);
     position: absolute;
     right: 0;
     border-radius: 0px;
@@ -676,6 +676,10 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     }
 
     body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox {
+        height: auto;
+    }
+
+    .ll-member-user-settings-page .ll-user-add-form-inputs .ll-checkbox {
         height: auto;
     }
 }
