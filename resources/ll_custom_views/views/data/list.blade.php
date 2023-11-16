@@ -77,7 +77,11 @@ if($settings['overrideTitle']) {
                     @if ($settings['insert'])
                         <a href="{{ route($settings['guard'].'.data.insert', ['name' => $dataDefinition->name]) }}"
                             class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
-                            <x-ui.icon icon="plus" class="h-3.5 w-3.5 mr-2" />
+                            {{-- <x-ui.icon icon="plus" class="h-3.5 w-3.5 mr-2" /> --}}
+
+                            <svg class="ll-plus-icon me-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.75 5.5V10M10 7.75H5.5M14.5 7.75C14.5 11.4779 11.4779 14.5 7.75 14.5C4.02208 14.5 1 11.4779 1 7.75C1 4.02208 4.02208 1 7.75 1C11.4779 1 14.5 4.02208 14.5 7.75Z" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                             {{ trans('common.add_new_item') }}
                         </a>
                     @endif
