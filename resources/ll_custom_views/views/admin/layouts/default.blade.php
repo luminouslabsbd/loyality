@@ -57,10 +57,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                                     <img src="{{ config('default.app_logo') }}" class="h-6 sm:h-7 block" alt="{{ config('default.app_name') }} Logo" />
                                 @endif
                             @else
-                                <!--<div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>-->
-                                <div class="">
-                                    <img src="{{ asset('assets/ll_imgs/logo.png') }}" alt="Brand Logo">
-                                </div>
+                                <div class="text-lg font-bold text-gray-900 dark:text-gray-50">{{ config('default.app_name') }}</div>
                             @endif
                         </a>
                     </div>
