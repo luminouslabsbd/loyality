@@ -174,6 +174,12 @@ class LLMemberAuthController extends Controller
             // Return a response with member details
             return response()->json($response, 200);
 
+        }else{
+            $errorResponse = [
+                'status' => 'error',
+                'message' => 'validation error',
+            ];
+            return response()->json($errorResponse, 202);
         }
         
     }
@@ -272,9 +278,7 @@ class LLMemberAuthController extends Controller
                 ]);
             }
         } else {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+            return response()->json(['token' => "The provided credentials are incorrect"], 202);
         }
     }
 
