@@ -583,8 +583,8 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
 .ll-switch {
     position: relative;
     display: inline-block;
-    width: 36px;
-    height: 20px;
+    min-width: 36px;
+    min-height: 20px;
 }
 
 .ll-switch input {
@@ -600,8 +600,10 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     bottom: 0;
     background: #e5e7eb;
     border-radius: 40px;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    outline: 2px solid transparent;
+    border: 1px solid transparent;
 }
 
 .ll-slider:before {
@@ -612,23 +614,24 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     background: var(--ll-color-white);
     border-radius: 50%;
     left: 2px;
-    bottom: 2px;
-    transition: 0.4s;
+    bottom: 1px;
+    transition: 0.2s;
     border: 1px solid #d3d3d3;
 }
 
-input[type="checkbox"]:checked+.ll-slider {
+input[type="checkbox"]:checked + .ll-slider {
     background: var(--ll-primary-color);
+    outline-color: #e5e6e7;
+    border-color: #cfd1d4;
 }
 
-input[type="checkbox"]:checked+.ll-slider:before {
-    -webkit-transform: translateX(16px);
-    -moz-transform: translateX(16px);
-    transform: translateX(16px);
-}
-
-input[type="checkbox"]:focus+.ll-slider {
-    outline: 2px solid red;
+input[type="checkbox"]:checked + .ll-slider:before {
+    -webkit-transform: translateX(15px);
+    -moz-transform: translateX(15px);
+    transform: translateX(15px);
+    height: 14px;
+    width: 14px;
+    bottom: 2px;
 }
 
 /* custom switch end */
