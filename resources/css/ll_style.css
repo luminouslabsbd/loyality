@@ -576,6 +576,62 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     border: 1px solid var(--ll-primary-color) !important;
     box-shadow: none;
 }
+
+/* custom switch start */
+
+.ll-switch {
+    position: relative;
+    display: inline-block;
+    width: 36px;
+    height: 20px;
+  }
+  
+  .ll-switch input {
+    display: none;
+  }
+  
+  .ll-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #e5e7eb;
+    border-radius: 40px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .ll-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    background: var(--ll-color-white);
+    border-radius: 50%;
+    left: 2px;
+    bottom: 2px;
+    transition: 0.4s;
+    border: 1px solid #d3d3d3;
+  }
+  
+  input[type="checkbox"]:checked + .ll-slider {
+    background: var(--ll-primary-color);
+  }
+  
+  input[type="checkbox"]:checked + .ll-slider:before {
+    -webkit-transform: translateX(16px);
+    -moz-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  
+  input[type="checkbox"]:focus + .ll-slider {
+        outline: 2px solid red;
+    }
+
+  /* custom switch end */
+  
 /* responsive design */
 
 @media only screen and (max-width: 1279px){
