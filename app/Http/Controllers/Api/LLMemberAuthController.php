@@ -113,7 +113,7 @@ class LLMemberAuthController extends Controller
     {
         // Validate request inputs
         $ischeck =  $request->validate([
-            'phone' => 'required|max:9',
+            'phone' => 'required|unique',
             'name' => 'required|max:64',
             'end_point' => 'required'
         ]);
@@ -124,6 +124,12 @@ class LLMemberAuthController extends Controller
                 $email  =  $request->input('phone').'@loyaltykeoscx.com';
             }elseif(filter_var($request->input('phone'), FILTER_VALIDATE_EMAIL)){
                 $email = $request->input('phone') ;
+            }else{
+                $errorResponse = [
+                    'status' => 'error',
+                    'message' => 'Phone number is invalid.',
+                ];
+                return response()->json($errorResponse, 202);
             }
 
             // Get or set default values for optional parameters
