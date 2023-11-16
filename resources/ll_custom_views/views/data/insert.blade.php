@@ -190,6 +190,29 @@ if($settings['overrideTitle']) {
                 childDivs.slice(1, secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
                 childDivs.slice(secondDivCount + 1).wrapAll('<div class="col-span-3"></div>');
             }
+
+
+            // change checkbox to switch
+            const checkboxElement = $('.ll-user-add-form-inputs').find('input[type="checkbox"]');
+            const checkboxHtml = $(`<label class="ll-slider"></label>`);
+
+            checkboxElement.removeClass('w-4 h-4 bg-gray-100 rounded border-gray-300  focus:ring-blue-100 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600');
+
+            checkboxElement.wrap('<div class="ll-switch"></div>');
+            checkboxElement.after(checkboxHtml);
+
+            $('.ll-slider').on('click', function(){
+                const hiddenInput = $(this).closest('.ll-switch').prev('input[type="hidden"]');
+                const mainCheckbox = $(this).closest('.ll-switch').find('input[type="checkbox"]');
+                
+                if (hiddenInput.val() == 1) {
+                    hiddenInput.val(0);
+                    mainCheckbox.prop('checked', false);
+                } else{
+                    hiddenInput.val(1);
+                    mainCheckbox.prop('checked', true);
+                }
+            });
         });
     </script>
 @stop
