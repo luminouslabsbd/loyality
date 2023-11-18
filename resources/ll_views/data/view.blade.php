@@ -139,7 +139,7 @@ if($settings['overrideTitle']) {
     <script>
         $(document).ready(function() {
             const partnerRewardsView = ["/partner/manage/rewards/view"];
-            const pathsToCheck = ["/networks/view", "/partners/view", "/members/view", "/partner/manage/clubs/view", "/partner/manage/cards/view/", "/partner/manage/rewards/view", "/partner/manage/staff/view"];
+            const pathsToCheck = ["/admins/view/", "/networks/view", "/partners/view", "/members/view", "/partner/manage/clubs/view", "/partner/manage/cards/view/", "/partner/manage/rewards/view", "/partner/manage/staff/view"];
             const currentPathname = window.location.pathname;
             if (pathsToCheck.some(path => currentPathname.includes(path))) {
                 $('body').addClass('networks-view-page');
