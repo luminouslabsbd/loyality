@@ -69,19 +69,103 @@
                         :show-balance="false"
                         :custom-link="route('partner.analytics.card', ['card_id' => $card->id])"
                     />
-                    <div class="text-gray-900 dark:text-gray-100">
-                        <div class="mt-4"><span class="text-gray-600 dark:text-gray-400">{{ trans('common.name') }}:</span> <span class="font-semibold">{{ $card->name }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.club') }}:</span> <span class="font-semibold">{{ $card->club->name }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.views') }}:</span> <span class="font-semibold format-number">{{ $card->views }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.last_view') }}:</span> <span class="format-date font-semibold">{{ ($card->last_view) ? $card->last_view->diffForHumans() : trans('common.never') }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.total_purchased') }}:</span> <span class="font-semibold">{{ $card->parseMoney($card->total_amount_purchased) }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.points_issued') }}:</span> <span class="format-number font-semibold">{{ $card->number_of_points_issued }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.last_points_issued') }}:</span> <span class="format-date font-semibold">{{ ($card->last_points_issued_at) ? $card->last_points_issued_at->diffForHumans() : trans('common.never') }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.points_redeemed') }}:</span> <span class="format-number font-semibold">{{ $card->number_of_points_redeemed }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.rewards_claimed') }}:</span> <span class="format-number font-semibold">{{ $card->number_of_rewards_redeemed }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.last_reward_claimed') }}:</span> <span class="format-date font-semibold">{{ ($card->last_reward_redeemed_at) ? $card->last_reward_redeemed_at->diffForHumans() : trans('common.never') }}</span></div>
-                        <div><span class="text-gray-600 dark:text-gray-400">{{ trans('common.active') }}:</span> <span class="font-semibold">{!! ($card->is_active) ? ''.trans('common.yes').''
-                            : ''.trans('common.no').'' !!}</span></div>
+                    <div class="ll-partner-anlytics-container">
+                        <div class="mt-4 ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.name') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="">
+                                {{ $card->name }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.club') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="">
+                                {{ $card->club->name }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.views') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class=" format-number">
+                                {{ $card->views }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.last_view') }}
+                                <span class="inline-block">:</span></span>
+                            <span class="format-date ">
+                                {{ ($card->last_view) ? $card->last_view->diffForHumans() : trans('common.never') }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.total_purchased') }}
+                                <span class="inline-block">:</span></span>
+                            <span class="">
+                                {{ $card->parseMoney($card->total_amount_purchased) }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.points_issued') }}
+                                <span class="inline-block">:</span></span>
+                            <span class="format-number ">
+                                {{ $card->number_of_points_issued }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.last_points_issued') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="format-date ">
+                                {{ ($card->last_points_issued_at) ? $card->last_points_issued_at->diffForHumans() : trans('common.never') }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.points_redeemed') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="format-number ">
+                                {{ $card->number_of_points_redeemed }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.rewards_claimed') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="format-number ">
+                                {{ $card->number_of_rewards_redeemed }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.last_reward_claimed') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="format-date ">
+                                {{ ($card->last_reward_redeemed_at) ? $card->last_reward_redeemed_at->diffForHumans() : trans('common.never') }}
+                            </span>
+                        </div>
+                        <div class="ll-partner-anlytics-data">
+                            <span class="ll-label flex justify-between items-center">
+                                {{ trans('common.active') }}
+                                <span class="inline-block">:</span>
+                            </span>
+                            <span class="">
+                                {!! ($card->is_active) ? ''.trans('common.yes').'' : ''.trans('common.no').'' !!}
+                            </span>
+                            </div>
                     </div>
                         <a href="{{ route('member.card', ['card_id' => $card->id]) }}" target="_blank" class="mt-4 mb-2 flex items-center text-link">
                             <x-ui.icon icon="arrow-top-right-on-square" class="w-5 h-5 mr-2"/>

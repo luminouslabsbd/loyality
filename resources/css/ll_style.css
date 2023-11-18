@@ -417,7 +417,8 @@ body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#passwo
 .ll-user-others-info>div.ll-user-other-info-left>div,
 .ll-user-others-info>div.ll-user-other-info-right>div,
 body.networks-view-page div.ll-user-other-info-left>div,
-body.networks-view-page div.ll-user-other-info-right>div {
+body.networks-view-page div.ll-user-other-info-right>div,
+.ll-partner-anlytics-container .ll-partner-anlytics-data {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -425,10 +426,25 @@ body.networks-view-page div.ll-user-other-info-right>div {
     font-weight: 600;
 }
 
-.ll-user-view-page .ll-label>span:first-child {
+.ll-user-view-page .ll-label>span:first-child,
+.ll-partner-anlytics-container .ll-label {
     display: inline-block;
     min-width: 120px;
     font-weight: normal;
+}
+
+.ll-partner-anlytics-container .ll-partner-anlytics-data{
+    gap: 8px;
+}
+
+.ll-partner-anlytics-container .ll-label {
+    display: flex;
+    min-width: 175px;
+    margin-bottom: 5px;
+}
+
+.ll-partner-anlytics-container .ll-label:last-child {
+    margin-bottom: 0px;
 }
 
 .ll-user-main-info>div:first-child,
@@ -731,7 +747,8 @@ input[type="checkbox"]:checked + .ll-slider:before {
         justify-content: center;
     }
 
-    .ll-user-view-page .ll-label>span:first-child {
+    .ll-user-view-page .ll-label>span:first-child,
+    .ll-partner-anlytics-container .ll-label  {
         min-width: auto;
     }
 
