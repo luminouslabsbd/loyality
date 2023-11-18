@@ -323,7 +323,7 @@ html.dark .ll-dashboard-grid>a {
 .ll-input-container.change-password input+button[type="button"] {
     margin: 0;
     border: 0;
-    background-color: var(--ll-color-white);
+    background-color: transparent;
     position: absolute;
     right: 0;
     border-radius: 0px;
@@ -727,6 +727,11 @@ input[type="checkbox"]:checked + .ll-slider:before {
 
     .ll-user-view-page .ll-label>span:first-child {
         min-width: auto;
+    }
+
+    .ll-input-container input#password_changed+button[type="button"],
+    .ll-input-container.change-password input+button[type="button"] {
+        background-color: var(--ll-color-white);
     }
 }
 
