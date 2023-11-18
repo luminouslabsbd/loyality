@@ -34,6 +34,12 @@ thead tr th {
     padding-bottom: 20px !important;
 }
 
+select:focus{
+    border-color: var(--ll-primary-color) !important;
+    box-shadow: none;
+    border-width: 2px;
+}
+
 /* Dark theme design start */
 html.dark thead tr,
 html.dark thead tr th,
