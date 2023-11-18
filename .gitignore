@@ -23,4 +23,4 @@ Homestead.json
 .phpunit.result.cache
 /storage/debugbar
 /public/.DS_Store
-/public/build/assets/
+public/build
