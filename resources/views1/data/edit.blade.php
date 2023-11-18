@@ -65,7 +65,7 @@ if($settings['overrideTitle']) {
             @php
             $hasTabs = !empty($form['tabs']);
             @endphp
-            <div class="px-4 pb-4 @if($hasTabs) pt-1 sm:rounded-b-lg @endif">
+            <div class="px-4 pb-4">
                 <x-forms.messages class="mt-4" />
                 <x-forms.form-open
                     :novalidate="$hasTabs"
