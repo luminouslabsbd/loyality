@@ -749,6 +749,14 @@ input[type="checkbox"]:checked + .ll-slider:before {
     .ll-member-user-settings-page .ll-user-add-form-inputs .ll-checkbox {
         height: auto;
     }
+
+    #ll-sidebar{
+        z-index: 41;
+    }
+
+    div[drawer-backdrop] {
+        z-index: 40;
+    }
 }
 
 @media only screen and (max-width: 400px) {

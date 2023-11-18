@@ -22,7 +22,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
     <div class="flex flex-col col-span-1 h-screen">
         <!-- header -->
         <header class="member-header" id="member-header">
-            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-20">
+            <nav class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-40">
                 <div class="flex flex-wrap justify-between items-center px-6 py-2.5">
 
                     @auth('partner')
@@ -240,7 +240,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
         <div class="w-full mx-auto flex flex-grow">
             <div class="w-full">
                 @auth('partner')
-                    <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+                    <aside id="ll-sidebar" class="fixed top-[56px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                         <div class="h-full overflow-y-auto">
                             <ul class="space-y-2 font-medium">
                                 <li>
