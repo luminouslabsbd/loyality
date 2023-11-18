@@ -24,3 +24,5 @@ Homestead.json
 /storage/debugbar
 /public/.DS_Store
 public/build
+public/build/*
+
