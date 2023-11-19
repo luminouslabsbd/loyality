@@ -124,7 +124,8 @@ html.dark .ll-warning-btn {
 }
 
 html.dark .ll-table-footer,
-html.dark .ll-dashboard-grid>a {
+html.dark .ll-dashboard-grid>a,
+html.dark .ll-partner-analytics-dashboard {
     background-color: var(--ll-secondary-dark-theme-color);
 }
 
@@ -237,6 +238,10 @@ html.dark .ll-dashboard-grid>a {
 
 body.partner-rewards-insert-page .ll-tab-content-container:nth-child(3) > .grid {
     display: block;
+}
+
+.ll-partner-analytics-dashboard {
+    background-color: var(--ll-light-grey);
 }
 
 /* navbar design */

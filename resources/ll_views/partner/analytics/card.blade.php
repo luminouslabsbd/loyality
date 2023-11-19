@@ -52,7 +52,7 @@
 
             <div class="py-8 sm:py-6">
                 <dl class="grid gap-1 overflow-hidden rounded-2xl text-center grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="flex flex-col bg-gray-400/5 dark:bg-gray-800 p-8">
+                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.card_views') }} (<span class="format-number">{{ $cardViews['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($cardViewsDifference == 0) 
@@ -66,7 +66,7 @@
                             @endif
                         </dd>
                     </div>
-                    <div class="flex flex-col bg-gray-400/5 dark:bg-gray-800 p-8">
+                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.reward_views') }} (<span class="format-number">{{ $rewardViews['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($rewardViewsDifference == 0) 
@@ -80,7 +80,7 @@
                             @endif
                         </dd>
                     </div>
-                    <div class="flex flex-col bg-gray-400/5 dark:bg-gray-800 p-8">
+                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.points_issued') }} (<span class="format-number">{{ $pointsIssued['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($pointsIssuedDifference == 0) 
@@ -94,7 +94,7 @@
                             @endif
                         </dd>
                     </div>
-                    <div class="flex flex-col bg-gray-400/5 dark:bg-gray-800 p-8">
+                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.rewards_claimed') }} (<span class="format-number">{{ $rewardsClaimed['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($rewardsClaimedDifference == 0) 
