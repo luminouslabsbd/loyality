@@ -20,6 +20,13 @@ class RocketChatController extends Controller
         }
     }
 
+    public function add(){
+
+        $rocketData = DB::table('rocket_chat')->first();
+        $languages['all'] = [];
+        return view('admin.rocket_chat.form',compact('rocketData','languages'));
+    }
+
     public function storeUpdate(Request $request){
         
         $existingRecord = DB::table('rocket_chat')->where('id', $request->id)->first();

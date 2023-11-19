@@ -169,6 +169,7 @@ Route::prefix('{locale}')->group(function () {
             Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
             Route::get('rocket-chat-data-edit/{id}', 'Admin\RocketChatController@edit')->name('admin.rocket_chat.edit');
             Route::post('rocket-chat-update', 'Admin\RocketChatController@storeUpdate')->name('admin.rocket_chat.update');
+            Route::get('rocket-chat-add', 'Admin\RocketChatController@add')->name('admin.rocket_chat.add');
         });
 
         // Non-authenticated admin routes
