@@ -9,7 +9,7 @@
         "commerceguys/intl": "^1.1",
         "darkaonline/l5-swagger": "^8.4",
         "ezyang/htmlpurifier": "*",
-        "guzzlehttp/guzzle": "^7.5",
+        "guzzlehttp/guzzle": "^7.8",
         "io238/laravel-iso-countries": "dev-main",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",

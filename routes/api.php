@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('{locale}/v1/ll')->group(function () {
+    Route::prefix('member')->group(function () {
+        Route::post('login', [App\Http\Controllers\Api\LLMemberAuthController::class, 'login']);
+        Route::post('register', [App\Http\Controllers\Api\LLMemberAuthController::class, 'register']);
+    });
+    
+});
+
 Route::prefix('{locale}/v1')->group(function () {
     Route::prefix('member')->group(function () {
         Route::post('login', [App\Http\Controllers\Api\MemberAuthController::class, 'login']);

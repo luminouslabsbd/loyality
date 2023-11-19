@@ -140,7 +140,20 @@ class AuthController extends Controller
      */
     public function postLogin(LoginRequest $request, AuthService $authService)
     {
-        return $this->attemptLogin($request->validated(), $authService);
+        
+        $array = [];
+        if (is_numeric($request->input('email'))) {
+            $email  =  $request->input('email').'@loyaltykeoscx.com';
+        }elseif(filter_var($request->input('email'), FILTER_VALIDATE_EMAIL)){
+            $email = $request->input('email') ;
+        }
+
+        $array['email'] = $email;
+        $array['password'] = $request->input('password');
+        $array['remember'] = $request->input('remember');
+        
+        return $this->attemptLogin($array, $authService);
+        // return $this->attemptLogin($request->validated(), $authService);
 
         // Login link
         /*
