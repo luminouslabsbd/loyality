@@ -311,6 +311,11 @@ html.dark .ll-dashboard-grid>a {
     box-shadow: none;
 }
 
+.ll-input-container input[type="range"]{
+    box-shadow: none;
+    height: 64px;
+}
+
 .ll-input-container .flex>button:last-child {
     height: 40px;
 }
@@ -474,6 +479,11 @@ body.networks-edit-page .ll-user-add-form-inputs {
 
 body.networks-edit-page .ll-user-add-form-inputs .ll-checkbox {
     margin-bottom: 5px;
+}
+
+body.partner-card-insert-page .ll-checkbox{
+    display: flex;
+    align-items: center;
 }
 
 body.partners-add-page .ll-checkbox,

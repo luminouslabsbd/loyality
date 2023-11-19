@@ -151,7 +151,8 @@ if($settings['overrideTitle']) {
             const networksPath = ["/networks/insert"];
             const partnersInsertPath = ["/partners/insert"];
             const clubsInsertPath = ["/partner/manage/clubs/insert"];
-            const partnerCardInsertPath = ["/partner/manage/cards/insert", "/partner/manage/rewards/insert"];
+            // const partnerCardInsertPath = ["/partner/manage/cards/insert", "/partner/manage/rewards/insert"];
+            const partnerCardInsertPath = ["/partner/manage/cards/insert"];
             const currentPathname = window.location.pathname;
 
             if (networksPath.some(path => currentPathname.includes(path))) {
@@ -160,16 +161,36 @@ if($settings['overrideTitle']) {
                 $('body').addClass('partner-club-insert-page');
             } else if (partnerCardInsertPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-card-insert-page');
-
                 
-                // const inputsContainer = $('.ll-tab-content-container');
-                // const childDivs = inputsContainer.children('div');
-                // const divCount = childDivs.length;
+                function wrapChildrenWithClass(containerIndex, startSlice, endSlice, wrapperClass) {
+                    var targetContainer = $(".ll-tab-content-container:eq(" + containerIndex + ")");
+                    var targetChildren = targetContainer.children().slice(startSlice, endSlice);
 
-                // Wrap the first two ll-input-container divs in a new div with class "first"
-                // $(".ll-tab-content-container .ll-input-container:lt(2)").wrapAll('<div class="grid grid-cols-2 gap-4"></div>');
+                    targetChildren.wrapAll("<div class='" + wrapperClass + "'></div>");
+                }
 
-                // // Wrap the next ll-input-container and ll-checkbox in a new div with class "second"
+                // details tab start
+                wrapChildrenWithClass(0, 0, 2, 'grid grid-cols-2 gap-4');
+                wrapChildrenWithClass(0, 2, 4, 'grid grid-cols-2 gap-4');
+                // wrapChildrenWithClass(0, 3, 5, 'grid grid-cols-2 gap-4');
+                // details tab end
+
+                // rules tab start
+                // if ($(".ll-tab-content-container:eq(1)").children('div').hasClass('grid grid-cols-3 gap-4')) {
+                //     $(".ll-tab-content-container:eq(1)").children('div').removeClass('grid grid-cols-3 gap-4');
+                // }
+                
+                wrapChildrenWithClass(1, 0, 2, 'grid grid-cols-2 gap-4');
+                // wrapChildrenWithClass(1, 2, 4, 'grid grid-cols-2 gap-4');
+                // rules tab end
+
+                // card text tab start
+                wrapChildrenWithClass(2, 0, 3, 'grid grid-cols-2 gap-4');
+                // card text tab end
+
+                // contact tab start
+                wrapChildrenWithClass(3, 0, 4, 'grid grid-cols-2 gap-4');
+                // contact text tab end
             }else{
                 if(partnersInsertPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
