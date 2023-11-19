@@ -231,6 +231,10 @@ html.dark .ll-dashboard-grid>a {
     color: var(--ll-success-color);
 }
 
+.ll-partner-content-container{
+    margin-top: 3px;
+}
+
 /* navbar design */
 .ll-nav-logo img {
     width: 80px;
@@ -755,6 +759,10 @@ input[type="checkbox"]:checked + .ll-slider:before {
     .ll-input-container input#password_changed+button[type="button"],
     .ll-input-container.change-password input+button[type="button"] {
         background-color: var(--ll-color-white);
+    }
+
+    .ll-partner-content-container{
+        margin-top: 56px;
     }
 }
 
