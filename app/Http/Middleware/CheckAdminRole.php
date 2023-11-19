@@ -21,7 +21,6 @@ class CheckAdminRole
     public function handle($request, Closure $next, ?int $role1 = null, ?int $role2 = null, ?int $role3 = null)
     {
         $auth = Auth::guard('admin');
-
         // Check if the user is authenticated and has one of the specified roles
         if ($auth->check() && $auth->user()->hasRole([$role1, $role2, $role3])) {
             return $next($request);

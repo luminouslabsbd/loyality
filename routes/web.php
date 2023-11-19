@@ -176,6 +176,11 @@ Route::prefix('{locale}')->group(function () {
             });
             Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
         });
+
+        //admin rocket chat setting routes
+        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
+            Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
+        });
     });
 
     Route::group(['namespace' => '\App\Http\Controllers', 'prefix' => 'install', 'middleware' => 'not.installed'], function () {

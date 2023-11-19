@@ -271,6 +271,15 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                                     </ul>
                                 </li> --}}
                                 {{-- dropdown menu item example end --}}
+
+                                @if (auth('admin')->user()->role == 1)
+                                    <li>
+                                        <a href="{{ route('admin.rocket_chat') }}" class="ll-sidebar-link flex items-center p-2 group">
+                                            <x-ui.icon icon="cube-transparent" class="" /><span class="ml-2">Rocket Chat</span>
+                                        </a>
+                                    </li>
+                                @endif
+
                             </ul>
                         </div>
                     </aside>
