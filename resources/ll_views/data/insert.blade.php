@@ -151,8 +151,8 @@ if($settings['overrideTitle']) {
             const networksPath = ["/networks/insert"];
             const partnersInsertPath = ["/partners/insert"];
             const clubsInsertPath = ["/partner/manage/clubs/insert"];
-            // const partnerCardInsertPath = ["/partner/manage/cards/insert", "/partner/manage/rewards/insert"];
-            const partnerCardInsertPath = ["/partner/manage/cards/insert"];
+            const partnerRewardsInsertPath = ["/partner/manage/rewards/insert"];
+            const partnerCardInsertPath = ["/partner/manage/cards/insert", "/partner/manage/rewards/insert"];
             const currentPathname = window.location.pathname;
 
             if (networksPath.some(path => currentPathname.includes(path))) {
@@ -161,6 +161,10 @@ if($settings['overrideTitle']) {
                 $('body').addClass('partner-club-insert-page');
             } else if (partnerCardInsertPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-card-insert-page');
+
+                if (partnerRewardsInsertPath.some(path => currentPathname.includes(path))) {
+                    $('body').addClass('partner-rewards-insert-page');
+                }
                 
                 function wrapChildrenWithClass(containerIndex, startSlice, endSlice, wrapperClass) {
                     var targetContainer = $(".ll-tab-content-container:eq(" + containerIndex + ")");
@@ -191,7 +195,7 @@ if($settings['overrideTitle']) {
                 // contact tab start
                 wrapChildrenWithClass(3, 0, 4, 'grid grid-cols-2 gap-4');
                 // contact text tab end
-            }else{
+            }else {
                 if(partnersInsertPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
                 }

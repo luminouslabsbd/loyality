@@ -235,6 +235,10 @@ html.dark .ll-dashboard-grid>a {
     margin-top: 3px;
 }
 
+body.partner-rewards-insert-page .ll-tab-content-container:nth-child(3) > .grid {
+    display: block;
+}
+
 /* navbar design */
 .ll-nav-logo img {
     width: 80px;
