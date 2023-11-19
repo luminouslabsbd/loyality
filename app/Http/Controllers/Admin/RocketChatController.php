@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Crypt;
 class RocketChatController extends Controller
 {
     public function index(){
@@ -14,15 +14,15 @@ class RocketChatController extends Controller
 
     public function edit($lang='en-us' ,$id){
         $rocketData = DB::table('rocket_chat')->where('id',$id)->first();
+        $languages['all'] = [];
         if($rocketData != null){
-            return view('admin.rocket_chat.form',compact('rocketData'));
+            return view('admin.rocket_chat.form',compact('rocketData','languages'));
         }
     }
 
     public function storeUpdate(Request $request){
-      
-        $toast = "Data Update Successful";
-        $existingRecord = DB::table('rocket_chat')->where('id', $id)->first();
+        
+        $existingRecord = DB::table('rocket_chat')->where('id', $request->id)->first();
         $data = [
             'api_url' => $request->api_url,
             'api_title' => $request->api_title,
@@ -37,7 +37,9 @@ class RocketChatController extends Controller
         }else{
             DB::table('rocket_chat')->insert($data);
         }
-        return redirect(route('admin.rocket_chat'))->with('toast', $toast); 
+        $toast = "Data Update Successful";
+        $languages['all'] = [];
+        return redirect()->route('admin.rocket_chat'); 
 
     }
 
