@@ -206,8 +206,8 @@ if($settings['overrideTitle']) {
             const partnersPath = ["/partners/edit"];
             const accountEditPath = ["/manage/account/edit"];
             const clubsEditPath = ["/partner/manage/clubs/edit"];
-            // const partnerCardEditPath = ["/partner/manage/cards/edit", "/partner/manage/rewards/edit"];
-            const partnerCardEditPath = ["/partner/manage/cards/edit"];
+            const partnerRewardsEditPath = ["/partner/manage/rewards/edit"];
+            const partnerCardEditPath = ["/partner/manage/cards/edit", "/partner/manage/rewards/edit"];
             const currentPathname = window.location.pathname;
 
             const formInputs = $('.ll-user-add-form-inputs');
@@ -220,6 +220,10 @@ if($settings['overrideTitle']) {
                 $('body').addClass('partner-club-insert-page');
             }else if (partnerCardEditPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-card-insert-page');
+
+                if (partnerRewardsEditPath.some(path => currentPathname.includes(path))) {
+                    $('body').addClass('partner-rewards-insert-page');
+                }
                 
                 function wrapChildrenWithClass(containerIndex, startSlice, endSlice, wrapperClass) {
                     var targetContainer = $(".ll-tab-content-container:eq(" + containerIndex + ")");
