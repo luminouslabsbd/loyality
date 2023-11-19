@@ -164,6 +164,14 @@ Route::prefix('{locale}')->group(function () {
             Route::get('manage/{name}/impersonate/{guard}/{id}', 'Data\AuthController@impersonate')->name('admin.data.impersonate');
         });
 
+        //admin rocket chat setting routes
+        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
+            Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
+            Route::get('rocket-chat-data-edit/{id}', 'Admin\RocketChatController@edit')->name('admin.rocket_chat.edit');
+            Route::post('rocket-chat-update', 'Admin\RocketChatController@storeUpdate')->name('admin.rocket_chat.update');
+            Route::get('rocket-chat-add', 'Admin\RocketChatController@add')->name('admin.rocket_chat.add');
+        });
+
         // Non-authenticated admin routes
         Route::prefix('admin')->group(function () {
             Route::middleware(['guest:admin'])->group(function () {
@@ -175,13 +183,6 @@ Route::prefix('{locale}')->group(function () {
                 Route::post('reset-password', 'Admin\AuthController@postResetPassword')->name('admin.reset_password.post')->middleware('signed');
             });
             Route::get('logout', 'Admin\AuthController@logout')->name('admin.logout');
-        });
-
-        //admin rocket chat setting routes
-        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
-            Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
-            Route::get('rocket-chat-data-edit/{id}', 'Admin\RocketChatController@edit')->name('admin.rocket_chat.edit');
-            Route::post('rocket-chat-update', 'Admin\RocketChatController@storeUpdate')->name('admin.rocket_chat.update');
         });
     });
 

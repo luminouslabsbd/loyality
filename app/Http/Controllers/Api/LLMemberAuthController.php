@@ -52,8 +52,8 @@ class LLMemberAuthController extends Controller
             $password = $request->input('password');
 
             if (is_null($password)) {
-                // $password = implode('', Arr::random(range(0, 9), 6));
-                $password = 12345678 ;
+                $password = implode('', Arr::random(range(0, 9), 6));
+                // $password = 12345678 ;
             }
             // Prepare response array
             $response = [
@@ -114,6 +114,16 @@ class LLMemberAuthController extends Controller
                     'msg' => "Email: $email\nPassword: $password",
                 ],
             ]);
+            // $response = Http::withHeaders([
+            //     'X-Auth-Token' => "P1YbxbBIqpi8XHL3POoIxfaoRRFqVGntdxZ7WMzsqhx",
+            //     'X-User-Id' => "s2GipkwdQoTrbnpPa",
+            //     'Content-type' => 'application/json',
+            // ])->post( 'https://labdesk.keos.co/api/v1/chat.sendMessage',[
+            //     'message' => [
+            //         'rid' => 'GENERAL',
+            //         'msg' => "Email: $email\nPassword: $password",
+            //     ],
+            // ]);
             // For example, to get the response body:
             $responseBody = $response->json();
         }

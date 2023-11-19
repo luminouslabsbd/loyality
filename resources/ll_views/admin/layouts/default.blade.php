@@ -98,7 +98,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                         <span class="hidden md:block mr-3 w-px h-5 bg-gray-200 dark:bg-gray-600 lg:inline"></span>
                         @endauth
 
-                        @if (count($languages['all']) > 1)
+                        @if (isset($languages['all']) && count($languages['all']) > 1)
                             <button type="button" data-dropdown-toggle="language-dropdown"
                                 class="inline-flex items-center text-gray-900 dark:text-gray-300 hover:bg-gray-50 font-medium rounded-full text-sm px-2 lg:px-2 py-2 lg:py-2 dark:hover:bg-gray-700 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600">
                                 <div

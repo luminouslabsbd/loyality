@@ -43,7 +43,7 @@
                 </div>
             </div>
                 <form class="ll-user-add-form space-y-4 md:space-y-6" action="{{route('admin.rocket_chat.update')}}" method="POST" enctype="multipart/form-data" id="rocketChatData">
-                    
+                    @csrf
                 <div>
                     <div class="mt-4">
                         <label for="name" class="input-label">API Title </label>
@@ -72,14 +72,13 @@
                             x-bind:type="input"
                         >
                     </div>
-    
                     <div class="mt-4">
                         <label for="name" class="input-label">API Token </label>
                         <input 
                             type="text" 
                             id="api_token" 
                             name="api_token" 
-                            value="{{ $rocketData != null ?  $rocketData->api_token : ''}}" 
+                            value="{{ $rocketData != null ? Crypt::decryptString($rocketData->api_token) : ''}}" 
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
                             placeholder="" 
                             required="" 
