@@ -79,7 +79,7 @@ if($settings['overrideTitle']) {
                     @if ($form['columns'])
                         <div class="ll-user-add-form-inputs grid grid-cols-7 gap-x-5">
                             @if($hasTabs)
-                                <x-ui.tabs :tabs="array_values($form['tabs'])" active-tab="1" class="space-y-4 md:space-y-6 py-6">
+                                <x-ui.tabs :tabs="array_values($form['tabs'])" active-tab="1" class="ll-tab-content-container space-y-4 md:space-y-6 py-6">
                                 @php
                                 $previousTab = null;
                                 @endphp
@@ -206,7 +206,8 @@ if($settings['overrideTitle']) {
             const partnersPath = ["/partners/edit"];
             const accountEditPath = ["/manage/account/edit"];
             const clubsEditPath = ["/partner/manage/clubs/edit"];
-            const partnerCardEditPath = ["/partner/manage/cards/edit", "/partner/manage/rewards/edit"];
+            // const partnerCardEditPath = ["/partner/manage/cards/edit", "/partner/manage/rewards/edit"];
+            const partnerCardEditPath = ["/partner/manage/cards/edit"];
             const currentPathname = window.location.pathname;
 
             const formInputs = $('.ll-user-add-form-inputs');
@@ -219,6 +220,36 @@ if($settings['overrideTitle']) {
                 $('body').addClass('partner-club-insert-page');
             }else if (partnerCardEditPath.some(path => currentPathname.includes(path))) {
                 $('body').addClass('partner-card-insert-page');
+                
+                function wrapChildrenWithClass(containerIndex, startSlice, endSlice, wrapperClass) {
+                    var targetContainer = $(".ll-tab-content-container:eq(" + containerIndex + ")");
+                    var targetChildren = targetContainer.children().slice(startSlice, endSlice);
+
+                    targetChildren.wrapAll("<div class='" + wrapperClass + "'></div>");
+                }
+
+                // details tab start
+                wrapChildrenWithClass(0, 0, 2, 'grid grid-cols-2 gap-4');
+                wrapChildrenWithClass(0, 2, 4, 'grid grid-cols-2 gap-4');
+                // wrapChildrenWithClass(0, 3, 5, 'grid grid-cols-2 gap-4');
+                // details tab end
+
+                // rules tab start
+                // if ($(".ll-tab-content-container:eq(1)").children('div').hasClass('grid grid-cols-3 gap-4')) {
+                //     $(".ll-tab-content-container:eq(1)").children('div').removeClass('grid grid-cols-3 gap-4');
+                // }
+                
+                wrapChildrenWithClass(1, 0, 2, 'grid grid-cols-2 gap-4');
+                // wrapChildrenWithClass(1, 2, 4, 'grid grid-cols-2 gap-4');
+                // rules tab end
+
+                // card text tab start
+                wrapChildrenWithClass(2, 0, 3, 'grid grid-cols-2 gap-4');
+                // card text tab end
+
+                // contact tab start
+                wrapChildrenWithClass(3, 0, 4, 'grid grid-cols-2 gap-4');
+                // contact text tab end
             } else{
                 if(partnersPath.some(path => currentPathname.includes(path))){
                     $('body').addClass('partners-add-page');
