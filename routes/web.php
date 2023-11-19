@@ -180,6 +180,8 @@ Route::prefix('{locale}')->group(function () {
         //admin rocket chat setting routes
         Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
             Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
+            Route::get('rocket-chat-data-edit/{id}', 'Admin\RocketChatController@edit')->name('admin.rocket_chat.edit');
+            Route::post('rocket-chat-update', 'Admin\RocketChatController@storeUpdate')->name('admin.rocket_chat.update');
         });
     });
 

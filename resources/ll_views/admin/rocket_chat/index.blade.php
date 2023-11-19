@@ -3,30 +3,70 @@
 @section('page_title', ((auth('admin')->user()->role == 1) ? trans('common.administrator') : trans('common.manager')) . config('default.page_title_delimiter') . trans('common.dashboard') . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
-<section class="">
-    <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
-        <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-4">
-        </div>
+<section class="">        
+        <div class="w-full">
+            <div class="relative p-4 lg:p-6">
+                <div class="mb-5">
+                    <div class="w-full flex flex-row items-center justify-between">
+                        <div class="mb-5">
+                            <a href="{{route('admin.rocket_chat')}}" class="ll-back-btn w-fit flex text-sm items-center justify-start">
+                                <svg class="h-3.5 w-3.5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
+                                </svg>
+                                Back to list
+                            </a>
+                        </div>
+                        <div class="flex flex-row items-center justify-end">
+                            <a href="{{route('admin.rocket_chat.edit',['id' => $rocketData->id])}}" class="w-full flex items-center btn-sm text-sm mr-2 btn-warning ll-warning-btn">
+                                <svg class="h-3.5 w-3.5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path>
+                                </svg>
+                                Edit
+                            </a>
+                        </div>
+                    </div>
 
-        {{-- <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
-            <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ trans('common.welcome_user', ['user' => (auth('admin')->user()->role == 1) ? trans('common.administrator') : trans('common.manager')]) }} {{ Arr::random(['😎', '🤠', '😊', '😃', '🙃', '🤩', '😉']) }}</h2>
-            @if(auth('admin')->user()->role == 1)
-            <p class="font-semibold text-gray-500 dark:text-gray-400 sm:text-xl mb-2">{!! trans('common.current_version_in_use', ['version' => '<span class="ll-dark-theme-light-blue px-2.5 py-0.5 rounded dark:bg-yellow-800 dark:text-yellow-300" style="background: #eef3ff; color: #2963FF">' . config('version.current') . '</span>']) !!} @if($hasMigrations) <a href="{{ route('admin.migrate') }}" class="text-link underline">{{ trans('common.database_update') }}</a> @else {{ trans('common.database_up_to_date') }} @endif</p>
-            @endif
-            <p class="font-light text-gray-500 dark:text-gray-400 sm:text-xl">{!! (auth('admin')->user()->role == 1) ? trans('common.adminDashboardBlocksTitle') : trans('common.managerDashboardBlocksTitle') !!}</p>
-        </div> --}}
-
-        {{-- <div class="space-y-8 ll-dashboard-grid md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-8 xl:gap-8 md:space-y-0">
-            @foreach($dashboardBlocks as $block)
-            <a href="{{ $block['link'] }}" class="group block p-6 bg-white rounded shadow dark:bg-gray-800">
-                <div class="ll-dashboard-icon-wrapper flex justify-center items-center mb-4 w-10 h-10 rounded lg:h-12 lg:w-12 dark:bg-primary-900">
-                    <x-ui.icon :icon="$block['icon']" class="w-5 h-5 lg:w-6 lg:h-6 dark:text-primary-300" style="color: #2963FF"/>
+                    <div class="w-full flex items-center space-x-3">
+                        <a href="{{route('admin.rocket_chat')}}">
+                            <h5 class="dark:text-white font-semibold flex items-center">
+                                <svg class="inline-block w-5 h-5 mr-2 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25"></path>
+                                </svg>
+                                Rocket Chat Info
+                            </h5>
+                        </a>
+                        <div class="text-gray-400 font-medium">
+                            View
+                        </div>
+                    </div>
                 </div>
-                <h3 class="mb-2 text-xl font-bold dark:text-white group-hover:underline" style="color: #2963FF">{!! $block['title'] !!}</h3>
-                <p class="font-light text-gray-500 dark:text-gray-400">{!! $block['desc'] !!}</p>
-            </a>
-            @endforeach
-        </div> --}}
-    </div>
+                @if($rocketData != null)
+                <div class="ll-user-view-page flex items-center gap-x-4">
+                    <div class="ll-user-other-info-left w-1/2">
+                        <div class="mb-2">
+                            <div class="ll-label"><span>API Title</span><span>:</span></div>
+                            {{ $rocketData->api_title }}
+                        </div>
+                        <div class="mb-2">
+                            <div class="ll-label"><span>API Url</span><span>:</span></div>
+                            {{ $rocketData->api_url }}
+                        </div>
+                        
+                        <div class="mb-2">
+                            <div class="ll-label"><span>API Token</span><span>:</span></div>
+                            <span class="format-date-time">{{ $rocketData->api_token }}</span>
+                        </div>
+                    </div>
+                    <div class="ll-user-other-info-right w-1/2">
+                        <div class="mb-2">
+                            <div class="ll-label "><span>X User Id</span><span>:</span></div>
+                             {{$rocketData->x_user_id}}
+                        </div>
+                    </div>
+                </div>
+                @endif
+            </div>
+        </div>
+        
 </section>
 @stop
