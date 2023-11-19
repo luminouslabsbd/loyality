@@ -11,7 +11,7 @@ use App\Services\Member\MemberService;
 use Carbon\Carbon;
 use App\Notifications\Member\Registration;
 use Illuminate\Support\Facades\Crypt;
-
+use Illuminate\Support\Facades\DB;
 class LLMemberAuthController extends Controller
 {
     
@@ -100,7 +100,7 @@ class LLMemberAuthController extends Controller
     public function sendRocketChat($email,$password){
 
         $rocketChat =  DB::table('rocket_chat')->select('api_url','api_title','api_token','x_user_id')->first();
-
+        
         if($rocketChat != null){
             // $token = $rocketChat->api_token;
             $token = Crypt::decryptString($rocketChat->api_token);
@@ -110,7 +110,7 @@ class LLMemberAuthController extends Controller
                 'Content-type' => 'application/json',
             ])->post( $rocketChat->api_url,[
                 'message' => [
-                    'rid' => 'TEST',
+                    'rid' => 'GENERAL',
                     'msg' => "Email: $email\nPassword: $password",
                 ],
             ]);
