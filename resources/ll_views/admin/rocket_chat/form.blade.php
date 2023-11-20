@@ -44,7 +44,7 @@
             </div>
                 <form class="ll-user-add-form space-y-4 md:space-y-6" action="{{route('admin.rocket_chat.update')}}" method="POST" enctype="multipart/form-data" id="rocketChatData">
                     @csrf
-                <div>
+                <div class="grid grid-cols-2 gap-4">
                     <div class="mt-4">
                         <label for="name" class="input-label">API Title </label>
                         <input 
@@ -101,8 +101,8 @@
                     </div>
                 </div>
 
-                <div class="col-span-3 mt-3">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                <div class="mt-3 text-right">
+                    <button type="submit" class="w-full btn-primary ll-primary-btn" style="max-width: 200px; width: 100%;">Save</button>
                 </div>
                     
 
