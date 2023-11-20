@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <section class="w-full place-self-center mx-auto lg:h-full ll-login-container">
+    <section class="w-full partner-login-page place-self-center mx-auto lg:h-full ll-login-container">
         <div class="grid lg:grid-cols-2 lg:h-full">
             <div class="ll-login-left flex justify-center items-center py-6 px-4 g:py-0 sm:px-0">
                 {{-- <div class="max-w-md xl:max-w-xl p-6">

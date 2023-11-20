@@ -168,7 +168,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
         @endauth
 
         <!-- content -->
-        <div class="w-full mx-auto flex flex-grow" style="margin-top: 56px">
+        <div class="w-full mx-auto flex flex-grow ll-member-content-container" style="margin-top: 56px">
             @yield('content')
         </div>
 

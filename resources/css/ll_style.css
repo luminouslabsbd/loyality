@@ -459,6 +459,12 @@ body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#passwo
     height: 100%;
 }
 
+.ll-member-content-container:has(> .partner-login-page),
+.ll-member-content-container:has(> .partner-forgot-page) {
+    margin: 0px !important;
+    height: 100%;
+}
+
 .ll-amdin-content-container {
     height: calc(100% - 60px);
 }

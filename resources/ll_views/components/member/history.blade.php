@@ -9,7 +9,7 @@
     </div>
     @else
 
-    <ol {{ $attributes->except('class') }} class="relative border-l border-gray-200 dark:border-gray-700 ml-6 {{ $attributes->get('class') }}">
+    <ol {{ $attributes->except('class') }} class="relative border-l border-gray-200 dark:border-gray-700 ml-6 ll-member-history {{ $attributes->get('class') }}">
         @foreach($transactions as $transaction)
         @php
         $transactionExpired = ($transaction->reward_points === null && ($transaction->expires_at->isPast() || $transaction->points == $transaction->points_used)) ? true : false;
