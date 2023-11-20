@@ -52,8 +52,8 @@
                     </div>
                 </div>
                 @if($rocketData != null)
-                <div class="ll-user-view-page flex items-center gap-x-4">
-                    <div class="ll-user-other-info-left w-1/2">
+                <div class="ll-user-view-page flex items-center gap-x-4 ll-rocket-chat-page">
+                    <div class="ll-user-other-info-left">
                         <div class="mb-2">
                             <div class="ll-label"><span>API Title</span><span>:</span></div>
                             {{ $rocketData->api_title }}
@@ -63,12 +63,10 @@
                             {{ $rocketData->api_url }}
                         </div>
                         
-                        <div class="mb-2">
-                            <div class="ll-label"><span>API Token</span><span>:</span></div>
-                            <span class="format-date-time">{{ $rocketData->api_token }}</span>
+                        <div class="mb-2" style="align-items: flex-start">
+                            <div class="ll-label" style="display: flex"><span>API Token</span><span>:</span></div>
+                            <span class="format-date-time break-all" style="margin-left: 5px;">{{ $rocketData->api_token }}</span>
                         </div>
-                    </div>
-                    <div class="ll-user-other-info-right w-1/2">
                         <div class="mb-2">
                             <div class="ll-label "><span>X User Id</span><span>:</span></div>
                              {{$rocketData->x_user_id}}

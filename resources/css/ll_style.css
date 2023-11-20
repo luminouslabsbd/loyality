@@ -106,7 +106,8 @@ html.dark body.networks-view-page div.ll-user-other-info-left>div,
 html.dark body.networks-view-page div.ll-user-other-info-right>div,
 html.dark .ll-user-main-info>div:first-child,
 html.dark .ll-user-main-info>div:last-child,
-html.dark .ll-text-primary-color {
+html.dark .ll-text-primary-color,
+html.dark .ll-rocket-chat-page .ll-user-other-info-left > div  {
     color: var(--ll-dark-theme-text-color) !important;
 }
 
@@ -494,7 +495,8 @@ body.account-edit-page .ll-user-add-form-inputs .ll-input-container input#passwo
 .ll-user-others-info>div.ll-user-other-info-right>div,
 body.networks-view-page div.ll-user-other-info-left>div,
 body.networks-view-page div.ll-user-other-info-right>div,
-.ll-partner-anlytics-container .ll-partner-anlytics-data {
+.ll-partner-anlytics-container .ll-partner-anlytics-data,
+.ll-rocket-chat-page .ll-user-other-info-left > div {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -503,7 +505,8 @@ body.networks-view-page div.ll-user-other-info-right>div,
 }
 
 .ll-user-view-page .ll-label>span:first-child,
-.ll-partner-anlytics-container .ll-label {
+.ll-partner-anlytics-container .ll-label,
+.ll-rocket-chat-page .ll-label {
     display: inline-block;
     min-width: 120px;
     font-weight: normal;
@@ -869,7 +872,8 @@ input[type="checkbox"]:checked + .ll-slider:before {
 
 @media only screen and (max-width: 400px) {
     .ll-user-others-info>div.ll-user-other-info-left>div,
-    .ll-user-others-info>div.ll-user-other-info-right>div {
+    .ll-user-others-info>div.ll-user-other-info-right>div,
+    .ll-rocket-chat-page .ll-user-other-info-left > div{
         word-break: break-all;
     }
 }
