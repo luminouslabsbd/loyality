@@ -51,8 +51,120 @@
             </div>
 
             <div class="py-8 sm:py-6">
-                <dl class="grid gap-1 overflow-hidden rounded-2xl text-center grid-cols-2 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
+                <dl class="grid gap-3 overflow-hidden text-center grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 p-4">
+                    <div class="ll-partner-analytics-dashboard">
+                        <div class="ll-partner-analytics-header">
+                            <div class="ll-analytics-header-title">
+                                <h3 class="font-semibold">{{ trans('common.card_views') }}</h3>
+                                <h3 class="font-semibold">{{ $cardViews['total'] }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="ll-partner-analytics-body">
+                            <div class="ll-partner-analytics-body-img">
+                                <img src="{{ asset('assets/ll_imgs/card-tick.svg') }}" alt="Background Image">
+                            </div>
+                            <div class="ll-analytics-body-count text-3xl font-semibold">
+                                <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+                                    @if ($cardViewsDifference == 0) 
+                                    {{ $cardViewsDifference }}%
+                                    @elseif ($cardViewsDifference > 0)
+                                    <x-ui.icon icon="arrow-trending-up" class="w-6 h-6 mr-2" /> +{{ $cardViewsDifference }}%
+                                    @elseif ($cardViewsDifference < 0 && $cardViewsDifference != '-')
+                                    <x-ui.icon icon="arrow-trending-down" class="w-6 h-6 mr-2" /> {{ $cardViewsDifference }}%
+                                    @else
+                                    {{ $cardViewsDifference }}
+                                    @endif
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ll-partner-analytics-dashboard">
+                        <div class="ll-partner-analytics-header">
+                            <div class="ll-analytics-header-title">
+                                <h3 class="font-semibold">{{ trans('common.reward_views') }}</h3>
+                                <h3 class="font-semibold">{{ $rewardViews['total'] }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="ll-partner-analytics-body">
+                            <div class="ll-partner-analytics-body-img">
+                                <img src="{{ asset('assets/ll_imgs/gift-reward.svg') }}" alt="Background Image">
+                            </div>
+                            <div class="ll-analytics-body-count text-3xl font-semibold">
+                                <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+                                    @if ($rewardViewsDifference == 0) 
+                                    {{ $rewardViewsDifference }}%
+                                    @elseif ($rewardViewsDifference > 0)
+                                    <x-ui.icon icon="arrow-trending-up" class="w-6 h-6 mr-2" /> +{{ $rewardViewsDifference }}%
+                                    @elseif ($rewardViewsDifference < 0 && $rewardViewsDifference != '-')
+                                    <x-ui.icon icon="arrow-trending-down" class="w-6 h-6 mr-2" /> {{ $rewardViewsDifference }}%
+                                    @else
+                                    {{ $rewardViewsDifference }}
+                                    @endif
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ll-partner-analytics-dashboard">
+                        <div class="ll-partner-analytics-header">
+                            <div class="ll-analytics-header-title">
+                                <h3 class="font-semibold">{{ trans('common.points_issued') }}</h3>
+                                <h3 class="font-semibold">{{ $pointsIssued['total'] }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="ll-partner-analytics-body">
+                            <div class="ll-partner-analytics-body-img">
+                                <img src="{{ asset('assets/ll_imgs/coins.svg') }}" alt="Background Image">
+                            </div>
+                            <div class="ll-analytics-body-count text-3xl font-semibold">
+                                <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+                                    @if ($pointsIssuedDifference == 0) 
+                                    {{ $pointsIssuedDifference }}%
+                                    @elseif ($pointsIssuedDifference > 0)
+                                    <x-ui.icon icon="arrow-trending-up" class="w-6 h-6 mr-2" /> +{{ $pointsIssuedDifference }}%
+                                    @elseif ($pointsIssuedDifference < 0 && $pointsIssuedDifference != '-')
+                                    <x-ui.icon icon="arrow-trending-down" class="w-6 h-6 mr-2" /> {{ $pointsIssuedDifference }}%
+                                    @else
+                                    {{ $pointsIssuedDifference }}
+                                    @endif
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ll-partner-analytics-dashboard">
+                        <div class="ll-partner-analytics-header">
+                            <div class="ll-analytics-header-title">
+                                <h3 class="font-semibold">{{ trans('common.rewards_claimed') }}</h3>
+                                <h3 class="font-semibold">{{ $rewardsClaimed['total'] }}</h3>
+                            </div>
+                        </div>
+
+                        <div class="ll-partner-analytics-body">
+                            <div class="ll-partner-analytics-body-img">
+                                <img src="{{ asset('assets/ll_imgs/reward.svg') }}" alt="Background Image">
+                            </div>
+                            <div class="ll-analytics-body-count text-3xl font-semibold">
+                                <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
+                                    @if ($rewardsClaimedDifference == 0) 
+                                    {{ $rewardsClaimedDifference }}%
+                                    @elseif ($rewardsClaimedDifference > 0)
+                                    <x-ui.icon icon="arrow-trending-up" class="w-6 h-6 mr-2" /> +{{ $rewardsClaimedDifference }}%
+                                    @elseif ($rewardsClaimedDifference < 0 && $rewardsClaimedDifference != '-')
+                                    <x-ui.icon icon="arrow-trending-down" class="w-6 h-6 mr-2" /> {{ $rewardsClaimedDifference }}%
+                                    @else
+                                    {{ $rewardsClaimedDifference }}
+                                    @endif
+                                </dd>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{-- <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.card_views') }} (<span class="format-number">{{ $cardViews['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($cardViewsDifference == 0) 
@@ -65,8 +177,8 @@
                             {{ $cardViewsDifference }}
                             @endif
                         </dd>
-                    </div>
-                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
+                    </div> --}}
+                    {{-- <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.reward_views') }} (<span class="format-number">{{ $rewardViews['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($rewardViewsDifference == 0) 
@@ -79,8 +191,8 @@
                             {{ $rewardViewsDifference }}
                             @endif
                         </dd>
-                    </div>
-                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
+                    </div> --}}
+                    {{-- <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.points_issued') }} (<span class="format-number">{{ $pointsIssued['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($pointsIssuedDifference == 0) 
@@ -93,8 +205,8 @@
                             {{ $pointsIssuedDifference }}
                             @endif
                         </dd>
-                    </div>
-                    <div class="flex flex-col ll-partner-analytics-dashboard p-8">
+                    </div> --}}
+                    {{-- <div class="flex flex-col ll-partner-analytics-dashboard p-8">
                         <dt class="text-sm font-semibold leading-6 text-gray-600 dark:text-gray-400">{{ trans('common.rewards_claimed') }} (<span class="format-number">{{ $rewardsClaimed['total'] }}</span>)</dt>
                         <dd class="flex justify-center items-center order-first text-3xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
                             @if ($rewardsClaimedDifference == 0) 
@@ -107,7 +219,7 @@
                             {{ $rewardsClaimedDifference }}
                             @endif
                         </dd>
-                    </div>
+                    </div> --}}
                 </dl>
             </div>
 
