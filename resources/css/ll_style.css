@@ -46,7 +46,9 @@ html.dark thead tr th,
 html.dark .ll-action-btn,
 html.dark .ll-action-btn:hover,
 html.dark .ll-generate-password-btn,
-html.dark .ll-amdin-content-container input[name="search"] {
+html.dark .ll-amdin-content-container input[name="search"],
+html.dark .ll-dashboard-info-card,
+html.dark .ll-dashboard-chart-container{
     background-color: var(--ll-secondary-dark-theme-color) !important;
 }
 
@@ -121,7 +123,10 @@ html.dark .ll-primary-btn:hover {
 
 html.dark .ll-danger-btn,
 html.dark .ll-warning-btn,
-html.dark .ll-analytics-header-title {
+html.dark .ll-analytics-header-title,
+html.dark .ll-dashboard-info-card,
+html.dark .ll-dashboard-chart-container,
+html.dark .ll-dashboard-info-card h1 {
     color: var(--ll-color-white) !important;
 }
 
@@ -130,6 +135,12 @@ html.dark .ll-dashboard-grid>a,
 html.dark .ll-partner-analytics-dashboard,
 html.dark .ll-analytics-header-title {
     background-color: var(--ll-secondary-dark-theme-color);
+}
+
+html.dark button.ll-csv-download-btn,
+html.dark button.ll-csv-download-btn + select{
+    background-color: var(--ll-primary-dark-theme-color);
+    border-color: var(--ll-primary-dark-theme-color);
 }
 
 /* html.dark .ll-analytics-header-title {
@@ -684,6 +695,40 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     box-shadow: none;
 }
 
+.ll-dashboard-info-card,
+.ll-dashboard-chart-container{
+    background-color: var(--ll-light-grey);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    text-align: center;
+    color: var(--ll-text-grey);
+}
+
+.ll-dashboard-info-card h1{
+    color: var(--ll-text-dark-grey);
+}
+
+button.ll-csv-download-btn,
+button.ll-csv-download-btn + select {
+    background-color: var(--ll-color-white);
+    border-radius: 5px;
+    font-size: 15px;
+    border: 1px solid var(--ll-color-white);
+}
+
+button.ll-csv-download-btn {
+    padding: 5px 15px;
+}
+
+button.ll-csv-download-btn + select {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+button.ll-csv-download-btn + select:focus {
+    border: 1px solid var(--ll-primary-color);
+}
 /* custom switch start */
 
 .ll-switch {
@@ -804,6 +849,13 @@ input[type="checkbox"]:checked + .ll-slider:before {
     }
 }
 
+@media only screen and (max-width: 991px) {
+    .ll-dashboard-chart-heading {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
 @media only screen and (max-width: 767px) {
     .ll-main-content-container {
         flex-direction: column;
@@ -875,5 +927,10 @@ input[type="checkbox"]:checked + .ll-slider:before {
     .ll-user-others-info>div.ll-user-other-info-right>div,
     .ll-rocket-chat-page .ll-user-other-info-left > div{
         word-break: break-all;
+    }
+
+    html.dark button.ll-csv-download-btn,
+    html.dark button.ll-csv-download-btn + select{
+        margin-bottom: 5px;
     }
 }
