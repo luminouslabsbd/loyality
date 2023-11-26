@@ -23,47 +23,47 @@
             @endforeach
         </div>
     </div> --}}
-
+    
     <div class="px-4 lg:px-6 py-4 lg:py-6 mx-auto">
         <div class="ll-dashboard-info-card-contaienr space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-7 xl:gap-7 md:space-y-0">
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Card Views</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $cardsSums['views'] ?? 0 }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Reward Views</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $countDatas["rewardViews"] }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Points Ussued</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h3 class="font-semibold mb-3">Points Issued</h3>
+                <h1 class="font-extrabold text-3xl">{{ $cardsSums['number_of_points_issued'] ?? 0 }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Rewards Claimed</h3>
-                <h1 class="font-extrabold text-3xl">2234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $cardsSums['number_of_rewards_redeemed'] ?? 0 }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Partners</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $totalPartners ?? 0 }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Staff</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $staffsTotal }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Members</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $membersTotal}}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Cards</h3>
-                <h1 class="font-extrabold text-3xl">234</h1>
+                <h1 class="font-extrabold text-3xl">{{ $countDatas["totalCards"] }}</h1>
             </div>
         </div>
 
@@ -93,56 +93,56 @@
         labels: labels,
         datasets: [
             {
-                label: 'Sends',
+                label: 'Card Views',
                 data: [16, 8, 18, 7, 15, 12, 6, 19],
                 borderColor: '#739072',
                 backgroundColor: '#739072',
                 tension: 0.4
             },
             {
-                label: 'Deliveries',
+                label: 'Reward Views',
                 data: [11, 5, 20, 14, 10, 8, 17, 9],
                 borderColor: '#FD8D14',
                 backgroundColor: '#FD8D14',
                 tension: 0.4
             },
             {
-                label: 'Total Opens',
+                label: 'Points Issued',
                 data: [7, 16, 14, 10, 18, 9, 6, 11],
                 borderColor: '#6C5F5B',
                 backgroundColor: '#6C5F5B',
                 tension: 0.4
             },
             {
-                label: 'Unique Opens',
+                label: 'Rewards Claimed',
                 data: [13, 19, 5, 12, 9, 17, 8, 14],
                 borderColor: '#3A4D39',
                 backgroundColor: '#3A4D39',
                 tension: 0.4
             },
             {
-                label: 'Unique Clicks',
+                label: 'Total Partners',
                 data: [11, 18, 14, 8, 12, 6, 20, 9],
                 borderColor: '#FF6464',
                 backgroundColor: '#FF6464',
                 tension: 0.4
             },
             {
-                label: 'Other Opens',
+                label: 'Total Staff',
                 data: [6, 18, 11, 7, 15, 19, 9, 14],
                 borderColor: '#D0A2F7',
                 backgroundColor: '#D0A2F7',
                 tension: 0.4
             },
             {
-                label: 'Bounces',
+                label: 'Total Members',
                 data: [19, 6, 14, 8, 17, 12, 9, 15],
                 borderColor: '#85E6C5',
                 backgroundColor: '#85E6C5',
                 tension: 0.4
             },
             {
-                label: 'Unsubscribes',
+                label: 'Total Cards',
                 data: [11, 22, 25, 19, 12, 15, 17, 25],
                 borderColor: '#A1CCD1',
                 backgroundColor: '#A1CCD1',
