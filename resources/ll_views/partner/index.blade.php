@@ -23,7 +23,7 @@
             @endforeach
         </div>
     </div> --}}
-    
+
     <div class="px-4 lg:px-6 py-4 lg:py-6 mx-auto">
         <div class="ll-dashboard-info-card-contaienr space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-7 xl:gap-7 md:space-y-0">
             <div class="ll-dashboard-info-card">
@@ -79,14 +79,14 @@
                 </div>
             </div>
             <div class="ll-dashboard-chart-body">
-                <canvas id="ll-partner-dashboard" style="max-height: 400px;"></canvas>
+                <canvas id="ll-custom-dashboard" style="max-height: 400px;"></canvas>
             </div>
         </div>
     </div>
 </section>
 
 <script>
-    const ctx = document.getElementById('ll-partner-dashboard');
+    const ctx = document.getElementById('ll-custom-dashboard');
 
     const labels = ['July 1', 'July 2', 'July 3', 'July 4', 'July 5', 'July 6', 'July 7', 'July 8'];
     const data = {

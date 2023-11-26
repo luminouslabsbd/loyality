@@ -3,8 +3,9 @@
 @section('page_title', ((auth('admin')->user()->role == 1) ? trans('common.administrator') : trans('common.manager')) . config('default.page_title_delimiter') . trans('common.dashboard') . config('default.page_title_delimiter') . config('default.app_name'))
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <section class="">
-    <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
+    {{-- <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-4 lg:mb-4">
         </div>
 
@@ -27,6 +28,146 @@
             </a>
             @endforeach
         </div>
+    </div> --}}
+
+    <div class="px-4 lg:px-6 py-4 lg:py-6 mx-auto">
+        <div class="ll-dashboard-info-card-contaienr space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-7 xl:gap-7 md:space-y-0">
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Card Views</h3>
+                <h1 class="font-extrabold text-3xl">22</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Reward Views</h3>
+                <h1 class="font-extrabold text-3xl">23</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Points Issued</h3>
+                <h1 class="font-extrabold text-3xl">34</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Rewards Claimed</h3>
+                <h1 class="font-extrabold text-3xl">34</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Total Partners</h3>
+                <h1 class="font-extrabold text-3xl">34</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Total Staff</h3>
+                <h1 class="font-extrabold text-3xl">23</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Total Members</h3>
+                <h1 class="font-extrabold text-3xl">454</h1>
+            </div>
+
+            <div class="ll-dashboard-info-card">
+                <h3 class="font-semibold mb-3">Total Cards</h3>
+                <h1 class="font-extrabold text-3xl">23</h1>
+            </div>
+        </div>
+
+        <div class="ll-dashboard-chart-container mt-8">
+            <div class="ll-dashboard-chart-heading mb-7 flex justify-between items-center">
+                <h1 class="font-semibold text-2xl">Performance Over Time</h1>
+                <div>
+                    <button type="button" class="ll-csv-download-btn">Download CSV</button>
+                    <select name="filter" id="filter">
+                        <option value="1">Last 7 Days</option>
+                        <option value="1">Today</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ll-dashboard-chart-body">
+                <canvas id="ll-custom-dashboard" style="max-height: 400px;"></canvas>
+            </div>
+        </div>
     </div>
 </section>
+
+<script>
+    const ctx = document.getElementById('ll-custom-dashboard');
+
+    const labels = ['July 1', 'July 2', 'July 3', 'July 4', 'July 5', 'July 6', 'July 7', 'July 8'];
+    const data = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Card Views',
+                data: [16, 8, 18, 7, 15, 12, 6, 19],
+                borderColor: '#739072',
+                backgroundColor: '#739072',
+                tension: 0.4
+            },
+            {
+                label: 'Reward Views',
+                data: [11, 5, 20, 14, 10, 8, 17, 9],
+                borderColor: '#FD8D14',
+                backgroundColor: '#FD8D14',
+                tension: 0.4
+            },
+            {
+                label: 'Points Issued',
+                data: [7, 16, 14, 10, 18, 9, 6, 11],
+                borderColor: '#6C5F5B',
+                backgroundColor: '#6C5F5B',
+                tension: 0.4
+            },
+            {
+                label: 'Rewards Claimed',
+                data: [13, 19, 5, 12, 9, 17, 8, 14],
+                borderColor: '#3A4D39',
+                backgroundColor: '#3A4D39',
+                tension: 0.4
+            },
+            {
+                label: 'Total Partners',
+                data: [11, 18, 14, 8, 12, 6, 20, 9],
+                borderColor: '#FF6464',
+                backgroundColor: '#FF6464',
+                tension: 0.4
+            },
+            {
+                label: 'Total Staff',
+                data: [6, 18, 11, 7, 15, 19, 9, 14],
+                borderColor: '#D0A2F7',
+                backgroundColor: '#D0A2F7',
+                tension: 0.4
+            },
+            {
+                label: 'Total Members',
+                data: [19, 6, 14, 8, 17, 12, 9, 15],
+                borderColor: '#85E6C5',
+                backgroundColor: '#85E6C5',
+                tension: 0.4
+            },
+            {
+                label: 'Total Cards',
+                data: [11, 22, 25, 19, 12, 15, 17, 25],
+                borderColor: '#A1CCD1',
+                backgroundColor: '#A1CCD1',
+                tension: 0.4
+            }
+        ]
+    };
+
+    new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+            responsive: true,
+            plugins: {
+            legend: {
+                position: 'top',
+            }
+            }
+        }
+    });
+</script>
 @stop
