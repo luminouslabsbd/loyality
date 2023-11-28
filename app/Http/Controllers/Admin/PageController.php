@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Database\Migrations\DatabaseMigrationRepository;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -66,7 +67,35 @@ class PageController extends Controller
         // Check if there are pending database migrations
         $hasMigrations = auth('admin')->user()->role == 1 ? $this->hasPendingMigrations() : false;
 
-        return view('admin.index', compact('dashboardBlocks', 'hasMigrations'));
+
+        // dashboard
+        $viewsTableQuery = DB::table('cards')->select('views', 'number_of_points_issued', 'number_of_rewards_redeemed');
+        
+        $data = $viewsTableQuery->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed'])->toArray();
+        
+        $countDatas['totalCards'] = $viewsTableQuery->count() ?? 0;
+        
+        // Define the attributes you want to sum
+        $attributes = ['views', 'number_of_points_issued', 'number_of_rewards_redeemed'];
+        
+        // Initialize an array to store the sums
+        $cardsSums = array_fill_keys($attributes, 0);
+        
+        // Use array_map to iterate through the array and sum up the values for each attribute
+        array_map(function ($item) use (&$cardsSums) {
+            foreach ($cardsSums as $attribute => &$cardsSums) {
+                $cardsSums += $item->$attribute;
+            }
+        }, $data);
+
+        
+        $staffsTotal = DB::table('staff')->count();
+        $membersTotal = DB::table('members')->count();
+        $totalPartners = DB::table('partners')->count();
+        
+        $countDatas['rewardViews'] = DB::table('rewards')->first('views')->views ?? 0;
+
+        return view('admin.index', compact('countDatas','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
     }
 
     /**

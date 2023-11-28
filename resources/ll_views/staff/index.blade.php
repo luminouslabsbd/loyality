@@ -47,7 +47,7 @@
             </div>
 
             <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Total Partners</h3>
+                <h3 class="font-semibold mb-3">Total Points</h3>
                 <h1 class="font-extrabold text-3xl">34</h1>
             </div>
 
@@ -121,7 +121,7 @@
                 tension: 0.4
             },
             {
-                label: 'Total Partners',
+                label: 'Total Points',
                 data: [11, 18, 14, 8, 12, 6, 20, 9],
                 borderColor: '#FF6464',
                 backgroundColor: '#FF6464',
