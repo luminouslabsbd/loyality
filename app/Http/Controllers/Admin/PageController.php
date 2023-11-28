@@ -72,8 +72,11 @@ class PageController extends Controller
         $viewsTableQuery = DB::table('cards')->select('views', 'number_of_points_issued', 'number_of_rewards_redeemed');
         
         $data = $viewsTableQuery->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed'])->toArray();
+        $rewardViews = DB::table('rewards')->select('views as reward_views')->get()->toArray();
+
+        $totalRewardViews = collect($rewardViews)->sum('reward_views');
         
-        $countDatas['totalCards'] = $viewsTableQuery->count() ?? 0;
+        $totalCards = $viewsTableQuery->count() ?? 0;
         
         // Define the attributes you want to sum
         $attributes = ['views', 'number_of_points_issued', 'number_of_rewards_redeemed'];
@@ -87,15 +90,13 @@ class PageController extends Controller
                 $cardsSums += $item->$attribute;
             }
         }, $data);
-
         
         $staffsTotal = DB::table('staff')->count();
         $membersTotal = DB::table('members')->count();
         $totalPartners = DB::table('partners')->count();
         
-        $countDatas['rewardViews'] = DB::table('rewards')->first('views')->views ?? 0;
 
-        return view('admin.index', compact('countDatas','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
+        return view('admin.index', compact('totalCards', 'totalRewardViews','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
     }
 
     /**

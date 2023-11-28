@@ -39,7 +39,7 @@
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Reward Views</h3>
-                <h1 class="font-extrabold text-3xl">{{ $countDatas["rewardViews"] ?? 0 }}</h1>
+                <h1 class="font-extrabold text-3xl">{{ $totalRewardViews ?? 0 }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
@@ -69,7 +69,7 @@
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Cards</h3>
-                <h1 class="font-extrabold text-3xl">{{ $countDatas["totalCards"] ?? 0 }}</h1>
+                <h1 class="font-extrabold text-3xl">{{ $totalCards ?? 0 }}</h1>
             </div>
         </div>
 
