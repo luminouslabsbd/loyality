@@ -118,82 +118,86 @@ $(document).ready(function() {
     // get dates end
 
     // chart creation start
-    const ctx = document.getElementById('ll-custom-dashboard');
+    createNewChart('ll-custom-dashboard', getDates(7), "test");
 
-    const data = {
-        labels: getDates(7),
-        datasets: [
-            {
-                label: 'Card Views',
-                data: [16, 8, 18, 7, 15, 12, 6, 19],
-                borderColor: '#739072',
-                backgroundColor: '#739072',
-                tension: 0.4
-            },
-            {
-                label: 'Reward Views',
-                data: [11, 5, 20, 14, 10, 8, 17, 9],
-                borderColor: '#FD8D14',
-                backgroundColor: '#FD8D14',
-                tension: 0.4
-            },
-            {
-                label: 'Points Issued',
-                data: [7, 16, 14, 10, 18, 9, 6, 11],
-                borderColor: '#6C5F5B',
-                backgroundColor: '#6C5F5B',
-                tension: 0.4
-            },
-            {
-                label: 'Rewards Claimed',
-                data: [13, 19, 5, 12, 9, 17, 8, 14],
-                borderColor: '#3A4D39',
-                backgroundColor: '#3A4D39',
-                tension: 0.4
-            },
-            {
-                label: 'Total Points',
-                data: [11, 18, 14, 8, 12, 6, 20, 9],
-                borderColor: '#FF6464',
-                backgroundColor: '#FF6464',
-                tension: 0.4
-            },
-            {
-                label: 'Total Staff',
-                data: [6, 18, 11, 7, 15, 19, 9, 14],
-                borderColor: '#D0A2F7',
-                backgroundColor: '#D0A2F7',
-                tension: 0.4
-            },
-            {
-                label: 'Total Members',
-                data: [19, 6, 14, 8, 17, 12, 9, 15],
-                borderColor: '#85E6C5',
-                backgroundColor: '#85E6C5',
-                tension: 0.4
-            },
-            {
-                label: 'Total Cards',
-                data: [11, 22, 25, 19, 12, 15, 17, 25],
-                borderColor: '#A1CCD1',
-                backgroundColor: '#A1CCD1',
-                tension: 0.4
-            }
-        ]
-    };
+    function createNewChart(canvas, labels, datasetsData) {
+        const ctx = document.getElementById(`${canvas}`);
 
-    new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: true,
-            plugins: {
-            legend: {
-                position: 'top',
+        const data = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Card Views',
+                    data: [16, 8, 18, 7, 15, 12, 6, 19],
+                    borderColor: '#739072',
+                    backgroundColor: '#739072',
+                    tension: 0.4
+                },
+                {
+                    label: 'Reward Views',
+                    data: [11, 5, 20, 14, 10, 8, 17, 9],
+                    borderColor: '#FD8D14',
+                    backgroundColor: '#FD8D14',
+                    tension: 0.4
+                },
+                {
+                    label: 'Points Issued',
+                    data: [7, 16, 14, 10, 18, 9, 6, 11],
+                    borderColor: '#6C5F5B',
+                    backgroundColor: '#6C5F5B',
+                    tension: 0.4
+                },
+                {
+                    label: 'Rewards Claimed',
+                    data: [13, 19, 5, 12, 9, 17, 8, 14],
+                    borderColor: '#3A4D39',
+                    backgroundColor: '#3A4D39',
+                    tension: 0.4
+                },
+                {
+                    label: 'Total Points',
+                    data: [11, 18, 14, 8, 12, 6, 20, 9],
+                    borderColor: '#FF6464',
+                    backgroundColor: '#FF6464',
+                    tension: 0.4
+                },
+                {
+                    label: 'Total Staff',
+                    data: [6, 18, 11, 7, 15, 19, 9, 14],
+                    borderColor: '#D0A2F7',
+                    backgroundColor: '#D0A2F7',
+                    tension: 0.4
+                },
+                {
+                    label: 'Total Members',
+                    data: [19, 6, 14, 8, 17, 12, 9, 15],
+                    borderColor: '#85E6C5',
+                    backgroundColor: '#85E6C5',
+                    tension: 0.4
+                },
+                {
+                    label: 'Total Cards',
+                    data: [11, 22, 25, 19, 12, 15, 17, 25],
+                    borderColor: '#A1CCD1',
+                    backgroundColor: '#A1CCD1',
+                    tension: 0.4
+                }
+            ]
+        };
+
+        new Chart(ctx, {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                legend: {
+                    position: 'top',
+                }
+                }
             }
-            }
-        }
-    });
+        });
+    }
     // chart creation end
 });
 </script>
