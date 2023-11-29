@@ -16,10 +16,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('{locale}/v1/ll')->group(function () {
     Route::prefix('member')->group(function () {
+        
         Route::post('login', [App\Http\Controllers\Api\LLMemberAuthController::class, 'login']);
         Route::post('register', [App\Http\Controllers\Api\LLMemberAuthController::class, 'register']);
+        
+        
+        
     });
-    
+    // Link Share 
+    Route::post('get/hash-by-tenantid', [App\Http\Controllers\Api\LinkShareController::class, 'getHashByTenantID']);
+    Route::get('get-whatsapp-link', [App\Http\Controllers\Api\LinkShareController::class, 'whatsappLinkGenerator']);
+       
 });
 
 Route::prefix('{locale}/v1')->group(function () {
