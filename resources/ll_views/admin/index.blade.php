@@ -93,32 +93,35 @@
 
 <script>
 $(document).ready(function() {
-    // last 7 days date start
-    let lastSevenDays = [];
-    function formatDate(date) {
-        const options = { month: 'long', day: 'numeric' };
-        return date.toLocaleDateString('en-US', options);
+    // get dates start
+    function getDates(dayCount) {
+        let previousDays = [];
+
+        function formatDate(date) {
+            const options = { month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Get the current date
+        const currentDate = new Date();
+
+        // get previous days
+        for (let i = 0; i < dayCount; i++) {
+            let day = new Date();
+            day.setDate(currentDate.getDate() - i);
+            const formattedDate = formatDate(day);
+            previousDays.push(formattedDate);
+        }
+
+        return previousDays.reverse();
     }
-
-    // Get the current date
-    const currentDate = new Date();
-
-    // last 7 days
-    for (let i = 0; i < 7; i++) {
-        let day = new Date();
-        day.setDate(currentDate.getDate() - i);
-        const formattedDate = formatDate(day);
-        lastSevenDays.push(formattedDate);
-    }
-
-    lastSevenDays.reverse();
-    // last 7 days date end
+    // get dates end
 
     // chart creation start
     const ctx = document.getElementById('ll-custom-dashboard');
 
     const data = {
-        labels: lastSevenDays,
+        labels: getDates(7),
         datasets: [
             {
                 label: 'Card Views',
