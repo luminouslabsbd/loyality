@@ -92,11 +92,33 @@
 </section>
 
 <script>
+$(document).ready(function() {
+    // last 7 days date start
+    let lastSevenDays = [];
+    function formatDate(date) {
+        const options = { month: 'long', day: 'numeric' };
+        return date.toLocaleDateString('en-US', options);
+    }
+
+    // Get the current date
+    const currentDate = new Date();
+
+    // last 7 days
+    for (let i = 0; i < 7; i++) {
+        let day = new Date();
+        day.setDate(currentDate.getDate() - i);
+        const formattedDate = formatDate(day);
+        lastSevenDays.push(formattedDate);
+    }
+
+    lastSevenDays.reverse();
+    // last 7 days date end
+
+    // chart creation start
     const ctx = document.getElementById('ll-custom-dashboard');
 
-    const labels = ['July 1', 'July 2', 'July 3', 'July 4', 'July 5', 'July 6', 'July 7', 'July 8'];
     const data = {
-        labels: labels,
+        labels: lastSevenDays,
         datasets: [
             {
                 label: 'Card Views',
@@ -169,5 +191,7 @@
             }
         }
     });
+    // chart creation end
+});
 </script>
 @stop
