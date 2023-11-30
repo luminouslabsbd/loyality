@@ -722,8 +722,8 @@ span.ll-filter-select {
 }
 
 span.ll-filter-select {
-    padding-top: 5px;
-    padding-bottom: 5px;
+    cursor: default;
+    padding: 5px 10px;
 }
 
 span.ll-filter-select:focus {

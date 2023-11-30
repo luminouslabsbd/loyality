@@ -90,21 +90,6 @@
 
 <script>
 $(document).ready(function() {
-    // data fetch on select box change start
-    const filterVal = $( "#filter option:selected" ).val();
-
-    if (filterVal == 1) {
-        createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
-    } else {
-        alert('today');
-    }
-
-    $("#filter").change(function(){
-        const filterValue = $(this).find(":selected").val();
-        
-    });
-    // data fetch on select box change end
-
     // get dates start
     function getDates(dayCount) {
         let previousDays = [];
@@ -211,6 +196,8 @@ $(document).ready(function() {
     // chart creation end
 
     // create chart
+    createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
+    
     function createDayChart(routeName, days, canvasSelector) {
         $.ajax({
             url: routeName,
