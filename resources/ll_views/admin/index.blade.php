@@ -80,7 +80,7 @@
                     <button type="button" class="ll-csv-download-btn">Download CSV</button>
                     <select name="filter" id="filter">
                         <option value="1">Last 7 Days</option>
-                        <option value="1">Today</option>
+                        <option value="2">Today</option>
                     </select>
                 </div>
             </div>
@@ -199,17 +199,22 @@ $(document).ready(function() {
     // chart creation end
 
     // get chart data
-    $.ajax({
-        url: '{{ route("admin.getLastSevenDaysData") }}',
-        method: 'GET',
-        dataType: 'json',
-        success: function(response) {
-            createNewChart('ll-custom-dashboard', getDates(7), response);
-        },
-        error: function(xhr, status, error) {
-            console.error('AJAX Error: ' + status, error);
-        }
-    });
+    createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
+
+    function createDayChart(routeName, days, canvasSelector) {
+        $.ajax({
+            url: routeName,
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                createNewChart(canvasSelector, getDates(days), response);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error: ' + status, error);
+            }
+        });
+    }
+
 
 });
 </script>
