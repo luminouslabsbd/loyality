@@ -101,59 +101,83 @@ class PageController extends Controller
         return view('admin.index', compact('totalCards', 'totalRewardViews','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
     }
 
-    public function getLastSevenDaysData(){
-        // get last 7 days data for dashboard chart start
-        $startDate = Carbon::now()->subDays(6);
-        $endDate = Carbon::now();
-        $dateArr = [];
+    // public function getLastSevenDaysData(){
+    //     // get last 7 days data for dashboard chart start
+    //     $startDate = Carbon::now()->subDays(6);
+    //     $endDate = Carbon::now();
+    //     $dateArr = [];
 
-        $period = new CarbonPeriod($startDate, $endDate);
-        $dates = $period->toArray();
+    //     $period = new CarbonPeriod($startDate, $endDate);
+    //     $dates = $period->toArray();
 
-        foreach ($dates as $date) {
-            array_push($dateArr, $date->toDateString());
-        }
+    //     foreach ($dates as $date) {
+    //         array_push($dateArr, $date->toDateString());
+    //     }
 
-        foreach ($dateArr as $key => $date) {
-            $staffQuery = DB::table('staff')->whereDate('created_at', $date)->count();
-            $membersQuery = DB::table('members')->whereDate('created_at', $date)->count();
-            $partnersQuery = DB::table('partners')->whereDate('created_at', $date)->count();
-            $cardsQuery = DB::table('cards')->whereDate('created_at', $date)->count();
-            $totalRewardViewsQuery = DB::table('rewards')->whereDate('created_at', $date)->select('views as reward_views')->get()->toArray();
-            $cardsTableQuery = DB::table('cards')->whereDate('created_at', $date)->select('views', 'number_of_points_issued', 'number_of_rewards_redeemed')->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed'])->toArray();
+    //     foreach ($dateArr as $key => $date) {
+    //         $staffQuery = DB::table('staff')->whereDate('created_at', $date)->count();
+    //         $membersQuery = DB::table('members')->whereDate('created_at', $date)->count();
+    //         $partnersQuery = DB::table('partners')->whereDate('created_at', $date)->count();
+    //         $cardsQuery = DB::table('cards')->whereDate('created_at', $date)->count();
+    //         $totalRewardViewsQuery = DB::table('rewards')->whereDate('created_at', $date)->select('views as reward_views')->get()->toArray();
+    //         $cardsTableQuery = DB::table('cards')->whereDate('created_at', $date)->select('views', 'number_of_points_issued', 'number_of_rewards_redeemed')->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed'])->toArray();
 
-            $staffArr[] = [
-                "date" => $date,
-                "count" => $staffQuery
-            ];
+    //         $staffArr[] = [
+    //             "date" => $date,
+    //             "count" => $staffQuery
+    //         ];
 
-            $membersArr[] = [
-                "date" => $date,
-                "count" => $membersQuery
-            ];
+    //         $membersArr[] = [
+    //             "date" => $date,
+    //             "count" => $membersQuery
+    //         ];
 
-            $partnersArr[] = [
-                "date" => $date,
-                "count" => $partnersQuery
-            ];
+    //         $partnersArr[] = [
+    //             "date" => $date,
+    //             "count" => $partnersQuery
+    //         ];
 
-            $cardsArr[] = [
-                "date" => $date,
-                "count" => $cardsQuery
-            ];
+    //         $cardsArr[] = [
+    //             "date" => $date,
+    //             "count" => $cardsQuery
+    //         ];
 
-            $rewardViewArr[] = [
-                "date" => $date,
-                "count" => collect($totalRewardViewsQuery)->sum('reward_views')
-            ];
+    //         $rewardViewArr[] = [
+    //             "date" => $date,
+    //             "count" => collect($totalRewardViewsQuery)->sum('reward_views')
+    //         ];
 
-            $cardsDataArr[] = [
-                "date" => $date,
-                "views" => collect($cardsTableQuery)->sum('views'),
-                "points_issued" => collect($cardsTableQuery)->sum('number_of_points_issued'),
-                "rewards_redeemed" => collect($cardsTableQuery)->sum('number_of_rewards_redeemed')
-            ];
-        }
+    //         $cardsDataArr[] = [
+    //             "date" => $date,
+    //             "views" => collect($cardsTableQuery)->sum('views'),
+    //             "points_issued" => collect($cardsTableQuery)->sum('number_of_points_issued'),
+    //             "rewards_redeemed" => collect($cardsTableQuery)->sum('number_of_rewards_redeemed')
+    //         ];
+    //     }
+
+    //     return response()->json([
+    //         'staffData' => $staffArr,
+    //         'membersData' => $membersArr,
+    //         'partnersData' => $partnersArr,
+    //         'totalCardsData' => $cardsArr,
+    //         'rewardViewsData' => $rewardViewArr,
+    //         'cardsData' => $cardsDataArr,
+    //     ]);
+    // }
+
+    public function getLastSevenDaysData()
+    {
+        $endDate = now();
+        $startDate = $endDate->copy()->subDays(6);
+
+        $dates = collect(CarbonPeriod::create($startDate, $endDate)->toArray());
+
+        $staffArr = $this->getQueryResult('staff', $dates);
+        $membersArr = $this->getQueryResult('members', $dates);
+        $partnersArr = $this->getQueryResult('partners', $dates);
+        $cardsArr = $this->getQueryResult('cards', $dates);
+        $rewardViewArr = $this->getTotalRewardViews($dates);
+        $cardsDataArr = $this->getCardsData($dates);
 
         return response()->json([
             'staffData' => $staffArr,
@@ -164,6 +188,41 @@ class PageController extends Controller
             'cardsData' => $cardsDataArr,
         ]);
     }
+
+    private function getQueryResult($table, $dates)
+    {
+        return $dates->map(function ($date) use ($table) {
+            return [
+                'date' => $date->toDateString(),
+                'count' => DB::table($table)->whereDate('created_at', $date)->count(),
+            ];
+        })->toArray();
+    }
+
+    private function getTotalRewardViews($dates)
+    {
+        return $dates->map(function ($date) {
+            return [
+                'date' => $date->toDateString(),
+                'count' => DB::table('rewards')->whereDate('created_at', $date)->sum('views'),
+            ];
+        })->toArray();
+    }
+
+    private function getCardsData($dates)
+    {
+        return $dates->map(function ($date) {
+            $query = DB::table('cards')->whereDate('created_at', $date)->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed']);
+
+            return [
+                'date' => $date->toDateString(),
+                'views' => $query->sum('views'),
+                'points_issued' => $query->sum('number_of_points_issued'),
+                'rewards_redeemed' => $query->sum('number_of_rewards_redeemed'),
+            ];
+        })->toArray();
+    }
+
 
     /**
      * Check if there are pending database migrations.
