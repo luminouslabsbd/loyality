@@ -79,7 +79,7 @@
                 <div>
                     <button type="button" class="ll-csv-download-btn">Download CSV</button>
                     <select name="filter" id="filter">
-                        <option value="1">Last 7 Days</option>
+                        <option value="1" selected>Last 7 Days</option>
                         <option value="2">Today</option>
                     </select>
                 </div>
@@ -93,6 +93,21 @@
 
 <script>
 $(document).ready(function() {
+    // data fetch on select box change start
+    const filterVal = $( "#filter option:selected" ).val();
+
+    if (filterVal == 1) {
+        createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
+    } else {
+        alert('today');
+    }
+
+    $("#filter").change(function(){
+        const filterValue = $(this).find(":selected").val();
+        
+    });
+    // data fetch on select box change end
+
     // get dates start
     function getDates(dayCount) {
         let previousDays = [];
@@ -198,9 +213,7 @@ $(document).ready(function() {
     }
     // chart creation end
 
-    // get chart data
-    createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
-
+    // create chart
     function createDayChart(routeName, days, canvasSelector) {
         $.ajax({
             url: routeName,
