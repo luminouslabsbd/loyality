@@ -107,18 +107,12 @@ class PageController extends Controller
         $endDate = Carbon::now();
         $dateArr = [];
 
-
-        // Create a period using CarbonPeriod
         $period = new CarbonPeriod($startDate, $endDate);
-
-        // Get all dates between $startDate and $endDate
         $dates = $period->toArray();
 
-        // Print the result
         foreach ($dates as $date) {
             array_push($dateArr, $date->toDateString());
         }
-
 
         foreach ($dateArr as $key => $date) {
             $staffQuery = DB::table('staff')->whereDate('created_at', $date)->count();
@@ -169,10 +163,6 @@ class PageController extends Controller
             'rewardViewsData' => $rewardViewArr,
             'cardsData' => $cardsDataArr,
         ]);
-    }
-
-    public function getTotalByTable($tableName, $dateArr){
-        return DB::table($tableName)->whereIn(DB::raw('DATE(created_at)'), $dateArr);
     }
 
     /**
