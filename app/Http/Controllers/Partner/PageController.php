@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Partner;
 
-use App\Http\Controllers\Controller;
+use Carbon\CarbonPeriod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 
 class PageController extends Controller
@@ -100,5 +101,65 @@ class PageController extends Controller
         $countDatas['rewardViews'] = DB::table('rewards')->where('created_by', $userId)->first('views')->views ?? 0;
 
         return view('partner.index', compact('countDatas','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
+    }
+
+    public function getLastSevenDaysData()
+    {
+        $userId = auth('partner')->user()->id;
+
+        $endDate = now();
+        $startDate = $endDate->copy()->subDays(6);
+
+        $dates = collect(CarbonPeriod::create($startDate, $endDate)->toArray());
+
+        $staffArr = $this->getQueryResult('staff', $dates, $userId);
+        $membersArr = $this->getQueryResult('members', $dates, $userId);
+        $partnersArr = $this->getQueryResult('partners', $dates, $userId);
+        $cardsArr = $this->getQueryResult('cards', $dates, $userId);
+        $rewardViewArr = $this->getTotalRewardViews($dates, $userId);
+        $cardsDataArr = $this->getCardsData($dates, $userId);
+
+        return response()->json([
+            'staffData' => $staffArr,
+            'membersData' => $membersArr,
+            'partnersData' => $partnersArr,
+            'totalCardsData' => $cardsArr,
+            'rewardViewsData' => $rewardViewArr,
+            'cardsData' => $cardsDataArr,
+        ]);
+    }
+
+    private function getQueryResult($table, $dates, $userId)
+    {
+        return $dates->map(function ($date) use ($table, $userId) {
+            return [
+                'date' => $date->toDateString(),
+                'count' => DB::table($table)->whereDate('created_at', $date)->where('created_by', $userId)->count(),
+            ];
+        })->toArray();
+    }
+
+    private function getTotalRewardViews($dates, $userId)
+    {
+        return $dates->map(function ($date) use ($userId){
+            return [
+                'date' => $date->toDateString(),
+                'count' => DB::table('rewards')->whereDate('created_at', $date)->where('created_by', $userId)->sum('views'),
+            ];
+        })->toArray();
+    }
+
+    private function getCardsData($dates, $userId)
+    {
+        return $dates->map(function ($date) use ($userId){
+            $query = DB::table('cards')->whereDate('created_at', $date)->where('created_by', $userId)->get(['views', 'number_of_points_issued', 'number_of_rewards_redeemed']);
+
+            return [
+                'date' => $date->toDateString(),
+                'views' => $query->sum('views'),
+                'points_issued' => $query->sum('number_of_points_issued'),
+                'rewards_redeemed' => $query->sum('number_of_rewards_redeemed'),
+            ];
+        })->toArray();
     }
 }

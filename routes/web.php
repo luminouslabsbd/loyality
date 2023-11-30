@@ -111,6 +111,9 @@ Route::prefix('{locale}')->group(function () {
         Route::group(['prefix' => 'partner',  'middleware' => ['partner.auth', 'partner.role:1,2,3']], function () {
             Route::get('/', 'Partner\PageController@index')->name('partner.index');
 
+            // get data for dashboard
+            Route::get('/seven-days-data', 'Partner\PageController@getLastSevenDaysData')->name('partner.getLastSevenDaysData');
+
             // Transactions
             Route::get('transactions/{member_identifier?}/{card_identifier?}', 'Partner\TransactionController@showTransactions')->name('partner.transactions');
 
