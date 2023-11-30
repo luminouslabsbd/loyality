@@ -77,11 +77,8 @@
             <div class="ll-dashboard-chart-heading mb-7 flex justify-between items-center">
                 <h1 class="font-semibold text-2xl">Performance Over Time</h1>
                 <div>
-                    <button type="button" class="ll-csv-download-btn">Download CSV</button>
-                    <select name="filter" id="filter">
-                        <option value="1" selected>Last 7 Days</option>
-                        <option value="2">Today</option>
-                    </select>
+                    {{-- <button type="button" class="ll-csv-download-btn">Download CSV</button> --}}
+                    <span class="ll-filter-select">Last 7 Days</span>
                 </div>
             </div>
             <div class="ll-dashboard-chart-body">

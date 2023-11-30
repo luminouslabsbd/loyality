@@ -137,8 +137,8 @@ html.dark .ll-analytics-header-title {
     background-color: var(--ll-secondary-dark-theme-color);
 }
 
-html.dark button.ll-csv-download-btn,
-html.dark button.ll-csv-download-btn + select{
+html.dark .ll-csv-download-btn,
+html.dark span.ll-filter-select{
     background-color: var(--ll-primary-dark-theme-color);
     border-color: var(--ll-primary-dark-theme-color);
 }
@@ -709,24 +709,24 @@ body.partner-rewards-view-page .ll-user-view-page .ll-label.hidden {
     color: var(--ll-text-dark-grey);
 }
 
-button.ll-csv-download-btn,
-button.ll-csv-download-btn + select {
+.ll-csv-download-btn,
+span.ll-filter-select {
     background-color: var(--ll-color-white);
     border-radius: 5px;
     font-size: 15px;
     border: 1px solid var(--ll-color-white);
 }
 
-button.ll-csv-download-btn {
+.ll-csv-download-btn {
     padding: 5px 15px;
 }
 
-button.ll-csv-download-btn + select {
+span.ll-filter-select {
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-button.ll-csv-download-btn + select:focus {
+span.ll-filter-select:focus {
     border: 1px solid var(--ll-primary-color);
 }
 /* custom switch start */
@@ -929,8 +929,8 @@ input[type="checkbox"]:checked + .ll-slider:before {
         word-break: break-all;
     }
 
-    html.dark button.ll-csv-download-btn,
-    html.dark button.ll-csv-download-btn + select{
+    html.dark .ll-csv-download-btn,
+    html.dark span.ll-filter-select{
         margin-bottom: 5px;
     }
 }
