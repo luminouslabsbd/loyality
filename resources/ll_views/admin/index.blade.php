@@ -118,8 +118,6 @@ $(document).ready(function() {
     // get dates end
 
     // chart creation start
-    createNewChart('ll-custom-dashboard', getDates(7), "test");
-
     function createNewChart(canvas, labels, datasetsData) {
         const ctx = document.getElementById(`${canvas}`);
 
@@ -128,56 +126,56 @@ $(document).ready(function() {
             datasets: [
                 {
                     label: 'Card Views',
-                    data: [16, 8, 18, 7, 15, 12, 6, 19],
+                    data: [datasetsData.cardsData[0].views, datasetsData.cardsData[1].views, datasetsData.cardsData[2].views, datasetsData.cardsData[3].views, datasetsData.cardsData[4].views, datasetsData.cardsData[5].views, datasetsData.cardsData[6].views],
                     borderColor: '#739072',
                     backgroundColor: '#739072',
                     tension: 0.4
                 },
                 {
                     label: 'Reward Views',
-                    data: [11, 5, 20, 14, 10, 8, 17, 9],
+                    data: [datasetsData.rewardViewsData[0].count, datasetsData.rewardViewsData[1].count, datasetsData.rewardViewsData[2].count, datasetsData.rewardViewsData[3].count, datasetsData.rewardViewsData[4].count, datasetsData.rewardViewsData[5].count, datasetsData.rewardViewsData[6].count],
                     borderColor: '#FD8D14',
                     backgroundColor: '#FD8D14',
                     tension: 0.4
                 },
                 {
                     label: 'Points Issued',
-                    data: [7, 16, 14, 10, 18, 9, 6, 11],
+                    data: [datasetsData.cardsData[0].points_issued, datasetsData.cardsData[1].points_issued, datasetsData.cardsData[2].points_issued, datasetsData.cardsData[3].points_issued, datasetsData.cardsData[4].points_issued, datasetsData.cardsData[5].points_issued, datasetsData.cardsData[6].points_issued],
                     borderColor: '#6C5F5B',
                     backgroundColor: '#6C5F5B',
                     tension: 0.4
                 },
                 {
                     label: 'Rewards Claimed',
-                    data: [13, 19, 5, 12, 9, 17, 8, 14],
-                    borderColor: '#3A4D39',
-                    backgroundColor: '#3A4D39',
+                    data: [datasetsData.cardsData[0].rewards_redeemed, datasetsData.cardsData[1].rewards_redeemed, datasetsData.cardsData[2].rewards_redeemed, datasetsData.cardsData[3].rewards_redeemed, datasetsData.cardsData[4].rewards_redeemed, datasetsData.cardsData[5].rewards_redeemed, datasetsData.cardsData[6].rewards_redeemed],
+                    borderColor: '#2986cc',
+                    backgroundColor: '#2986cc',
                     tension: 0.4
                 },
                 {
-                    label: 'Total Points',
-                    data: [11, 18, 14, 8, 12, 6, 20, 9],
+                    label: 'Total Partners',
+                    data: [datasetsData.partnersData[0].count, datasetsData.partnersData[1].count, datasetsData.partnersData[2].count, datasetsData.partnersData[3].count, datasetsData.partnersData[4].count, datasetsData.partnersData[5].count, datasetsData.partnersData[6].count],
                     borderColor: '#FF6464',
                     backgroundColor: '#FF6464',
                     tension: 0.4
                 },
                 {
                     label: 'Total Staff',
-                    data: [6, 18, 11, 7, 15, 19, 9, 14],
+                    data: [datasetsData.staffData[0].count, datasetsData.staffData[1].count, datasetsData.staffData[2].count, datasetsData.staffData[3].count, datasetsData.staffData[4].count, datasetsData.staffData[5].count, datasetsData.staffData[6].count],
                     borderColor: '#D0A2F7',
                     backgroundColor: '#D0A2F7',
                     tension: 0.4
                 },
                 {
                     label: 'Total Members',
-                    data: [19, 6, 14, 8, 17, 12, 9, 15],
-                    borderColor: '#85E6C5',
-                    backgroundColor: '#85E6C5',
+                    data: [datasetsData.membersData[0].count, datasetsData.membersData[1].count, datasetsData.membersData[2].count, datasetsData.membersData[3].count, datasetsData.membersData[4].count, datasetsData.membersData[5].count, datasetsData.membersData[6].count],
+                    borderColor: '#d8caa9',
+                    backgroundColor: '#d8caa9',
                     tension: 0.4
                 },
                 {
                     label: 'Total Cards',
-                    data: [11, 22, 25, 19, 12, 15, 17, 25],
+                    data: [datasetsData.totalCardsData[0].count, datasetsData.totalCardsData[1].count, datasetsData.totalCardsData[2].count, datasetsData.totalCardsData[3].count, datasetsData.totalCardsData[4].count, datasetsData.totalCardsData[5].count, datasetsData.totalCardsData[6].count],
                     borderColor: '#A1CCD1',
                     backgroundColor: '#A1CCD1',
                     tension: 0.4
@@ -199,6 +197,20 @@ $(document).ready(function() {
         });
     }
     // chart creation end
+
+    // get chart data
+    $.ajax({
+        url: '{{ route("admin.getLastSevenDaysData") }}',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            createNewChart('ll-custom-dashboard', getDates(7), response);
+        },
+        error: function(xhr, status, error) {
+            console.error('AJAX Error: ' + status, error);
+        }
+    });
+
 });
 </script>
 @stop

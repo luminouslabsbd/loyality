@@ -152,6 +152,9 @@ Route::prefix('{locale}')->group(function () {
         Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1,2']], function () {
             Route::get('/', 'Admin\PageController@index')->name('admin.index');
 
+            // get data for dashboard
+            Route::get('/seven-days-data', 'Admin\PageController@getLastSevenDaysData')->name('admin.getLastSevenDaysData');
+
             // Data Definition
             Route::get('manage/{name}', 'Data\ListController@showList')->name('admin.data.list');
             Route::get('manage/export/{name}', 'Data\ExportController@exportList')->name('admin.data.export');

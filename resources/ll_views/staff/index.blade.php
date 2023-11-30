@@ -116,8 +116,8 @@
             {
                 label: 'Rewards Claimed',
                 data: [13, 19, 5, 12, 9, 17, 8, 14],
-                borderColor: '#3A4D39',
-                backgroundColor: '#3A4D39',
+                borderColor: '#2986cc',
+                backgroundColor: '#2986cc',
                 tension: 0.4
             },
             {
@@ -137,8 +137,8 @@
             {
                 label: 'Total Members',
                 data: [19, 6, 14, 8, 17, 12, 9, 15],
-                borderColor: '#85E6C5',
-                backgroundColor: '#85E6C5',
+                borderColor: '#d8caa9',
+                backgroundColor: '#d8caa9',
                 tension: 0.4
             },
             {
