@@ -27,12 +27,12 @@
         <div class="ll-dashboard-info-card-contaienr space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-7 xl:gap-7 md:space-y-0">
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Followed Cards</h3>
-                <h1 class="font-extrabold text-3xl">454</h1>
+                <h1 class="font-extrabold text-3xl">{{ $followedCards->count() }}</h1>
             </div>
 
             <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Transections Cards</h3>
-                <h1 class="font-extrabold text-3xl">454</h1>
+                <h1 class="font-extrabold text-3xl">{{ $cards->count() }}</h1>
             </div>
         </div>
 

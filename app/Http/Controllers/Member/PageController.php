@@ -48,7 +48,7 @@ class PageController extends Controller
      * 
      * @return \Illuminate\View\View
      */
-    public function dashboard(string $locale, Request $request)
+    public function dashboard(string $locale, Request $request, CardService $cardService)
     {
         // Define dashboard blocks
         $dashboardBlocks = [
@@ -66,8 +66,24 @@ class PageController extends Controller
             ]
         ];
 
+        // Fetch all active cards visible by default
+        $cards = $cardService->findActiveCardsVisibleByDefault();
+
+        // If user is authenticated, add followed cards to the collection and order by balance, issue_date
+        if (auth('member')->check()) {
+            $followedCards = $cardService->findActiveCardsFollowedByMember(auth('member')->user()->id);
+            $cardsWithTransactions = $cardService->findActiveCardsWithMemberTransactions(auth('member')->user()->id);
+
+            $cards = $cards->concat($followedCards)
+                ->concat($cardsWithTransactions)
+                ->unique('id')
+                ->sortByDesc(function ($card) {
+                    return [$card->getMemberBalance(null), $card->issue_date];
+                });
+        }
+
         // Pass the blocks to the view
-        return view('member.dashboard', compact('dashboardBlocks'));
+        return view('member.dashboard', compact("followedCards", "cards"));
     }
 
     /**
