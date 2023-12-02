@@ -27,43 +27,8 @@
     <div class="px-4 lg:px-6 py-4 lg:py-6 mx-auto">
         <div class="ll-dashboard-info-card-contaienr space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:gap-7 xl:gap-7 md:space-y-0">
             <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Card Views</h3>
-                <h1 class="font-extrabold text-3xl">22</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Reward Views</h3>
-                <h1 class="font-extrabold text-3xl">23</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Points Issued</h3>
-                <h1 class="font-extrabold text-3xl">34</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Rewards Claimed</h3>
-                <h1 class="font-extrabold text-3xl">34</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Total Points</h3>
-                <h1 class="font-extrabold text-3xl">34</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Total Staff</h3>
-                <h1 class="font-extrabold text-3xl">23</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
                 <h3 class="font-semibold mb-3">Total Members</h3>
                 <h1 class="font-extrabold text-3xl">454</h1>
-            </div>
-
-            <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Total Cards</h3>
-                <h1 class="font-extrabold text-3xl">23</h1>
             </div>
         </div>
 
@@ -73,9 +38,6 @@
                 <div>
                     {{-- <button type="button" class="ll-csv-download-btn">Download CSV</button> --}}
                     <span class="ll-filter-select">Last 7 Days</span>
-                        <option value="1">Last 7 Days</option>
-                        <option value="1">Today</option>
-                    </select>
                 </div>
             </div>
             <div class="ll-dashboard-chart-body">
@@ -85,7 +47,7 @@
     </div>
 </section>
 
-<script>
+{{-- <script>
     const ctx = document.getElementById('ll-custom-dashboard');
 
     const labels = ['July 1', 'July 2', 'July 3', 'July 4', 'July 5', 'July 6', 'July 7', 'July 8'];
@@ -163,5 +125,133 @@
             }
         }
     });
-</script>
+</script> --}}
+
+{{-- <script>
+    $(document).ready(function() {
+        // get dates start
+        function getDates(dayCount) {
+            let previousDays = [];
+    
+            function formatDate(date) {
+                const options = { month: 'long', day: 'numeric' };
+                return date.toLocaleDateString('en-US', options);
+            }
+    
+            // Get the current date
+            const currentDate = new Date();
+    
+            // get previous days
+            for (let i = 0; i < dayCount; i++) {
+                let day = new Date();
+                day.setDate(currentDate.getDate() - i);
+                const formattedDate = formatDate(day);
+                previousDays.push(formattedDate);
+            }
+    
+            return previousDays.reverse();
+        }
+        // get dates end
+    
+        // chart creation start
+        function createNewChart(canvas, labels, datasetsData) {
+            const ctx = document.getElementById(`${canvas}`);
+    
+            const data = {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Card Views',
+                        data: [datasetsData.cardsData[0].views, datasetsData.cardsData[1].views, datasetsData.cardsData[2].views, datasetsData.cardsData[3].views, datasetsData.cardsData[4].views, datasetsData.cardsData[5].views, datasetsData.cardsData[6].views],
+                        borderColor: '#739072',
+                        backgroundColor: '#739072',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Reward Views',
+                        data: [datasetsData.rewardViewsData[0].count, datasetsData.rewardViewsData[1].count, datasetsData.rewardViewsData[2].count, datasetsData.rewardViewsData[3].count, datasetsData.rewardViewsData[4].count, datasetsData.rewardViewsData[5].count, datasetsData.rewardViewsData[6].count],
+                        borderColor: '#FD8D14',
+                        backgroundColor: '#FD8D14',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Points Issued',
+                        data: [datasetsData.cardsData[0].points_issued, datasetsData.cardsData[1].points_issued, datasetsData.cardsData[2].points_issued, datasetsData.cardsData[3].points_issued, datasetsData.cardsData[4].points_issued, datasetsData.cardsData[5].points_issued, datasetsData.cardsData[6].points_issued],
+                        borderColor: '#6C5F5B',
+                        backgroundColor: '#6C5F5B',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Rewards Claimed',
+                        data: [datasetsData.cardsData[0].rewards_redeemed, datasetsData.cardsData[1].rewards_redeemed, datasetsData.cardsData[2].rewards_redeemed, datasetsData.cardsData[3].rewards_redeemed, datasetsData.cardsData[4].rewards_redeemed, datasetsData.cardsData[5].rewards_redeemed, datasetsData.cardsData[6].rewards_redeemed],
+                        borderColor: '#2986cc',
+                        backgroundColor: '#2986cc',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Total Partners',
+                        data: [datasetsData.partnersData[0].count, datasetsData.partnersData[1].count, datasetsData.partnersData[2].count, datasetsData.partnersData[3].count, datasetsData.partnersData[4].count, datasetsData.partnersData[5].count, datasetsData.partnersData[6].count],
+                        borderColor: '#FF6464',
+                        backgroundColor: '#FF6464',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Total Staff',
+                        data: [datasetsData.staffData[0].count, datasetsData.staffData[1].count, datasetsData.staffData[2].count, datasetsData.staffData[3].count, datasetsData.staffData[4].count, datasetsData.staffData[5].count, datasetsData.staffData[6].count],
+                        borderColor: '#D0A2F7',
+                        backgroundColor: '#D0A2F7',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Total Members',
+                        data: [datasetsData.membersData[0].count, datasetsData.membersData[1].count, datasetsData.membersData[2].count, datasetsData.membersData[3].count, datasetsData.membersData[4].count, datasetsData.membersData[5].count, datasetsData.membersData[6].count],
+                        borderColor: '#d8caa9',
+                        backgroundColor: '#d8caa9',
+                        tension: 0.4
+                    },
+                    {
+                        label: 'Total Cards',
+                        data: [datasetsData.totalCardsData[0].count, datasetsData.totalCardsData[1].count, datasetsData.totalCardsData[2].count, datasetsData.totalCardsData[3].count, datasetsData.totalCardsData[4].count, datasetsData.totalCardsData[5].count, datasetsData.totalCardsData[6].count],
+                        borderColor: '#A1CCD1',
+                        backgroundColor: '#A1CCD1',
+                        tension: 0.4
+                    }
+                ]
+            };
+    
+            new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true,
+                    plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                    }
+                }
+            });
+        }
+        // chart creation end
+    
+        // create chart
+        createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
+    
+        function createDayChart(routeName, days, canvasSelector) {
+            $.ajax({
+                url: routeName,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    createNewChart(canvasSelector, getDates(days), response);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error: ' + status, error);
+                }
+            });
+        }
+    
+    
+    });
+</script> --}}
 @stop
