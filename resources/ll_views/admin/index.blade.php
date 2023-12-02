@@ -53,7 +53,7 @@
             </div>
 
             <div class="ll-dashboard-info-card">
-                <h3 class="font-semibold mb-3">Total Points</h3>
+                <h3 class="font-semibold mb-3">Total Partners</h3>
                 <h1 class="font-extrabold text-3xl">{{ $totalPartners }}</h1>
             </div>
 
@@ -197,7 +197,7 @@ $(document).ready(function() {
 
     // create chart
     createDayChart('{{ route("admin.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
-    
+
     function createDayChart(routeName, days, canvasSelector) {
         $.ajax({
             url: routeName,
