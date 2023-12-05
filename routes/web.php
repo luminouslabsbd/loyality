@@ -26,6 +26,9 @@ Route::prefix('{locale}')->group(function () {
 
             Route::get('dashboard', 'Member\PageController@dashboard')->name('member.dashboard');
 
+            // get 7 days data
+            Route::get('/seven-days-data', 'Member\PageController@getChartData')->name('member.getLastSevenDaysData');
+
             // Data Definition
             Route::get('manage/{name}', 'Data\ListController@showList')->name('member.data.list');
             Route::get('manage/export/{name}', 'Data\ExportController@exportList')->name('member.data.export');
