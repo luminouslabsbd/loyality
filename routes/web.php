@@ -71,6 +71,9 @@ Route::prefix('{locale}')->group(function () {
         Route::group(['prefix' => 'staff', 'middleware' => ['staff.auth', 'staff.role:1,2,3']], function () {
             Route::get('/', 'Staff\PageController@index')->name('staff.index');
 
+            // get 7 days data
+            Route::get('/seven-days-data', 'Staff\PageController@getChartData')->name('staff.getLastSevenDaysData');
+
             // Scan QR code
             Route::get('scan', 'Staff\PageController@showQrScanner')->name('staff.qr.scanner');
 
