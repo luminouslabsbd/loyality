@@ -55,28 +55,28 @@ class PageController extends Controller
         $tableData = $dataDefinition->getData($dataDefinition->name, 'list');
         $totalMember = $tableData['data']->count();
 
-        $dashboardBlocks = [];
+        // $dashboardBlocks = [];
 
-        $dashboardBlocks[] = [
-            'link' => route('staff.data.list', ['name' => 'account']),
-            'icon' => 'user-circle',
-            'title' => trans('common.account_settings'),
-            'desc' => trans('common.staffDashboardBlocks.account_settings')
-        ];
+        // $dashboardBlocks[] = [
+        //     'link' => route('staff.data.list', ['name' => 'account']),
+        //     'icon' => 'user-circle',
+        //     'title' => trans('common.account_settings'),
+        //     'desc' => trans('common.staffDashboardBlocks.account_settings')
+        // ];
 
-        $dashboardBlocks[] = [
-            'link' => route('staff.qr.scanner'),
-            'icon' => 'qr-code',
-            'title' => trans('common.scan_qr'),
-            'desc' => trans('common.staffDashboardBlocks.scan_qr')
-        ];
+        // $dashboardBlocks[] = [
+        //     'link' => route('staff.qr.scanner'),
+        //     'icon' => 'qr-code',
+        //     'title' => trans('common.scan_qr'),
+        //     'desc' => trans('common.staffDashboardBlocks.scan_qr')
+        // ];
 
-        $dashboardBlocks[] = [
-            'link' => route('staff.data.list', ['name' => 'members']),
-            'icon' => 'user-group',
-            'title' => trans('common.members'),
-            'desc' => trans('common.staffDashboardBlocks.members')
-        ];
+        // $dashboardBlocks[] = [
+        //     'link' => route('staff.data.list', ['name' => 'members']),
+        //     'icon' => 'user-group',
+        //     'title' => trans('common.members'),
+        //     'desc' => trans('common.staffDashboardBlocks.members')
+        // ];
 
         return view('staff.index', compact('totalMember'));
     }
