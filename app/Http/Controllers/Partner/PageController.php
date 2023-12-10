@@ -96,11 +96,10 @@ class PageController extends Controller
 
         $staffsTotal = DB::table('staff')->where('created_by',$userId)->count();
         $membersTotal = DB::table('members')->where('created_by',$userId)->count();
-        $totalPartners = DB::table('partners')->count();
 
-        $countDatas['rewardViews'] = DB::table('rewards')->where('created_by', $userId)->first('views')->views ?? 0;
+        $countDatas['rewardViews'] = DB::table('rewards')->where('created_by', $userId)->select(DB::raw('SUM(views) as totalViews'), DB::raw('SUM(points) as totalPoints'))->get()->toArray() ?? ['totalViews' => 0, 'totalPoints' => 0];
 
-        return view('partner.index', compact('countDatas','cardsSums','staffsTotal','membersTotal', 'totalPartners'));
+        return view('partner.index', compact('countDatas','cardsSums','staffsTotal','membersTotal'));
     }
 
     public function getLastSevenDaysData()
