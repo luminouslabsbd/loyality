@@ -113,15 +113,15 @@ class PageController extends Controller
 
         $staffArr = $this->getQueryResult('staff', $dates, $userId);
         $membersArr = $this->getQueryResult('members', $dates, $userId);
-        $partnersArr = $this->getQueryResult('partners', $dates, $userId);
+        $pointsArr = $this->getTotalRewardData($dates, $userId, 'points');
         $cardsArr = $this->getQueryResult('cards', $dates, $userId);
-        $rewardViewArr = $this->getTotalRewardViews($dates, $userId);
+        $rewardViewArr = $this->getTotalRewardData($dates, $userId, 'views');
         $cardsDataArr = $this->getCardsData($dates, $userId);
 
         return response()->json([
             'staffData' => $staffArr,
             'membersData' => $membersArr,
-            'partnersData' => $partnersArr,
+            'pointsData' => $pointsArr,
             'totalCardsData' => $cardsArr,
             'rewardViewsData' => $rewardViewArr,
             'cardsData' => $cardsDataArr,
@@ -138,12 +138,12 @@ class PageController extends Controller
         })->toArray();
     }
 
-    private function getTotalRewardViews($dates, $userId)
+    private function getTotalRewardData($dates, $userId, $column)
     {
-        return $dates->map(function ($date) use ($userId){
+        return $dates->map(function ($date) use ($userId, $column){
             return [
                 'date' => $date->toDateString(),
-                'count' => DB::table('rewards')->whereDate('created_at', $date)->where('created_by', $userId)->sum('views'),
+                'count' => DB::table('rewards')->whereDate('created_at', $date)->where('created_by', $userId)->sum($column),
             ];
         })->toArray();
     }

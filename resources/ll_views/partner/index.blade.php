@@ -224,8 +224,8 @@
                         tension: 0.4
                     },
                     {
-                        label: 'Total Partners',
-                        data: [datasetsData.partnersData[0].count, datasetsData.partnersData[1].count, datasetsData.partnersData[2].count, datasetsData.partnersData[3].count, datasetsData.partnersData[4].count, datasetsData.partnersData[5].count, datasetsData.partnersData[6].count],
+                        label: 'Total Points',
+                        data: [datasetsData.pointsData[0].count, datasetsData.pointsData[1].count, datasetsData.pointsData[2].count, datasetsData.pointsData[3].count, datasetsData.pointsData[4].count, datasetsData.pointsData[5].count, datasetsData.pointsData[6].count],
                         borderColor: '#FF6464',
                         backgroundColor: '#FF6464',
                         tension: 0.4
