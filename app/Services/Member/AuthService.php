@@ -2,14 +2,17 @@
 
 namespace App\Services\Member;
 
-use App\Notifications\Member\Registration;
-use App\Notifications\Member\ResetPassword;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
+use App\Notifications\Member\Registration;
+use App\Notifications\Member\ResetPassword;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\URL;
 
 class AuthService
 {
