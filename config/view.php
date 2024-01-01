@@ -14,7 +14,8 @@ return [
     */
 
     'paths' => [
-        resource_path('ll_views'),
+        // resource_path('ll_views'),
+        resource_path('views/luminouslabs/installer'),
     ],
 
     /*

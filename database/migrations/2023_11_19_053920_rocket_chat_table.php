@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('api_url');
             $table->string('api_title');
-            $table->string('api_token');
+            $table->longText('api_token');
             $table->string('x_user_id');
             $table->timestamps();
         });

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,22 +11,22 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
-Route::prefix('{locale}/v1/ll')->group(function () {
-    Route::prefix('member')->group(function () {
-        
-        Route::post('login', [App\Http\Controllers\Api\LLMemberAuthController::class, 'login']);
-        Route::post('register', [App\Http\Controllers\Api\LLMemberAuthController::class, 'register']);
-        
-        
-        
-    });
-    // Link Share 
-    Route::post('get/hash-by-tenantid', [App\Http\Controllers\Api\LinkShareController::class, 'getHashByTenantID']);
-    Route::get('get-whatsapp-link', [App\Http\Controllers\Api\LinkShareController::class, 'whatsappLinkGenerator']);
-       
-});
+// Route::prefix('{locale}/v1/ll')->group(function () {
+//     Route::prefix('member')->group(function () {
+
+//         Route::post('login', [App\Http\Controllers\Api\LLMemberAuthController::class, 'login']);
+//         Route::post('register', [App\Http\Controllers\Api\LLMemberAuthController::class, 'register']);
+
+//     });
+//     // Link Share
+//     Route::post('get/hash-by-tenantid', [LinkShareController::class, 'getHashByTenantID']);
+//     Route::get('get-whatsapp-link', [LinkShareController::class, 'whatsappLinkGenerator'])->middleware('auth:member_api');
+
+//     //Member spinner Api's
+//     Route::post('get/spinned-rewards', [MemberSpinHandlerController::class, 'gotSpinned'])->middleware('auth:member_api');
+// });
 
 Route::prefix('{locale}/v1')->group(function () {
     Route::prefix('member')->group(function () {

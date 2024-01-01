@@ -1,14 +1,24 @@
 <?php
 
+use App\Models\Member;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-*/
+ */
 
 Route::get('/', '\App\Http\Controllers\I18n\LocaleController@redirectToLocale')->name('redir.locale');
+// Route::get('/',
+//     function (Request $request) {
+//         $user = Member::find(Auth::id()); // Get any user instance
+//         $token = $user->createToken('login')->plainTextToken;
+//         dd($token);
+//     }
+// )->name('redir.locale');
 
 Route::prefix('{locale}')->group(function () {
     Route::get('scripts/language.js', '\App\Http\Controllers\Javascript\IncludeController@language')->name('javascript.include.language');
@@ -114,7 +124,7 @@ Route::prefix('{locale}')->group(function () {
         });
 
         // Authenticated partner routes
-        Route::group(['prefix' => 'partner',  'middleware' => ['partner.auth', 'partner.role:1,2,3']], function () {
+        Route::group(['prefix' => 'partner', 'middleware' => ['partner.auth', 'partner.role:1,2,3']], function () {
             Route::get('/', 'Partner\PageController@index')->name('partner.index');
 
             // get data for dashboard
@@ -153,12 +163,12 @@ Route::prefix('{locale}')->group(function () {
         });
 
         // Authenticated admin routes
-        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
+        Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth', 'admin.role:1']], function () {
             Route::get('migrate', 'Admin\PageController@runMigrations')->name('admin.migrate');
         });
 
         // Authenticated admin and manager routes
-        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1,2']], function () {
+        Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth', 'admin.role:1,2']], function () {
             Route::get('/', 'Admin\PageController@index')->name('admin.index');
 
             // get data for dashboard
@@ -177,7 +187,7 @@ Route::prefix('{locale}')->group(function () {
         });
 
         //admin rocket chat setting routes
-        Route::group(['prefix' => 'admin',  'middleware' => ['admin.auth', 'admin.role:1']], function () {
+        Route::group(['prefix' => 'admin', 'middleware' => ['admin.auth', 'admin.role:1']], function () {
             Route::get('rocket-chat-data', 'Admin\RocketChatController@index')->name('admin.rocket_chat');
             Route::get('rocket-chat-data-edit/{id}', 'Admin\RocketChatController@edit')->name('admin.rocket_chat.edit');
             Route::post('rocket-chat-update', 'Admin\RocketChatController@storeUpdate')->name('admin.rocket_chat.update');
