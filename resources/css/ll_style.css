@@ -572,7 +572,7 @@ body.partner-club-insert-page .ll-user-add-form-inputs .ll-checkbox,
 .ll-member-user-settings-page .ll-user-add-form-inputs .ll-checkbox {
     height: 68px;
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     padding-bottom: 13px;
 }
 
@@ -602,7 +602,7 @@ body.partner-card-insert-page .ll-user-add-form-footer,
 body.partner-club-insert-page .ll-user-add-form-footer,
 body.networks-edit-page .ll-user-add-form-footer {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 

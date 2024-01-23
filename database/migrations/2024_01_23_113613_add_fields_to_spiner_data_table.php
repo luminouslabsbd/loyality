@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('hash_qr_code', function (Blueprint $table) {
-            $table->after('product_id', function () use ($table) {
-                $table->string('order_id')->nullable();
+        Schema::table('spiner_data', function (Blueprint $table) {
+            $table->after('available_prize', function () use ($table) {
+                $table->boolean('is_claimed')->default(false);
             });
         });
     }
@@ -23,8 +23,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('hash_qr_code', function (Blueprint $table) {
-            $table->dropColumn('order_id');
+        Schema::table('spiner_data', function (Blueprint $table) {
+            $table->dropColumn('is_claimed');
         });
     }
 };
