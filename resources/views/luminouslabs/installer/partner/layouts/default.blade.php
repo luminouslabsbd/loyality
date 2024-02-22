@@ -77,6 +77,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                               <div class="px-4 py-3">
                                 <span class="block text-sm text-gray-900 dark:text-white">{{ auth('partner')->user()->name }}</span>
                                 <span class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{ auth('partner')->user()->email }}</span>
+                                <small class="block text-sm text-gray-600 dark:text-gray-300">{{ auth('partner')->user()->id }}</small>
                               </div>
 
                               <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="user-menu-button">
@@ -266,7 +267,7 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
                                 <li>
                                     <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'members') active @endif" href="{{ route('partner.data.list', ['name' => 'members']) }}"><x-ui.icon icon="user-group" class="" /><span class="ml-2">{{ trans('common.members') }}</span></a>
                                 </li>
-                                
+
                                 <li>
                                     <a class="ll-sidebar-link flex items-center p-2 group @if (Str::startsWith($routeName, 'partner.analytics')) active @endif" href="{{ route('partner.analytics') }}"><x-ui.icon icon="presentation-chart-line" class="" /><span class="ml-2">{{ trans('common.analytics') }}</span></a>
                                 </li>
@@ -299,10 +300,10 @@ $routeDataDefinition = (isset($dataDefinition)) ? $dataDefinition->name : null;
 
     <script>
         const header = document.getElementById("member-header");
-        
+
         const pathsToCheck = ["/login", "/password"];
         const currentPathname = window.location.pathname;
-        
+
         if (pathsToCheck.some(path => currentPathname.includes(path))) {
             header.style.display = "none";
         }
