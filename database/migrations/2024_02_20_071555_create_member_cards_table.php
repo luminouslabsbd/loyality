@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('member_id')->nullable()->constrained('members')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('partner_id')->nullable()->constrained('partners')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('card_id')->nullable()->constrained('cards')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('campagin_id')->nullable()->constrained('campaigns')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->string('spinner_prize')->nullable();
             $table->integer('spinner_point')->default(0);
             $table->timestamps();
         });
