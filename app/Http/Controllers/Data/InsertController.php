@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Data;
 use App\Http\Controllers\Controller;
 use App\Services\Data\DataService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Log;
 
@@ -51,6 +52,7 @@ class InsertController extends Controller
         $form = $dataDefinition->getData($dataDefinition->name, 'insert');
         // Retrieve settings for the data definition
         $settings = $dataDefinition->getSettings([]);
+
         // Validate user access based on settings and request
         $this->validateAccess($settings, $request);
 
@@ -62,6 +64,13 @@ class InsertController extends Controller
             // Return the insert view with the required data and validation errors
             return back()->withInput($request->all())->withErrors($message);
         }
+
+        //Create here keoswalletapi platform partner
+        Http::post('https://keoswalletapi.luminousdemo.com/api/register',[
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
 
         // Redirect the user to the data list view with the result message
         return redirect(route($settings['guard'] . '.data.list', ['name' => $dataDefinitionName]))->with('toast', $message);
@@ -104,10 +113,10 @@ class InsertController extends Controller
             Log::notice('app\Http\Controllers\Data\InsertController.php - Insert not allowed ('.auth($settings['guard'])->user()->email.')');
             abort(404);
         }
-    
+
         // Obtain the user type from the route name (member, staff, partner, or admin)
         $guard = explode('.', $request->route()->getName())[0];
-    
+
         // Check if the user type is allowed based on the settings
         if ($settings['guard'] !== $guard) {
             Log::notice('app\Http\Controllers\Data\InsertController.php - View not allowed for '.$guard.', '.$settings['guard'].' required ('.auth($settings['guard'])->user()->email.')');
