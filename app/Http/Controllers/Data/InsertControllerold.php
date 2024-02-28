@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Log;
 
-class InsertController extends Controller
+class InsertControllerold extends Controller
 {
     /**
      * Show the create form for the given data definition.
@@ -52,14 +52,9 @@ class InsertController extends Controller
         $form = $dataDefinition->getData($dataDefinition->name, 'insert');
         // Retrieve settings for the data definition
         $settings = $dataDefinition->getSettings([]);
+
         // Validate user access based on settings and request
         $this->validateAccess($settings, $request);
-
-        $response = Http::post('https://keoswalletapi.luminousdemo.com/api/register',[
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
 
         // Call the insertRecord method on the dataService instance to create the record
         $message = $dataService->insertRecord($request, $form, $settings);
@@ -70,7 +65,7 @@ class InsertController extends Controller
             return back()->withInput($request->all())->withErrors($message);
         }
 
-
+        //Create here keoswalletapi platform partner
 
 
         // Redirect the user to the data list view with the result message
