@@ -32,6 +32,7 @@ class AuthController extends Controller
      */
     public function login(Request $request): View|RedirectResponse
     {
+
         // Check if the admin user is already logged in
         if (auth()->guard('admin')->check()) {
             // If logged in, redirect to the admin index page

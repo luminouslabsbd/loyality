@@ -1,0 +1,131 @@
+{
+    "passDetails": {
+        "logoImage": "",
+        "heroImage": "",
+        "color": "rgb(30, 49, 129)",
+        "labelColor": "rgb(255, 255, 255)",
+        "formate": "QR_CODE",
+        "barcodeValue": "",
+        "passTypeIdentifier": "",
+        "passId": "",
+        "header": "My Organization",
+        "cardTitle": "My Loyalty Card",
+        "activeCardName": "GenericPass"
+    },
+    "textModulesData": {
+        "firstRowData": [
+            {
+                "id": 4,
+                "expirySettings": {
+                    "label": "Expiry Settings",
+                    "value": "Not Expired"
+                },
+                "displayValue": {
+                    "label": "Date Format",
+                    "value": "2025-02-11T09:54:44+00:00"
+                },
+                "label": {
+                    "label": "Label",
+                    "value": "Expiry Date",
+                    "baseValue": "Expiry Date"
+                }
+            },
+            {
+                "id": 14,
+                "label": {
+                    "label": "Label",
+                    "value": "Name",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Muilon"
+                }
+            },
+            {
+                "id": 140,
+                "label": {
+                    "label": "Label",
+                    "value": "Name",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Rawshan"
+                }
+            }
+
+
+        ],
+        "secondRowData20": [
+            {
+                "id": 132,
+                "label": {
+                    "label": "Label",
+                    "value": "Mobile Number",
+                    "baseValue": "Mobile Number"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "0166"
+                }
+            },
+            {
+                "id": 142,
+                "label": {
+                    "label": "Label",
+                    "value": "Name",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Sajjad"
+                }
+            }
+        ],
+        "secondRowData2": [
+            {
+                "id": 130,
+                "label": {
+                    "label": "Label",
+                    "value": "Mobile Number",
+                    "baseValue": "Mobile Number"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "0177"
+                }
+            },
+            {
+                "id": 1400,
+                "label": {
+                    "label": "Label",
+                    "value": "Name",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Shakib"
+                }
+            }
+        ],
+        "secondRowData200": [
+            {
+                "id": 1320,
+                "label": {
+                    "label": "Label",
+                    "value": "Mobile Number",
+                    "baseValue": "Mobile Number"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "0199"
+                }
+            }
+
+        ]
+    },
+    "userId": 1,
+    "id": "3388000000022308850",
+    "classId": "3388000000022308850"
+}

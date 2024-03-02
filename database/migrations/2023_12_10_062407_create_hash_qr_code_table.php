@@ -21,6 +21,7 @@ class CreateHashQrCodeTable extends Migration
             $table->string('purchase_value')->nullable();
             $table->text('hash');
             $table->string('qr_code_path');
+            $table->string('encript_id');
             $table->timestamps(); // Add if you want timestamps (created_at, updated_at)
         });
     }

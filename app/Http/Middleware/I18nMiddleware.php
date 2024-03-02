@@ -114,7 +114,7 @@ class I18nMiddleware
      *
      * @return array The i18n data.
      */
-    protected function getI18nData($user, Request $request): array
+    protected function getI18nData($user, Request $request)
     {
         // Use user's preferences if available, else use default settings
         $currency_code = $user ? $user->currency : config('default.currency');
@@ -122,7 +122,7 @@ class I18nMiddleware
 
         return [
             'language' => $this->i18nService->getAllTranslations(null, $request),
-            'currency' => $this->i18nService->getCurrencyDetails($currency_code),
+            'currency' => $this->i18nService->getCurrencyDetails($currency_code ?? 'USD'),
             'time_zone' => $time_zone,
         ];
     }
