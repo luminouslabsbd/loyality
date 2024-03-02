@@ -135,7 +135,6 @@ class OldLinkShareController extends Controller
 
     public function getHashUrl($requestData, $hash)
     {
-
         if ($hash && $requestData['phone']) {
 
             $link = 'https://wa.me/' . $requestData['phone'];
