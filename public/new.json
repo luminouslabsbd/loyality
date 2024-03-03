@@ -1,0 +1,188 @@
+{
+    "passDetails": {
+        "logoImage": "",
+        "heroImage": "",
+        "color": "rgb(24, 97, 134)",
+        "labelColor": "rgb(255, 255, 255)",
+        "formate": "QR_CODE",
+        "barcodeValue": "",
+        "passTypeIdentifier": "",
+        "passId": "",
+        "header": "Keos",
+        "cardTitle": "Card",
+        "activeCardName": "StoreCard"
+    },
+    "textModulesData": {
+        "firstRowData": [
+            {
+                "id": 16,
+                "label": {
+                    "label": "Label",
+                    "value": "Points1",
+                    "baseValue": "Points"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "123123"
+                }
+            },
+            {
+                "id": 4,
+                "expirySettings": {
+                    "label": "Expiry Settings",
+                    "value": "expires"
+                },
+                "displayValue": {
+                    "label": "Date Format",
+                    "value": ""
+                },
+                "label": {
+                    "label": "Label",
+                    "value": "Expiry Date1",
+                    "baseValue": "Expiry Date"
+                }
+            },
+            {
+                "id": 7,
+                "label": {
+                    "label": "Label",
+                    "value": "Gender",
+                    "baseValue": "Gender"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Male"
+                }
+            }
+        ],
+        "secondRowData": [
+            {
+                "id": 6,
+                "label": {
+                    "label": "Label",
+                    "value": "First Name2",
+                    "baseValue": "First Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "Luminous"
+                }
+            },
+            {
+                "id": 9,
+                "label": {
+                    "label": "Label",
+                    "value": "Last Name2",
+                    "baseValue": "Last Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": ""
+                }
+            },
+            {
+                "id": 14,
+                "label": {
+                    "label": "Label",
+                    "value": "Name",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "LuminL"
+                }
+            }
+        ],
+        "thirdRowData": [
+            {
+                "id": 13,
+                "label": {
+                    "label": "Label",
+                    "value": "Mobile Number3",
+                    "baseValue": "Mobile Number"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "012894798732"
+                }
+            },
+            {
+                "id": 3,
+                "label": {
+                    "label": "Label",
+                    "value": "Email3",
+                    "baseValue": "Email"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "email@gmail.com"
+                }
+            },
+            {
+                "id": 1,
+                "fieldType": {
+                    "label": "Field Type",
+                    "value": "Date YYYYMMDD"
+                },
+                "dateFormat": {
+                    "label": "Date Format",
+                    "value": "No Format"
+                },
+                "label": {
+                    "label": "Date of Birth",
+                    "value": "Date of Birth3",
+                    "baseValue": "Date of Birth"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "20/11/2000"
+                }
+            }
+        ],
+        "fourthRowData": [
+            {
+                "id": 12,
+                "label": {
+                    "label": "Label",
+                    "value": "Member Status4",
+                    "baseValue": "Member Status"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "active"
+                }
+            },
+            {
+                "id": 10,
+                "label": {
+                    "label": "Label",
+                    "value": "Legal4",
+                    "baseValue": "Legal"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "valid"
+                }
+            },
+            {
+                "id": 22,
+                "tierName": {
+                    "label": "Tier Name",
+                    "value": "Bronze"
+                },
+                "label": {
+                    "label": "Label",
+                    "value": "Tier4",
+                    "baseValue": "Tier"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "56356"
+                }
+            }
+        ]
+    },
+    "userId": 23,
+    "id": "3388000000022308850",
+    "classId": "3388000000022308850"
+}
