@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Data;
 use App\Http\Controllers\Controller;
 use App\Services\Data\DataService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Log;
@@ -71,6 +72,10 @@ class InsertController extends Controller
         }
 
 
+        $partner = DB::table('')->where('email',$request->email)->first()->update('');
+
+
+        return $partner;
 
 
         // Redirect the user to the data list view with the result message
