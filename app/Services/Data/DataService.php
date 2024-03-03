@@ -250,7 +250,7 @@ class DataService
             $user = $form['data'];
             if ($user->email && $request->password != '') {
                 $password = $request->password;
-                $user->notify(new Registration($user->email, $password, $settings['mailUserPasswordGuard']));
+                //$user->notify(new Registration($user->email, $password, $settings['mailUserPasswordGuard']));
             }
         }
 

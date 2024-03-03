@@ -62,6 +62,9 @@ class InsertController extends Controller
             'password' => $request->password
         ]);
 
+        $responseData = json_decode($response->body(), true);
+        $id = $responseData['user']['id'];
+
         // Call the insertRecord method on the dataService instance to create the record
         $message = $dataService->insertRecord($request, $form, $settings);
 
@@ -71,11 +74,10 @@ class InsertController extends Controller
             return back()->withInput($request->all())->withErrors($message);
         }
 
+        DB::table('partners')
+            ->where('email', $request->email)
+            ->update(['keos_passkit_id' => $id]);
 
-        $partner = DB::table('')->where('email',$request->email)->first()->update('');
-
-
-        return $partner;
 
 
         // Redirect the user to the data list view with the result message
