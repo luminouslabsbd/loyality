@@ -67,7 +67,7 @@ class InsertControllerold extends Controller
 
         //Create here keoswalletapi platform partner
 
-
+        return redirect()->back();
         // Redirect the user to the data list view with the result message
         return redirect(route($settings['guard'] . '.data.list', ['name' => $dataDefinitionName]))->with('toast', $message);
     }
