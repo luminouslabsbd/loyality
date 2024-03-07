@@ -245,14 +245,14 @@ class DataService
         });
 
         // Send user password email
-        if ($request->send_user_password) {
-            // If correct, the current model record is a user
-            $user = $form['data'];
-            if ($user->email && $request->password != '') {
-                $password = $request->password;
+//        if ($request->send_user_password) {
+//            // If correct, the current model record is a user
+//            $user = $form['data'];
+//            if ($user->email && $request->password != '') {
+//                $password = $request->password;
 //                $user->notify(new Registration($user->email, $password, $settings['mailUserPasswordGuard']));
-            }
-        }
+//            }
+//        }
 
         // Set the result message
         $message = [
