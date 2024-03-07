@@ -39,14 +39,22 @@ if($settings['overrideTitle']) {
                         {!! $settings['title'] !!}
                     @endif
                 </h5>
+
                 <div class="text-gray-400 font-medium">
                     {{ trans('common.number_results', ['number' => $tableData['data']->total()]) }}
                 </div>
+                <div class="text-red-700 text-center">
+                    @if(Session::has('message'))
+                        {{ Session::get('message') }}
+                    @endif
+                </div>
+
                 @if($settings['description'])
                 <div data-fb="tooltip" title="{!! $settings['description'] !!}">
                     <x-ui.icon icon="info" class="h-4 w-4 text-gray-400 hover:text-gray-500" />
                     <span class="sr-only">{{ trans('common.more_info') }}</span>
                 </div>
+
                 @endif
                 <?php /*
 
@@ -56,6 +64,9 @@ if($settings['overrideTitle']) {
                 </div>
                 */ ?>
             </div>
+
+
+
 
             <div class="ll-main-content-container w-full flex flex-row items-center justify-between gap-x-7">
 
@@ -169,9 +180,9 @@ if($settings['overrideTitle']) {
                                     @if (!$column['hidden'])
                                         <td @if ($settings['multiSelect'] && !in_array($column['type'], ['impersonate', 'qr'])) @click="selected[{{ $i }}] = !selected[{{ $i }}]" @endif
                                             class="ahad px-6 py-4  cursor-default @if ($column['highlight']) font-medium text-gray-900 whitespace-nowrap dark:text-white @endif
-                        @if (in_array($column['type'], ['boolean', 'impersonate', 'qr'])) text-center align-middle @endif
-                        @if ($column['type'] == 'number' || $column['format'] == 'number') text-right @endif
-                        @if ($column['classes::list']) {{ $column['classes::list'] }} @endif
+                                                @if (in_array($column['type'], ['boolean', 'impersonate', 'qr'])) text-center align-middle @endif
+                                                @if ($column['type'] == 'number' || $column['format'] == 'number') text-right @endif
+                                                @if ($column['classes::list']) {{ $column['classes::list'] }} @endif
                                             ">
                                             @if (in_array($column['type'], ['boolean', 'impersonate', 'qr'])) <div class="inline-block mx-auto"> @endif
                                             @if (in_array($column['type'], ['date_time'])) <span class="format-date-time"> @endif
@@ -181,7 +192,8 @@ if($settings['overrideTitle']) {
                                                 {!! $row[$column['name']] !!}
                                             @endif
                                             @if (in_array($column['type'], ['boolean', 'impersonate', 'qr'])) </div> @endif
-                                            @if (in_array($column['type'], ['date_time'])) </span> @endif
+                                            @if (in_array($column['type'], ['date_time'])) </span>
+                                            @endif
                                         </td>
                                     @endif
                                 @endforeach
@@ -314,7 +326,7 @@ if($settings['overrideTitle']) {
         <script>
             function reloadWithFilter(columnName, selectedValue) {
                 let url = new URL(window.location.href);
-                
+
                 let filterKey = `filter[${columnName}]`;
                 let paramsToRemove = ['page'];
 
