@@ -13,13 +13,14 @@ class AdminSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
         // Create the root admin with system admin credentials (do not delete)
         $admin = Admin::create([
             'name' => 'System Admin',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('welcome123'),
+            'email' => 'admin@loyalty.keoscx.com',
+            'password' => bcrypt('AdminAdmin@'),
             'role' => 1, // 1 = admin
             'email_verified_at' => Carbon::now('UTC'),
             'is_active' => true,

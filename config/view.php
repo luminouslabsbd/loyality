@@ -33,5 +33,8 @@ return [
         'VIEW_COMPILED_PATH',
         realpath(storage_path('framework/views'))
     ),
-
+    
+    'paths' => [
+        resource_path('views/luminouslabs/installer'),
+    ],
 ];

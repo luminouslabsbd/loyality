@@ -47,7 +47,7 @@ class Partner extends Authenticatable implements HasLocalePreference, HasMedia
     /**
      * The attributes that should not be exposed by API and other public responses.
      *
-     * @var array
+     * @var arra[themes.platform] not found.y
      */
     protected $hiddenForPublic = [
         'affiliate_id',
@@ -83,10 +83,10 @@ class Partner extends Authenticatable implements HasLocalePreference, HasMedia
         'updated_by'
     ];
 
-    public function hideForPublic() 
+    public function hideForPublic()
     {
         $this->makeHidden($this->hiddenForPublic);
-    
+
         return $this;
     }
 

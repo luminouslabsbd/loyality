@@ -62,7 +62,7 @@ class DataService
         // Get settings for the data definition
         $settings = $dataDefinition->getSettings([]);
 
-        // Obtain the user type from the route name (member, staff, partner, or admin) 
+        // Obtain the user type from the route name (member, staff, partner, or admin)
         // and verify if the Data Definition is permitted for that user type
         $guard = explode('.', request()->route()->getName())[0];
         if ($settings['guard'] !== $guard) {
@@ -185,7 +185,7 @@ class DataService
      */
     public function insertRecord(Request $request, array $form, array $settings): array|\Illuminate\Validation\Validator
     {
-        // Obtain the user type from the route name (member, staff, partner, or admin) 
+        // Obtain the user type from the route name (member, staff, partner, or admin)
         // and verify if the Data Definition is permitted for that user type
         $guard = explode('.', $request->route()->getName())[0];
         if ($settings['guard'] !== $guard) {
@@ -245,14 +245,14 @@ class DataService
         });
 
         // Send user password email
-        if ($request->send_user_password) {
-            // If correct, the current model record is a user
-            $user = $form['data'];
-            if ($user->email && $request->password != '') {
-                $password = $request->password;
-                $user->notify(new Registration($user->email, $password, $settings['mailUserPasswordGuard']));
-            }
-        }
+//        if ($request->send_user_password) {
+//            // If correct, the current model record is a user
+//            $user = $form['data'];
+//            if ($user->email && $request->password != '') {
+//                $password = $request->password;
+//                $user->notify(new Registration($user->email, $password, $settings['mailUserPasswordGuard']));
+//            }
+//        }
 
         // Set the result message
         $message = [
@@ -277,7 +277,7 @@ class DataService
      */
     public function updateRecord(int $id, Request $request, array $form, array $settings): array|\Illuminate\Validation\Validator
     {
-        // Obtain the user type from the route name (member, staff, partner, or admin) 
+        // Obtain the user type from the route name (member, staff, partner, or admin)
         // and verify if the Data Definition is permitted for that user type
         $guard = explode('.', $request->route()->getName())[0];
         if ($settings['guard'] !== $guard) {
@@ -308,10 +308,10 @@ class DataService
             if ($settings['editRequiresPassword']) {
                 $validator->after(function ($validator) use ($request, $guard) {
                     $password = $request->current_password_required_to_save_changes;
-                
+
                     // Get the current user's password hash
                     $currentPasswordHash = auth($guard)->user()->password;
-                
+
                     // Check if the provided password matches the stored password hash
                     if (!Hash::check($password, $currentPasswordHash)) {
                         // Add an error message to the password field
@@ -340,7 +340,7 @@ class DataService
             DB::transaction(function () use ($form, $request) {
                 // Save the updated record
                 $form['data']->save();
-    
+
                 // Process relations
                 foreach ($form['relations'] as $relation) {
                     // Save relation

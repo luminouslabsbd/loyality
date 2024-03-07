@@ -1,0 +1,72 @@
+{
+    "GenericPass": {
+        "secondaryFormsData": [
+            {
+                "id": 9,
+                "label": {
+                    "label": "Label",
+                    "value": "L. Name",
+                    "baseValue": "Last Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "B"
+                }
+            }
+        ],
+        "userId": 1,
+        "passDetails": {
+            "logoImage": "",
+            "heroImage": "",
+            "color": "rgb(53, 151, 135)",
+            "labelColor": "rgb(255, 255, 255)",
+            "formate": "PKBarcodeFormatQR",
+            "barcodeValue": "",
+            "passTypeIdentifier": "",
+            "passId": null,
+            "header": "My Organization",
+            "cardTitle": "My Loyalty Card"
+        },
+        "headerFields": {
+            "points": {
+                "id": 16,
+                "label": {
+                    "label": "Label",
+                    "value": "Tips",
+                    "baseValue": "Points"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "5476"
+                }
+            }
+        },
+        "backFields": [],
+        "primaryFormsData": {
+            "id": 6,
+            "label": {
+                "label": "Label",
+                "value": "F. Name",
+                "baseValue": "First Name"
+            },
+            "displayValue": {
+                "label": "Display Value",
+                "value": "A"
+            }
+        },
+        "auxiliaryFormsData": [
+            {
+                "id": 14,
+                "label": {
+                    "label": "Label",
+                    "value": "Name N",
+                    "baseValue": "Name"
+                },
+                "displayValue": {
+                    "label": "Display Value",
+                    "value": "C"
+                }
+            }
+        ]
+    }
+}

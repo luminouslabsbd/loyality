@@ -17,10 +17,13 @@ class CreateCampaignsTable extends Migration
             $table->id(); // Auto-incremental primary key
             $table->string('name');
             $table->string('card_id');
+            $table->bigInteger('template_id')->nullable();
+            $table->string('template_pass_type')->nullable();
             $table->string('price_check')->nullable();
             $table->string('point_check')->nullable();
             $table->string('tenant_id');
             $table->string('campain_code');
+            $table->string('campaign_type');
             $table->text('hash')->nullable();
             $table->decimal('unit_price_for_coupon', 10, 0);
             $table->decimal('unit_price_for_point', 10, 0);

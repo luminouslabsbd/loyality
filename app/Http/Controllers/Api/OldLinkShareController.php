@@ -14,7 +14,6 @@ class OldLinkShareController extends Controller
 
     public function getHashByTenantID(Request $request)
     {
-
         try {
             // Get the raw content from the request
             $rawData = $request->getContent();
@@ -136,9 +135,7 @@ class OldLinkShareController extends Controller
 
     public function getHashUrl($requestData, $hash)
     {
-
         if ($hash && $requestData['phone']) {
-
             $link = 'https://wa.me/' . $requestData['phone'];
             $link .= '?text=' . urlencode($hash);
             return $link;
@@ -148,7 +145,6 @@ class OldLinkShareController extends Controller
 
     public function whatsappLinkGenerator(Request $request)
     {
-
         $rawData = $request->getContent();
         // Decode the raw JSON data
         $requestData = json_decode($rawData, true);

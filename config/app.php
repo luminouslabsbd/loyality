@@ -184,7 +184,11 @@ return [
 
         /*
          * Package Service Providers...
-         */
+        */
+
+
+        Luminouslabs\Installer\Providers\LuminousLabsServiceProvider::class,
+
         // browner12\helpers\HelperServiceProvider::class,
 
         /*
