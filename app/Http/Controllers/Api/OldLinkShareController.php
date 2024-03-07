@@ -31,6 +31,7 @@ class OldLinkShareController extends Controller
                 'PurchaseValue' => 'required',
             ]);
 
+            
             if ($validator->fails()) {
                 // Validation failed
                 $errorResponse = [
