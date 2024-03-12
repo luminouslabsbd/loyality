@@ -52,6 +52,8 @@ class PageController extends Controller
      */
     public function dashboard(string $locale, Request $request, CardService $cardService)
     {
+        //return "member dashbaord";
+
         // Define dashboard blocks
         $dashboardBlocks = [
             [

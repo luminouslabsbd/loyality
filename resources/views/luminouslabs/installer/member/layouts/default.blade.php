@@ -28,7 +28,7 @@
                 class="ll-nav-bar bg-white border-gray-200 dark:border-gray-700 dark:bg-gray-800 border-b fixed top-0 left-0 right-0 z-40">
                 <div class="flex flex-wrap justify-between items-center px-6 py-2.5">
 
-                    @auth('partner')
+                    @auth('member')
                         {{-- <div class="block md:hidden flex-initial mr-3">
                         <button data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-expanded="false">
                             <span class="sr-only">{{ trans('common.open') }}</span>
@@ -77,15 +77,15 @@
                         </a>
                     </div>
                     <div class="flex items-center">
-                        @auth('partner')
+                        @auth('member')
                             <div class="hidden md:flex items-center">
                                 <button type="button"
                                     class="flex text-sm rounded-full md:mr-3 mr-2 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
                                     id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
                                     data-dropdown-placement="bottom">
                                     <span class="sr-only">Open user menu</span>
-                                    @if (auth('partner')->user()->avatar)
-                                        <img class="w-8 h-8 rounded-full" src="{{ auth('partner')->user()->avatar }}">
+                                    @if (auth('member')->user()->avatar)
+                                        <img class="w-8 h-8 rounded-full" src="{{ auth('member')->user()->avatar }}">
                                     @else
                                         <x-ui.icon icon="user-circle"
                                             class="m-1 w-7 h-7 text-gray-900 dark:text-gray-300" />
@@ -96,9 +96,9 @@
                                     id="user-dropdown">
                                     <div class="px-4 py-3">
                                         <span
-                                            class="block text-sm text-gray-900 dark:text-white">{{ auth('partner')->user()->name }}</span>
+                                            class="block text-sm text-gray-900 dark:text-white">{{ auth('member')->user()->name }}</span>
                                         <span
-                                            class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{ auth('partner')->user()->email }}</span>
+                                            class="block text-sm font-medium text-gray-500 truncate dark:text-gray-400">{{ auth('member')->user()->email }}</span>
                                     </div>
 
                                     <ul class="py-1 font-light text-gray-500 dark:text-gray-400"
@@ -114,7 +114,7 @@
                                     </ul>
                                     <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
                                         <li>
-                                            <a href="{{ route('partner.logout') }}"
+                                            <a href="{{ route('member.logout') }}"
                                                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">{{ trans('common.logout') }}</a>
                                         </li>
                                     </ul>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
             </nav>
-            @auth('partner')
+            @auth('member')
                 <nav class="hidden md:block bg-gray-100 border-gray-200 dark:bg-gray-700 dark:border-gray-600 border-b">
                     <div class="grid py-4 px-4 mx-auto max-w-screen-2xl lg:grid-cols-2 md:px-6">
 
@@ -227,7 +227,7 @@
             @endauth
         </header>
 
-        {{-- @auth('partner')
+        {{-- @auth('member')
             <!-- drawer -->
             <div id="drawer-navigation" class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-80 dark:bg-gray-800 transition-transform left-0 top-0 -translate-x-full" tabindex="-1">
                 <h5 class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">{{ trans('common.menu') }}</h5>
@@ -265,7 +265,7 @@
                             <a href="{{ route('partner.analytics') }}"><x-ui.icon icon="presentation-chart-line" class="w-6 h-6" /><span>{{ trans('common.analytics') }}</span></a>
                         </li>
                         <li><hr class="h-px mt-5 bg-gray-200 border-0 dark:bg-gray-700"></li>
-                        <li><h5 class="inline-flex items-center ml-2 my-4 text-sm font-medium text-gray-400 dark:text-gray-400">{{ auth('partner')->user()->name }}</h5></li>
+                        <li><h5 class="inline-flex items-center ml-2 my-4 text-sm font-medium text-gray-400 dark:text-gray-400">{{ auth('member')->user()->name }}</h5></li>
                         <li @if ($routeDataDefinition == 'account') class="active" @endif>
                             <a href="{{ route('partner.data.list', ['name' => 'account']) }}"><x-ui.icon icon="user-circle" class="w-6 h-6" /><span>{{ trans('common.account_settings') }}</span></a>
                         </li>
@@ -278,20 +278,20 @@
 
         <div class="w-full mx-auto flex flex-grow">
             <div class="w-full">
-                @auth('partner')
+                @auth('member')
                     <aside id="ll-sidebar"
                         class="fixed top-[56px] left-0 z-10 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
                         aria-label="Sidebar">
                         <div class="h-full overflow-y-auto">
                             <ul class="space-y-2 font-medium">
                                 <li>
-                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'partner.index') active @endif"
-                                        href="{{ route('partner.index') }}"><x-ui.icon icon="home"
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'member.dashboard') active @endif"
+                                        href="{{ route('member.dashboard') }}"><x-ui.icon icon="home"
                                             class="" /><span
                                             class="ml-2">{{ trans('common.dashboard') }}</span></a>
                                 </li>
 
-                                <li>
+                                {{--<li>
                                     <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'clubs') active @endif"
                                         href="{{ route('partner.data.list', ['name' => 'clubs']) }}"><x-ui.icon
                                             icon="funnel" class="" /><span
@@ -358,7 +358,7 @@
                                     <a class="ll-sidebar-link flex items-center p-2 group"
                                         href="{{ route('partner.logout') }}"><x-ui.icon icon="power"
                                             class="" /><span class="ml-2">{{ trans('common.logout') }}</span></a>
-                                </li>
+                                </li>--}}
                             </ul>
                         </div>
                     </aside>
