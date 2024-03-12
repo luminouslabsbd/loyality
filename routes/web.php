@@ -33,7 +33,6 @@ Route::prefix('{locale}')->group(function () {
 
             // Claim reward
             Route::get('card/{card_id}/{reward_id}/claim', 'Member\CardController@showClaimReward')->name('member.card.reward.claim');
-
             Route::get('dashboard', 'Member\PageController@dashboard')->name('member.dashboard');
 
             // get 7 days data
