@@ -5,6 +5,7 @@
 @section('content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <section class="w-full">
+
     {{-- <div class="py-8 px-4 mx-auto sm:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-md text-center mb-8 lg:mb-16">
             <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{ trans('common.welcome_user', ['user' => auth('member')->user()->name]) }} {{ Arr::random(['😎', '🤠', '😊', '😃', '🙃', '🤩', '😉']) }}</h2>
@@ -57,15 +58,15 @@
         // get dates start
         function getDates(dayCount) {
             let previousDays = [];
-    
+
             function formatDate(date) {
                 const options = { month: 'long', day: 'numeric' };
                 return date.toLocaleDateString('en-US', options);
             }
-    
+
             // Get the current date
             const currentDate = new Date();
-    
+
             // get previous days
             for (let i = 0; i < dayCount; i++) {
                 let day = new Date();
@@ -73,15 +74,15 @@
                 const formattedDate = formatDate(day);
                 previousDays.push(formattedDate);
             }
-    
+
             return previousDays.reverse();
         }
         // get dates end
-    
+
         // chart creation start
         function createNewChart(canvas, labels, datasetsData) {
             const ctx = document.getElementById(`${canvas}`);
-    
+
             const data = {
                 labels: labels,
                 datasets: [
@@ -101,7 +102,7 @@
                     }
                 ]
             };
-    
+
             new Chart(ctx, {
                 type: 'line',
                 data: data,
@@ -116,10 +117,10 @@
             });
         }
         // chart creation end
-    
+
         // create chart
         createDayChart('{{ route("luminouslabs::member.getLastSevenDaysData") }}', 7, 'll-custom-dashboard');
-        
+
         function createDayChart(routeName, days, canvasSelector) {
             $.ajax({
                 url: routeName,
@@ -134,7 +135,7 @@
             });
         }
 
-        // Get Count 
+        // Get Count
         getAdminCardCount('{{ route("luminouslabs::member.getDashboardCardCount") }}');
 
         function getAdminCardCount(routeName) {
@@ -146,15 +147,15 @@
                     console.log(response);
                     $('.TotalFollowedCards').text(response.followedCards ?? 0);
                     $('.TotalTransactionsCards').text(response.cards ?? 0);
-                    
+
                 },
                 error: function(xhr, status, error) {
                     console.error('AJAX Error: ' + status, error);
                 }
             });
         }
-    
-    
+
+
     });
 </script>
 @stop

@@ -17,7 +17,7 @@ class PageController extends Controller
      * @param string $locale
      * @param Request $request
      * @param CardService $cardService
-     * 
+     *
      * @return \Illuminate\View\View
      */
     public function index(string $locale, Request $request, CardService $cardService)
@@ -47,7 +47,7 @@ class PageController extends Controller
      *
      * @param string $locale
      * @param Request $request
-     * 
+     *
      * @return \Illuminate\View\View
      */
     public function dashboard(string $locale, Request $request, CardService $cardService)
@@ -153,7 +153,7 @@ class PageController extends Controller
      * @param string $locale
      * @param Request $request
      * @param string $page The markdown file to be displayed.
-     * 
+     *
      * @return \Illuminate\View\View
      */
     private function displayPage(string $locale, Request $request, string $page, MarkdownService $markdownService)
