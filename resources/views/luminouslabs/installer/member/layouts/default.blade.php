@@ -55,7 +55,14 @@
                     @endauth
 
                     <div class="flex-1 items-center ll-nav-logo">
-                        <a href="{{ route('partner.index') }}" class="inline-block w-fit">
+                        <a
+                            @auth('member')
+                                href="{{ route('member.dashboard') }}"
+                            @else
+                                href="{{ route('member.index') }}"
+                            @endauth
+
+                            class="inline-block w-fit">
                             @if (config('default.app_demo'))
                                 <img src="{{ asset('assets/img/logo-light.svg') }}" class="h-6 sm:h-7 block dark:hidden"
                                     alt="{{ config('default.app_name') }} Logo" />
@@ -106,13 +113,13 @@
                                     <ul class="py-1 font-light text-gray-500 dark:text-gray-400"
                                         aria-labelledby="user-menu-button">
                                         <li>
-                                            <a href="{{ route('partner.index') }}"
+                                            <a href="{{ route('member.dashboard') }}"
                                                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white @if ($routeName == 'partner.index') text-black dark:text-white @endif">{{ trans('common.dashboard') }}</a>
                                         </li>
-                                        <li>
+                                        {{--<li>
                                             <a href="{{ route('partner.data.list', ['name' => 'account']) }}"
                                                 class="block py-2 px-4 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white @if ($routeDataDefinition == 'account') text-black dark:text-white @endif">{{ trans('common.account_settings') }}</a>
-                                        </li>
+                                        </li>--}}
                                     </ul>
                                     <ul class="py-1 font-light text-gray-500 dark:text-gray-400" aria-labelledby="dropdown">
                                         <li>
