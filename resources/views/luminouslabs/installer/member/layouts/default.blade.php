@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+   @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <meta name="robots" content="noindex, nofollow" />
     <x-meta.generic />
     <x-meta.favicons />
@@ -293,7 +295,7 @@
                                 </li>
 
                                 <li>
-                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'member.passkits') active @endif"
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'luminouslabs::member.passkits') active @endif"
                                        href="{{ route('luminouslabs::member.passkits') }}"><x-ui.icon icon="home"
                                                                                          class="" /><span
                                             class="ml-2">Passkit</span></a>
