@@ -172,6 +172,7 @@
                                     <a href="{{ route('partner.index') }}"
                                         class="hover:text-black dark:hover:text-white @if ($routeName == 'partner.index') text-gray-900 dark:text-white @else text-gray-700 dark:text-gray-400 @endif">{{ trans('common.dashboard') }}</a>
                                 </li>
+
                                 <li>
                                     <button data-dropdown-toggle="navDropDown1" data-dropdown-trigger="click"
                                         class="flex items-center justify-between w-full hover:text-black dark:hover:text-white @if (in_array($routeDataDefinition, ['clubs', 'cards', 'rewards'])) text-gray-900 dark:text-white @else text-gray-700 dark:text-gray-400 @endif">{{ trans('common.campaigns') }}
@@ -289,6 +290,13 @@
                                         href="{{ route('member.dashboard') }}"><x-ui.icon icon="home"
                                             class="" /><span
                                             class="ml-2">{{ trans('common.dashboard') }}</span></a>
+                                </li>
+
+                                <li>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeName == 'member.passkits') active @endif"
+                                       href="{{ route('luminouslabs::member.passkits') }}"><x-ui.icon icon="home"
+                                                                                         class="" /><span
+                                            class="ml-2">Passkit</span></a>
                                 </li>
 
                                 {{--<li>
