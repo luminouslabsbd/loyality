@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Log;
+use Mockery\Exception;
 
 class InsertController extends Controller
 {
@@ -56,17 +57,33 @@ class InsertController extends Controller
         // Validate user access based on settings and request
         $this->validateAccess($settings, $request);
 
-        $response = Http::post('https://keoswalletapi.luminousdemo.com/api/register',[
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
+        try {
+            $response = Http::post('https://keoswalletapi.luminousdemo.com/api/register',[
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password
+            ]);
 
-        if ($response->ok()){
-            $responseData = json_decode($response->body(), true);
-            $id = $responseData['user']['id'];
+            if ($response->ok()){
+                $responseData = json_decode($response->body(), true);
+                $member_id = $responseData['user']['id'];
+            }
+        }catch (Exception $exception){
+            return "Problem of keos wallet partner creation.".$exception;
         }
 
+        try {
+            $response = Http::post('http://labcrm.keoscx.com/admin/bangara_module/bangara/create_loyality_customer',[
+                'email' => $request->email,
+                'phonenumber' => $member->phone ?? "*** ** **** **",
+                'company' => 'company'
+            ]);
+            if ($response->ok()){
+                $crm_member_id = $response['crm_customer_id'];
+            }
+        }catch (Exception $exception){
+            return "Problem of CRM member creation.".$exception;
+        }
 
         // Call the insertRecord method on the dataService instance to create the record
         $message = $dataService->insertRecord($request, $form, $settings);
@@ -77,12 +94,14 @@ class InsertController extends Controller
             return back()->withInput($request->all())->withErrors($message);
         }
 
-        if ($response->ok()){
+        if (!empty($member_id) && !empty($crm_member_id)){
             DB::table('partners')
                 ->where('email', $request->email)
-                ->update(['keos_passkit_id' => $id]);
+                ->update([
+                    'keos_passkit_id' => $member_id,
+                    'crm_customer_id' => $crm_member_id,
+                ]);
         }
-
 
 
         // Redirect the user to the data list view with the result message
