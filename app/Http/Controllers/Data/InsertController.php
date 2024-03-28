@@ -98,11 +98,10 @@ class InsertController extends Controller
             DB::table('partners')
                 ->where('email', $request->email)
                 ->update([
-                    'keos_passkit_id' => $member_id,
-                    'crm_customer_id' => $crm_member_id,
+                    'keos_passkit_id' => $member_id ?? null,
+                    'crm_customer_id' => $crm_member_id ?? '',
                 ]);
         }
-
 
         // Redirect the user to the data list view with the result message
         return redirect(route($settings['guard'] . '.data.list', ['name' => $dataDefinitionName]))->with('toast', $message);
