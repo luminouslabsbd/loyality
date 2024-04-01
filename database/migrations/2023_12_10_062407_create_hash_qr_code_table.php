@@ -22,6 +22,8 @@ class CreateHashQrCodeTable extends Migration
             $table->text('hash');
             $table->string('qr_code_path');
             $table->string('encript_id');
+            $table->string('whatsapp_number')->nullable();
+            $table->string('member_email')->nullable();
             $table->timestamps(); // Add if you want timestamps (created_at, updated_at)
         });
     }
