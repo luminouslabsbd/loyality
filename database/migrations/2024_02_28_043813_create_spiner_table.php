@@ -39,6 +39,7 @@ return new class extends Migration
             $table->foreignId('campaign_member_id')->nullable()->constrained('campaign_member')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('campaign_id')->nullable()->constrained('campaigns')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('reward')->nullable();
+            $table->string('encript_id')->nullable();
             $table->timestamps();
         });
 

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('campaign_id')->constrained()->cascadeOnDelete();
             $table->integer('total_spin')->default(0);
             $table->integer('remaining_spin')->default(0);
+            $table->string('encript_id')->nullable();
             $table->timestamps();
         });
     }

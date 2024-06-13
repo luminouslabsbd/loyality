@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('order_product_qr_codes', function (Blueprint $table) {
             $table->id();
-            $table->string('order_id');
+            $table->string('order_id')->nullable();
             $table->string('product_id');
-            $table->string('sku');
-            $table->string('qr_code');
+            $table->string('remarks');
+            $table->string('qr_code')->nullable();
+            $table->string('encript_id');
             $table->timestamps();
         });
     }

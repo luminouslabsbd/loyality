@@ -69,6 +69,12 @@ return new class extends Migration
             // Meta information
             $table->json('meta')->nullable();
 
+
+            //Add some column for crm
+            $table->string('crm_domain')->nullable();
+            $table->bigInteger('crm_package_id')->nullable();
+            $table->string('crm_billing_cycle')->nullable();
+
             // Ownership and timestamps
             $table->bigInteger('created_by')->unsigned()->nullable()->index();
             $table->bigInteger('deleted_by')->unsigned()->nullable()->index();

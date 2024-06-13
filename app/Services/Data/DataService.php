@@ -17,10 +17,10 @@ class DataService
     /**
      * Find a data definition by its name.
      *
-     * @param  string  $dataDefinitionName The name of the data definition to find.
+     * @param string $dataDefinitionName The name of the data definition to find.
      * @return object|null Returns the data definition model if found, otherwise null.
      */
-    public function findDataDefinitionByName($dataDefinitionName)
+    public function findDataDefinitionByName(string $dataDefinitionName)
     {
         // Obtain the user type from the route name (member, staff, partner, or admin)
         $classDir = explode('.', request()->route()->getName())[0];
@@ -244,7 +244,7 @@ class DataService
             }
         });
 
-        // Send user password email
+//        Send user password email
 //        if ($request->send_user_password) {
 //            // If correct, the current model record is a user
 //            $user = $form['data'];
