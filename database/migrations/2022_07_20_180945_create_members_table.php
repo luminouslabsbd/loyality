@@ -74,10 +74,13 @@ return new class extends Migration
             // Meta information
             $table->json('meta')->nullable();
 
+            $table->bigInteger('crm_member_id')->nullable();
+
             // Ownership and timestamps
             $table->bigInteger('created_by')->unsigned()->nullable()->index();
             $table->bigInteger('deleted_by')->unsigned()->nullable()->index();
             $table->bigInteger('updated_by')->unsigned()->nullable()->index();
+            $table->bigInteger('partner_id')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

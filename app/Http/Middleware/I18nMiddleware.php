@@ -43,7 +43,7 @@ class I18nMiddleware
      *
      * @return Response The HTTP response.
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
         $user = $this->getAuthenticatedUser();
         $i18n = $this->getI18nData($user, $request);

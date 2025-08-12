@@ -8,9 +8,11 @@
 $label = (count($languages['all']) > 1) ? $label = '<div class="inline-flex items-center"><div class="w-4 h-4 mr-2 rounded-full fis fi-' . strtolower($languages['current']['countryCode']) . '"></div> ' . $languages['current']['languageName'] . ' (' . $languages['current']['countryCode'] . ')' . '</div>' : $column['text']; //  . ' (' . $languages['current']['languageName'] . ')';
 
 $value = $form['data']->getTranslation($column['name'], $languages['current']['locale'], false) ?? $column['default'];
+
 @endphp
+
         @if ($column['type'] == 'string')
-            <x-forms.input
+                    <x-forms.input
                 class="ll-input-container mb-7"
                 :value="$value"
                 :type="$column['format']"
@@ -122,7 +124,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
         @endif
     @endif
 @elseif($column['type'] == 'password')
-    <x-forms.input 
+    <x-forms.input
         value=""
         type="password"
         class="ll-input-container mb-7"
@@ -142,7 +144,7 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
     <x-forms.image
         class="mb-7"
         :value="$form['data']->{$column['name']} !== null && $column['conversion'] !== null ? $form['data']->{$column['name'] . '-' . $column['conversion']} : $form['data']->{$column['name']}"
-        :type="$column['type'] == 'avatar' ? 'avatar' : 'image'" 
+        :type="$column['type'] == 'avatar' ? 'avatar' : 'image'"
         :name="$column['name']"
         :label="$column['text']"
         :help="$column['help']"
@@ -173,3 +175,10 @@ $value = $form['data']->getTranslation($column['name'], $language['locale'], fal
         :required="in_array('required', $column['validate'])"
     />
 @endif
+
+
+<script>
+    const yourOnClickMethod = ()=>{
+        alert("ok")
+    }
+</script>

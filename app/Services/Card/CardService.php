@@ -72,9 +72,9 @@ class CardService
 
     /**
      * Retrieve an active Card by its unique identifier.
-     * 
-     * Note: This function does not check for card issue date or expiration date. 
-     * This is because partners and staff should still be able to see the cards in the dashboard 
+     *
+     * Note: This function does not check for card issue date or expiration date.
+     * This is because partners and staff should still be able to see the cards in the dashboard
      * even if they're outside of their issue and expiration dates.
      *
      * @param string $unique_identifier The ID of the card to find.
@@ -227,7 +227,7 @@ class CardService
 
     /**
      * Retrieve all active cards followed by a member.
-     * 
+     *
      * @param int $member_id The ID of member.
      * @param bool $hideColumnsForPublic Determines whether to hide columns for public use.
      *
@@ -248,9 +248,11 @@ class CardService
             ->whereHas('partner', function ($query) {
                 $query->where('partners.is_active', true);
             })
+
             ->whereHas('members', function ($query) use ($member_id) {
                 $query->where('members.id', $member_id);
             })
+
             ->orderBy('issue_date', 'desc');
 
         // Execute the query
@@ -269,7 +271,7 @@ class CardService
 
     /**
      * Retrieve all active cards where a member has transactions.
-     * 
+     *
      * @param int $member_id The ID of member.
      * @param bool $hideColumnsForPublic Determines whether to hide columns for public use.
      *
@@ -279,7 +281,7 @@ class CardService
     {
         // Get the current time in UTC
         $now = Carbon::now('UTC');
-    
+
         // Build the query
         $query = Card::where('is_active', true)
             ->where('issue_date', '<=', $now)
@@ -311,7 +313,7 @@ class CardService
 
     /**
      * Associate the authenticated member with the provided card.
-     * 
+     *
      * @param  Card|null  $card
      * @return bool
      */
@@ -321,7 +323,7 @@ class CardService
         if ($card === null) {
             return false;
         }
-        
+
         // Retrieve the authenticated member
         $member = auth('member')->user();
 
@@ -333,7 +335,7 @@ class CardService
 
     /**
      * Disassociate the authenticated member from the provided card.
-     * 
+     *
      * @param  Card|null  $card
      * @return bool
      */
@@ -343,7 +345,7 @@ class CardService
         if ($card === null) {
             return false;
         }
-        
+
         // Get the currently authenticated member.
         $member = auth('member')->user();
 

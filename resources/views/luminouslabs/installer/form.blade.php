@@ -297,37 +297,37 @@
                                 class=" flex flex-wrap items-stretch sm:items-end justify-start sm:justify-between gap-3 sm:gap-0 flex-col sm:flex-row">
                                 <div class="w-full sm:w-2/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Label Title</span>
+<!--                                        <span class=" text-gray-700">Label Title</span>-->
                                         <input type="text" name="label_title[]" class=" form-input rounded" />
                                     </label>
                                 </div>
                                 <div class="w-full sm:w-2/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Label Value</span>
+<!--                                        <span class=" text-gray-700">Label Value</span>-->
                                         <input type="text" name="label_value[]" class="form-input rounded" />
                                     </label>
                                 </div>
                                 <div class="w-full sm:w-2/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Label Color</span>
+<!--                                        <span class=" text-gray-700">Label Color</span>-->
                                         <input type="color" name="label_color[]" class="rounded form-input" />
                                     </label>
                                 </div>
                                 <div class="w-full sm:w-1/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Init prize</span>
+<!--                                        <span class=" text-gray-700">Init prize</span>-->
                                         <input type="number" name="init_prize[${index}]" class="rounded form-input" />
                                     </label>
                                 </div>
                                 <div class="w-full sm:w-1/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Available prize</span>
+<!--                                        <span class=" text-gray-700">Available prize</span>-->
                                         <input type="number" name="available_prize[${index}]" class="rounded form-input" />
                                     </label>
                                 </div>
                                 <div class="w-full sm:w-2/12">
                                     <label class="flex flex-col gap-2">
-                                        <span class=" text-gray-700">Is wining label</span>
+<!--                                        <span class=" text-gray-700">Is wining label</span>-->
                                         <input type="checkbox" name="is_wining_label[${index}]" class="rounded" />
                                     </label>
                                 </div>

@@ -24,6 +24,9 @@ return new class extends Migration
             //Keos Paskit Id
             $table->bigInteger('keos_passkit_id')->nullable();
 
+            //Keos CRM Customer Id
+            $table->bigInteger('crm_customer_id')->nullable();
+
             // Account details
             $table->tinyInteger('role')->default(1); // 1 = regular partner
             $table->string('display_name', 64)->nullable(); // Visible to other users
@@ -65,6 +68,12 @@ return new class extends Migration
 
             // Meta information
             $table->json('meta')->nullable();
+
+
+            //Add some column for crm
+            $table->string('crm_domain')->nullable();
+            $table->bigInteger('crm_package_id')->nullable();
+            $table->string('crm_billing_cycle')->nullable();
 
             // Ownership and timestamps
             $table->bigInteger('created_by')->unsigned()->nullable()->index();

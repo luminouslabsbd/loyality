@@ -5,6 +5,9 @@ namespace App\DataDefinitions\Models\Admin;
 use App\DataDefinitions\DataDefinition;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Club;
+use Illuminate\Support\Facades\Http;
+use Mockery\Exception;
+use function Laravel\Prompts\select;
 
 class PartnerDataDefinition extends DataDefinition
 {
@@ -36,6 +39,9 @@ class PartnerDataDefinition extends DataDefinition
      */
     public $fields;
 
+    public static $crmUrl;
+
+
     /**
      * Constructor.
      */
@@ -43,8 +49,10 @@ class PartnerDataDefinition extends DataDefinition
     {
         // Set the model
         $this->model = new \App\Models\Partner;
+        self::$crmUrl = env('CRM_API_URL');
+        //self::getPackages();
 
-        // Define the fields for the data definition
+            // Define the fields for the data definition
         $this->fields = [
             'avatar' => [
                 'thumbnail' => 'small', // Image conversion used for list
@@ -69,7 +77,7 @@ class PartnerDataDefinition extends DataDefinition
                 'relationUserRoleFilter' => [2 => function ($model) {
                     // Get the network associated with the authenticated user
                     $userFilter = auth('admin')->user()->networks;
-    
+
                     // Add a filter to the query based on the network relationship
                     return $model->query()->whereHas('admins', function ($q) use ($userFilter) {
                         $q->whereIn('networks.id', $userFilter->pluck('id'));
@@ -94,6 +102,15 @@ class PartnerDataDefinition extends DataDefinition
                 'searchable' => true,
                 'sortable' => true,
                 'validate' => ['required', 'email', 'max:120', 'unique:partners,email,:id'],
+                'actions' => ['list', 'insert', 'edit', 'view', 'export'],
+            ],
+            'phone' => [
+                'text' => trans('common.phone_number'),
+                'type' => 'string',
+                'format' => 'string',
+                'searchable' => true,
+                'sortable' => true,
+                'validate' => ['required', 'max:16'],
                 'actions' => ['list', 'insert', 'edit', 'view', 'export'],
             ],
             'password' => [
@@ -133,6 +150,42 @@ class PartnerDataDefinition extends DataDefinition
                 'default' => auth('admin')->user()->currency,
                 'validate' => ['required'],
                 'actions' => ['view', 'edit', 'insert', 'export'],
+            ],
+            'crm_domain' => [
+                'text' => trans('common.domain'),
+                'type' => 'string',
+                'placeholder' => 'example',
+                'validate' => ['required'],
+                'actions' => ['view', 'edit', 'insert', 'export'],
+            ],
+            'crm_package_id' => [
+                'text' => trans('common.package_id'),
+                'highlight' => true,
+                'filter' => false,
+                'type' => 'select',
+                'placeholder' => trans('common.package_id'),
+                'validate' => ['required'],
+                'options' => array_column(self::getPackages(), 'name', 'id'),
+                'actions' => ['list', 'insert', 'edit', 'view', 'export'],
+            ],
+            'crm_billing_cycle' => [
+                'text' => trans('common.billing_cycle'),
+                'highlight' => true,
+                'filter' => false,
+                'type' => 'select',
+                'placeholder' => trans('common.billing_cycle'),
+                'validate' => ['required'],
+                'options' => array_column([
+                    [
+                        'name' => "Monthly Price",
+                        'id' => "monthly_price"
+                    ],
+                    [
+                        'name' => "Lifetime Price",
+                        'id' => "lifetime_price"
+                    ]
+                ], 'name', 'id'),
+                'actions' => ['insert', 'edit', 'view', 'export'],
             ],
             'cards_on_homepage' => [
                 'text' => trans('common.can_display_cards_on_homepage'),
@@ -285,8 +338,13 @@ class PartnerDataDefinition extends DataDefinition
     /**
      * Retrieve data based on fields.
      *
-     * @param  string  $dateDefinitionName
-     * @param  Model  $model
+     * @param string|null $dateDefinitionName
+     * @param string $dateDefinitionView
+     * @param array $options
+     * @param Model|null $model
+     * @param array $settings
+     * @param array $fields
+     * @return array
      */
     public function getData(string $dateDefinitionName = null, string $dateDefinitionView = 'list', array $options = [], Model $model = null, array $settings = [], array $fields = []): array
     {
@@ -299,5 +357,26 @@ class PartnerDataDefinition extends DataDefinition
     public function getSettings(array $settings): array
     {
         return parent::getSettings($this->settings);
+    }
+
+    public static function getPackages(): array|string
+    {
+        try {
+            $packages = [];
+            $response = Http::get(self::$crmUrl."/get_all_saas_crm_package");
+            if ($response->successful()) {
+                $data = $response->json();
+                foreach ($data['packages'] as $package) {
+                    $packages[] = [
+                        'id' => $package['id'],
+                        'name' => $package['name']
+                    ];
+                }
+            }
+
+            return $packages;
+        }catch (Exception $exception){
+            return "Problem of KEOS getPackages Method.".$exception;
+        }
     }
 }

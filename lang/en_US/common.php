@@ -413,6 +413,9 @@ return [
     "never" => "Never",
     "time_zone" => "Time zone",
     "currency" => "Currency",
+    "domain" => "Domain",
+    "package_id" => "Package",
+    "billing_cycle" => "Billing Cycle",
     "created" => "Created",
     "created_by" => "Created by",
     "updated" => "Updated",
@@ -507,4 +510,7 @@ return [
         "image_dimensions" => "The :attribute dimensions must range from :minWidth x :minHeight pixels to :maxWidth x :maxHeight pixels.",
         "current_password" => "The provided password does not match the current user's password.",
     ],
+
+    "is_domain_exist_crm" => "The domain already exist",
+    "is_email_exist_crm" => "Email already exist.Given another email"
 ];
