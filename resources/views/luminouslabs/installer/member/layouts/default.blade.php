@@ -351,17 +351,16 @@
                                 </li>
 
                                 <li>
-                                    <a class="ll-sidebar-link flex items-center p-2 group @if (Str::startsWith($routeName, 'luminouslabs::partner.campain.manage')) active @endif"
-                                        href="{{ route('luminouslabs::partner.campain.manage') }}"><x-ui.icon
-                                            icon="pencil-square" class="" /><span class="ml-2">Campaign
-                                            Manage</span></a>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'cards') active @endif"
+                                        href="{{ route('partner.data.list', ['name' => 'cards']) }}"><x-ui.icon
+                                            icon="pencil-square" class="" /><span class="ml-2">{{ trans('common.cards') }}</span></a>
                                 </li>
 
                                 <li>
-                                    <a class="ll-sidebar-link flex items-center p-2 group @if (Str::startsWith($routeName, 'luminouslabs::partner.campain.manage')) active @endif"
-                                        href="{{ route('luminouslabs::partner.cards.manage') }}">
-                                        <x-ui.icon icon="card" class="" />
-                                        <span class="ml-2">{{ __('Member card') }}</span></a>
+                                    <a class="ll-sidebar-link flex items-center p-2 group @if ($routeDataDefinition == 'rewards') active @endif"
+                                        href="{{ route('partner.data.list', ['name' => 'rewards']) }}">
+                                        <x-ui.icon icon="gift" class="" />
+                                        <span class="ml-2">{{ trans('common.rewards') }}</span></a>
                                 </li>
 
                                 <li>

@@ -33,7 +33,7 @@
                         </form>
                     </div>
                     <div class="flex flex-row items-center justify-between gap-x-5">
-                        <a href="{{route('luminouslabs::partner.campain.create')}}" class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
+                        <a href="{{route('partner.data.insert', ['name' => 'members'])}}" class="whitespace-nowrap w-fit flex text-sm items-center btn-primary ll-primary-btn">
                             <svg class="ll-plus-icon me-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.75 5.5V10M10 7.75H5.5M14.5 7.75C14.5 11.4779 11.4779 14.5 7.75 14.5C4.02208 14.5 1 11.4779 1 7.75C1 4.02208 4.02208 1 7.75 1C11.4779 1 14.5 4.02208 14.5 7.75Z" stroke="#FAFAFA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
@@ -93,14 +93,14 @@
                                 <td class="px-6 py-4 text-right">
                                     <div class="flex flex-nowrap justify-end space-x-2">
                                         <div data-tooltip-target="results-tooltip" data-tooltip-placement="top" class="null">
-                                            <a href="{{route('luminouslabs::partner.campain.view', $member->id)}}" data-fb="tooltip" class="ll-action-btn ll-primary whitespace-nowrap items-center flex px-2 py-2 text-xs border focus:outline-none font-medium rounded text-center">
+                                            <a href="{{route('partner.data.view', ['name' => 'members', 'id' => $member->id])}}" data-fb="tooltip" class="ll-action-btn ll-primary whitespace-nowrap items-center flex px-2 py-2 text-xs border focus:outline-none font-medium rounded text-center">
                                                 <svg class="h-3.5 w-3.5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                                                 </svg>
                                             </a>
                                         </div>
                                         <div data-tooltip-target="results-tooltip-1701717886709" data-tooltip-placement="top" class="null">
-                                            <a href="{{ route('luminouslabs::partner.campain.edit', $member->id) }}" data-fb="tooltip" class="ll-action-btn ll-warning whitespace-nowrap items-center flex px-2 py-2 text-xs focus:outline-none font-medium rounded text-center">
+                                            <a href="{{ route('partner.data.edit', ['name' => 'members', 'id' => $member->id]) }}" data-fb="tooltip" class="ll-action-btn ll-warning whitespace-nowrap items-center flex px-2 py-2 text-xs focus:outline-none font-medium rounded text-center">
                                                 <svg class="h-3.5 w-3.52" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125"></path>
                                                 </svg>
