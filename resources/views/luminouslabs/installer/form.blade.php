@@ -205,7 +205,7 @@
 
                             <div class="ll-checkbox">
                                 <span class="label-title">Campaign Type Setting</span>
-                                <input type="radio" id="price_check" name="campaign_type" value="only_prize">
+                                <input type="radio" id="price_check" name="campaign_type" value="only_prize" checked>
                                 <label for="price_check">Only Prize</label><br>
                                 <input type="radio" id="point_check" name="campaign_type" value="prize_and_point">
                                 <label for="point_check">Prize & Point</label><br>

@@ -88,12 +88,12 @@
 }
 </style>
 <section class="">
-    
-    <section class="">        
+
+    <section class="">
         <div class="w-full">
             <div class="relative p-4 lg:p-6">
                 <div class="mb-3">
-                    
+
                     <div class="w-full flex flex-row items-center justify-between">
                         <div class="mb-5">
                             <a href="{{route('luminouslabs::partner.campain.manage')}}" class="ll-back-btn w-fit flex text-sm items-center justify-start">
@@ -103,7 +103,7 @@
                                 Back to list
                             </a>
                         </div>
-        
+
                         <div class="flex flex-row items-center justify-end">
                             <a href="{{route('luminouslabs::partner.campain.view',$result['id'])}}" class="w-full flex items-center btn-sm text-sm mr-2 btn-primary ll-primary-btn">
                                 <svg class="h-3.5 w-3.5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -113,7 +113,7 @@
                             </a>
                         </div>
                     </div>
-        
+
                     <div class="w-full flex items-center space-x-3">
                         <a href="{{route('luminouslabs::partner.campain.view',$result['id'])}}">
                             <h5 class="dark:text-white font-semibold flex items-center">
@@ -125,20 +125,20 @@
                         </a>
                     </div>
                 </div>
-                
+
                     <form class="ll-user-add-form space-y-4 md:space-y-6" action="{{route('luminouslabs::partner.campain.update',$result['id'])}}" method="POST" enctype="multipart/form-data" id="CampaignStorge">
                         @csrf
                     <div class="grid grid-cols-2 gap-4">
                         <div class="mt-4">
                             <label for="name" class="input-label">Campaign Name</label>
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 value="{{ $result != null ? $result['name'] : '' }}"
-                                id="name" 
-                                name="name" 
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
-                                placeholder="" 
-                                required="" 
+                                id="name"
+                                name="name"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder=""
+                                required=""
                                 readonly
                                 x-bind:type="input"
                             >
@@ -158,13 +158,13 @@
 
                         <div class="mt-4">
                             <label for="unit_price_for_coupon" class="input-label">Unit Price For Coupon</label>
-                            <input 
-                                type="number" 
-                                id="unit_price_for_coupon" 
-                                name="unit_price_for_coupon" 
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
-                                placeholder="" 
-                                required="" 
+                            <input
+                                type="number"
+                                id="unit_price_for_coupon"
+                                name="unit_price_for_coupon"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder=""
+                                required=""
                                 readonly
                                 value="{{  $result != null ? $result['unit_price_for_coupon'] : '' }}"
                                 x-bind:type="input"
@@ -173,27 +173,27 @@
 
                         <div class="mt-4">
                             <label for="unit_price_for_point" class="input-label">Unit Price For Point</label>
-                            <input 
-                                type="number" 
-                                id="unit_price_for_point" 
-                                name="unit_price_for_point" 
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
-                                placeholder="" 
+                            <input
+                                type="number"
+                                id="unit_price_for_point"
+                                name="unit_price_for_point"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder=""
                                 readonly
                                 value="{{  $result != null ? $result['unit_price_for_point'] : '' }}"
-                                required="" 
+                                required=""
                                 x-bind:type="input"
                             >
                         </div>
 
                         <div class="mt-4">
                             <label for="coupon" class="input-label">Coupon</label>
-                            <input 
-                                type="text" 
-                                id="coupon" 
-                                name="coupon" 
+                            <input
+                                type="text"
+                                id="coupon"
+                                name="coupon"
                                 readonly
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder=""
                                 value="{{  $result != null ? $result['coupon'] : '' }}"
                                 x-bind:type="input"
@@ -202,28 +202,28 @@
 
                         <div class="ll-checkbox">
                             <span class="label-title">Campaign Type Setting</span>
-                            <input {{ ($result != null && $result['price_check'] == 'only_prize') ? 'checked' : '' }} type="radio" id="price_check" name="campaign_type" value="only_prize">
+                            <input {{ ($result != null && $result['campaign_type'] == 'only_prize') ? 'checked' : '' }} type="radio" id="price_check" name="campaign_type" value="only_prize" disabled>
                             <label for="price_check">Only Prize</label><br>
-                            <input {{  ($result != null && $result['point_check'] == 'prize_and_point') ? 'checked' : '' }} type="radio" id="point_check" name="campaign_type" value="prize_and_point">
+                            <input {{  ($result != null && $result['campaign_type'] == 'prize_and_point') ? 'checked' : '' }} type="radio" id="point_check" name="campaign_type" value="prize_and_point" disabled>
                             <label for="point_check">Prize & Point</label><br>
                         </div>
 
                         <div class="mt-4">
                             <label for="coupon" class="input-label">Campaign Code </label>
-                            <input 
-                                type="text" 
-                                id="campain_code" 
-                                name="campain_code" 
+                            <input
+                                type="text"
+                                id="campain_code"
+                                name="campain_code"
                                 readonly
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 placeholder=""
                                 value="{{  $result != null ? $result['campain_code'] : '' }}"
                                 x-bind:type="input"
                             >
                         </div>
 
-                            
-                        
+
+
                         <div class="ll-checkbox">
                             <span class="label-title">Campaign Type Setting</span>
                             <input  {{ ($result != null && $result['price_check'] == 'on') ? 'checked' : '' }} type="checkbox" id="price_check" name="price_check">
@@ -240,7 +240,7 @@
                         @if(isset($result['spiner']))
                         @foreach ($result['spiner'] as $item)
                         <div class="spinner-form">
-                            
+
                             <div class="spinner-fomr-col">
                                 <h5>Label Title</h5>
                                 <input type="text"  readonly value="{{$item['label_title']}}" name="label_title[]" class="dynamic-input" />
@@ -253,26 +253,26 @@
                                 <h5>Label Color</h5>
                                 <input type="color" readonly value="{{$item['label_color']}}" name="label_color[]" class="dynamic-input" />
                             </div>
-                           
+
                         </div>
                         @endforeach
                         @endif
-                        
+
                         <div class="spinner-form" id="input-container"></div>
-                        
+
                     </div>
-    
+
                     </form>
-                
+
             </div>
         </div>
-        
-        
-        
-            
-    </section>     
-    
-     
+
+
+
+
+    </section>
+
+
 </section>
 
 <script>

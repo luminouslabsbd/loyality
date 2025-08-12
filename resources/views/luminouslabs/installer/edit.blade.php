@@ -195,11 +195,11 @@
 
                             <div class="ll-checkbox">
                                 <span class="label-title">Campaign Type Setting</span>
-                                <input {{ $result != null && $result['price_check'] == 'only_prize' ? 'checked' : '' }}
+                                <input {{ $result != null && $result['campaign_type'] == 'only_prize' ? 'checked' : ($result == null ? 'checked' : '') }}
                                     type="radio" id="price_check" name="campaign_type" value="only_prize">
                                 <label for="price_check">Only Prize</label><br>
                                 <input
-                                    {{ $result != null && $result['point_check'] == 'prize_and_point' ? 'checked' : '' }}
+                                    {{ $result != null && $result['campaign_type'] == 'prize_and_point' ? 'checked' : '' }}
                                     type="radio" id="point_check" name="campaign_type" value="prize_and_point">
                                 <label for="point_check">Prize & Point</label><br>
                             </div>
