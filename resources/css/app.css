@@ -1,9 +1,4 @@
 
-
-/* llabs/armando_campaign package style */
-@import url('/public/luminouslabs/css/ll_style.css');
-
-
 @import "tailwindcss/base";
 /* @import "./custom-base-styles.css";*/
 
@@ -14,10 +9,10 @@
 /* @import "./custom-utilities.css";*/
 
 @import "./ll_style.css";
-@import url('/public/luminouslabs/css/ll_style.css');
+
 @font-face {
     font-family: 'Inter';
-    src: url('/public/assets/fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
+    src: url('../fonts/Inter-VariableFont_slnt,wght.ttf') format('truetype');
     font-weight: 100 900; /* Set the range of available weights */
     font-style: normal;
     font-display: swap;
