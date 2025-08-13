@@ -163,7 +163,6 @@ class PartnerDataDefinition extends DataDefinition
                 'highlight' => true,
                 'filter' => false,
                 'type' => 'select',
-                'placeholder' => trans('common.package_id'),
                 'validate' => ['nullable'],
                 'options' => self::getPackageOptions(),
                 'actions' => ['list', 'insert', 'edit', 'view', 'export'],
@@ -366,9 +365,9 @@ class PartnerDataDefinition extends DataDefinition
         if (empty($packages)) {
             // Return default options when CRM is not available
             return [
-                'basic' => 'Basic Package',
-                'standard' => 'Standard Package',
-                'premium' => 'Premium Package'
+                1 => 'Basic Package',
+                2 => 'Standard Package',
+                3 => 'Premium Package'
             ];
         }
 

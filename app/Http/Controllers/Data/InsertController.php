@@ -8,6 +8,7 @@
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Http;
     use Illuminate\Support\Facades\Log;
+    use Illuminate\Validation\Validator;
     use Mockery\Exception;
 
     class InsertController extends Controller
@@ -68,7 +69,7 @@
             $this->validateAccess($settings, $request);
 
             if ($dataDefinitionName == "partners"){
-                $domainStatus = self::isDomainExistInCrm($request->crm_domain , $settings,$dataDefinitionName);
+                $domainStatus = self::isDomainExistInCrm($request->crm_domain);
                 if (!$domainStatus){
                     $message = [
                         'type' => 'danger',
@@ -77,7 +78,7 @@
                     ] ;
                     return redirect(route($settings['guard'] . '.data.insert', ['name' => $dataDefinitionName]))->with('toast', $message)->withInput();
                 }
-                $emailStatus = self::isEmailExistInCrm($request->email , $settings,$dataDefinitionName);
+                $emailStatus = self::isEmailExistInCrm($request->email);
                 if (!$emailStatus){
                     $message = [
                         'type' => 'danger',
@@ -88,6 +89,27 @@
                 }
             }
 
+            // Handle crm_package_id conversion for partners
+            if ($dataDefinitionName == "partners" && $request->has('crm_package_id')) {
+                $packageId = $request->crm_package_id;
+
+                // Handle empty selection - set to null
+                if ($packageId === '' || $packageId === null) {
+                    $request->merge(['crm_package_id' => null]);
+                }
+                // Convert string package names to numeric IDs when CRM is not available
+                elseif (is_string($packageId)) {
+                    $packageMapping = [
+                        'basic' => 1,
+                        'standard' => 2,
+                        'premium' => 3
+                    ];
+
+                    if (isset($packageMapping[$packageId])) {
+                        $request->merge(['crm_package_id' => $packageMapping[$packageId]]);
+                    }
+                }
+            }
 
             // Call the insertRecord method on the dataService instance to create the record
             $message = $dataService->insertRecord($request, $form, $settings);
@@ -201,7 +223,7 @@
             }
         }
 
-        private static function isDomainExistInCrm($domain,$settings,$dataDefinitionName){
+        private static function isDomainExistInCrm($domain){
             try {
                 if (empty(self::$crmUrl)) {
                     Log::warning('CRM_API_URL is not configured - skipping domain validation');
@@ -222,7 +244,7 @@
             }
         }
 
-        private static function isEmailExistInCrm($email,$settings,$dataDefinitionName){
+        private static function isEmailExistInCrm($email){
             try {
                 if (empty(self::$crmUrl)) {
                     Log::warning('CRM_API_URL is not configured - skipping email validation');
