@@ -108,9 +108,12 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'default',
+        'theme' => 'platform',
 
         'paths' => [
+            resource_path('ll_views/vendor/mail'),
+            resource_path('views/luminouslabs/installer/vendor/mail'),
+            resource_path('views1/vendor/mail'),
             resource_path('views/vendor/mail'),
         ],
     ],

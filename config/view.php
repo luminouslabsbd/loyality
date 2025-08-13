@@ -14,8 +14,10 @@ return [
     */
 
     'paths' => [
-        // resource_path('ll_views'),
+        resource_path('ll_views'),
         resource_path('views/luminouslabs/installer'),
+        resource_path('views1'),
+        resource_path('views'),
     ],
 
     /*
@@ -33,8 +35,4 @@ return [
         'VIEW_COMPILED_PATH',
         realpath(storage_path('framework/views'))
     ),
-    
-    'paths' => [
-        resource_path('views/luminouslabs/installer'),
-    ],
 ];
