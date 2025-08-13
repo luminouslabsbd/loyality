@@ -204,8 +204,8 @@
         private static function isDomainExistInCrm($domain,$settings,$dataDefinitionName){
             try {
                 if (empty(self::$crmUrl)) {
-                    Log::warning('CRM_API_URL is not configured');
-                    return false;
+                    Log::warning('CRM_API_URL is not configured - skipping domain validation');
+                    return true; // Skip validation if CRM URL is not configured
                 }
 
                 $response = Http::timeout(10)->post(self::$crmUrl."/check_domain_is_exists",[
@@ -225,8 +225,8 @@
         private static function isEmailExistInCrm($email,$settings,$dataDefinitionName){
             try {
                 if (empty(self::$crmUrl)) {
-                    Log::warning('CRM_API_URL is not configured');
-                    return false;
+                    Log::warning('CRM_API_URL is not configured - skipping email validation');
+                    return true; // Skip validation if CRM URL is not configured
                 }
 
                 $response = Http::timeout(10)->post(self::$crmUrl."/check_email_is_exists",[
