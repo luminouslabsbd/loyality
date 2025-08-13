@@ -4,11 +4,9 @@
 
     use App\Http\Controllers\Controller;
     use App\Services\Data\DataService;
-    use GuzzleHttp\Client;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\DB;
     use Illuminate\Support\Facades\Http;
-    use Illuminate\Validation\Validator;
     use Illuminate\Support\Facades\Log;
     use Mockery\Exception;
 
@@ -102,31 +100,41 @@
 
             if ($dataDefinitionName == "partners"){
                 try {
-                    $response = Http::post(env('WALLET_API_URL')."/register",[
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'password' => $request->password
-                    ]);
+                    $walletApiUrl = env('WALLET_API_URL');
+                    if (!empty($walletApiUrl)) {
+                        $response = Http::timeout(10)->post($walletApiUrl."/register",[
+                            'name' => $request->name,
+                            'email' => $request->email,
+                            'password' => $request->password
+                        ]);
 
-                    if ($response->ok()){
-                        $responseData = json_decode($response->body(), true);
-                        $member_id = $responseData['user']['id'];
+                        if ($response->ok()){
+                            $responseData = json_decode($response->body(), true);
+                            $member_id = $responseData['user']['id'] ?? null;
+                        }
+                    } else {
+                        Log::warning('WALLET_API_URL is not configured');
                     }
                 }catch (Exception $exception){
-                    return "Problem of keos wallet partner creation.".$exception;
+                    Log::error("Problem of keos wallet partner creation: " . $exception->getMessage());
                 }
 
                 try {
-                    $response = Http::post(env('LABCRM_API_URL').'/create_loyality_customer',[
-                        'email' => $request->email,
-                        'phonenumber' => $request->phone ?? "*** ** **** **",
-                        'company' => 'company'
-                    ]);
-                    if ($response->ok()){
-                        $crm_member_id = $response['crm_customer_id'];
+                    $labCrmApiUrl = env('LABCRM_API_URL');
+                    if (!empty($labCrmApiUrl)) {
+                        $response = Http::timeout(10)->post($labCrmApiUrl.'/create_loyality_customer',[
+                            'email' => $request->email,
+                            'phonenumber' => $request->phone ?? "*** ** **** **",
+                            'company' => 'company'
+                        ]);
+                        if ($response->ok()){
+                            $crm_member_id = $response['crm_customer_id'] ?? null;
+                        }
+                    } else {
+                        Log::warning('LABCRM_API_URL is not configured');
                     }
                 }catch (Exception $exception){
-                    return "Problem of CRM member creation.".$exception;
+                    Log::error("Problem of CRM member creation: " . $exception->getMessage());
                 }
 
                 self::registerTenent($request);
@@ -195,48 +203,68 @@
 
         private static function isDomainExistInCrm($domain,$settings,$dataDefinitionName){
             try {
-                $response = Http::post(self::$crmUrl."/check_domain_is_exists",[
+                if (empty(self::$crmUrl)) {
+                    Log::warning('CRM_API_URL is not configured');
+                    return false;
+                }
+
+                $response = Http::timeout(10)->post(self::$crmUrl."/check_domain_is_exists",[
                     "domain" => $domain
                 ]);
                 if ($response->successful()) {
                     $data = $response->json();
-                    return $data['domain'];
+                    return $data['domain'] ?? false;
                 }
+                return false;
             }catch (Exception $exception){
-                return "Problem of KEOS isEmailExistInCrm Method.".$exception;
+                Log::error("Problem of KEOS isDomainExistInCrm Method: " . $exception->getMessage());
+                return false;
             }
         }
 
         private static function isEmailExistInCrm($email,$settings,$dataDefinitionName){
             try {
-                $response = Http::post(self::$crmUrl."/check_email_is_exists",[
+                if (empty(self::$crmUrl)) {
+                    Log::warning('CRM_API_URL is not configured');
+                    return false;
+                }
+
+                $response = Http::timeout(10)->post(self::$crmUrl."/check_email_is_exists",[
                     "email" => $email,
                 ]);
                 $partner = DB::table('partners')->where('email',$email)->first();
 
                 if ($response->successful()) {
                     $data = $response->json();
-                    if (!$data['email'] | !empty($partner)) {
+                    if (!($data['email'] ?? false) || !empty($partner)) {
                        return false;
                     }else{
                         return true;
                     }
                 }
+                return false;
             }catch (Exception $exception){
-                return "Problem of KEOS isEmailExistInCrm Method.".$exception;
+                Log::error("Problem of KEOS isEmailExistInCrm Method: " . $exception->getMessage());
+                return false;
             }
         }
 
         private static function registerTenent($request)
         {
             try {
+                $crmUrl = env('CRM_API_URL');
+                if (empty($crmUrl)) {
+                    Log::warning('CRM_API_URL is not configured');
+                    return false;
+                }
+
                 $curl = curl_init();
                 curl_setopt_array($curl, array(
-                    CURLOPT_URL => env('CRM_API_URL').'/tenent_user_registion',
+                    CURLOPT_URL => $crmUrl.'/tenent_user_registion',
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_TIMEOUT => 10,
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
@@ -256,12 +284,18 @@
                 ));
 
                 $response = curl_exec($curl);
+                $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
                 curl_close($curl);
+
+                if ($response === false || $httpCode >= 400) {
+                    Log::warning('CRM tenant registration failed');
+                    return false;
+                }
+
                 return $response;
             }catch (Exception $exception){
-                return "Problem of KEOS registerTenent Method.".$exception;
+                Log::error("Problem of KEOS registerTenent Method: " . $exception->getMessage());
+                return false;
             }
-
-
         }
     }

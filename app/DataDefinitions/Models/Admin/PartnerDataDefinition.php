@@ -6,8 +6,8 @@ use App\DataDefinitions\DataDefinition;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Club;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Mockery\Exception;
-use function Laravel\Prompts\select;
 
 class PartnerDataDefinition extends DataDefinition
 {
@@ -164,8 +164,8 @@ class PartnerDataDefinition extends DataDefinition
                 'filter' => false,
                 'type' => 'select',
                 'placeholder' => trans('common.package_id'),
-                'validate' => ['required'],
-                'options' => array_column(self::getPackages(), 'name', 'id'),
+                'validate' => ['nullable'],
+                'options' => self::getPackageOptions(),
                 'actions' => ['list', 'insert', 'edit', 'view', 'export'],
             ],
             'crm_billing_cycle' => [
@@ -323,7 +323,7 @@ class PartnerDataDefinition extends DataDefinition
                     $model->clubs()->create($data);
                 } catch (\Exception $e) {
                     report($e);
-                    \Log::error($e);
+                    Log::error($e);
                 }
             },
         ];
@@ -359,24 +359,52 @@ class PartnerDataDefinition extends DataDefinition
         return parent::getSettings($this->settings);
     }
 
+    public static function getPackageOptions(): array
+    {
+        $packages = self::getPackages();
+
+        if (empty($packages)) {
+            // Return default options when CRM is not available
+            return [
+                'basic' => 'Basic Package',
+                'standard' => 'Standard Package',
+                'premium' => 'Premium Package'
+            ];
+        }
+
+        return array_column($packages, 'name', 'id');
+    }
+
     public static function getPackages(): array|string
     {
         try {
             $packages = [];
-            $response = Http::get(self::$crmUrl."/get_all_saas_crm_package");
+
+            // Check if CRM_API_URL is configured
+            if (empty(self::$crmUrl)) {
+                Log::warning('CRM_API_URL is not configured');
+                return [];
+            }
+
+            $response = Http::timeout(10)->get(self::$crmUrl."/get_all_saas_crm_package");
             if ($response->successful()) {
                 $data = $response->json();
-                foreach ($data['packages'] as $package) {
-                    $packages[] = [
-                        'id' => $package['id'],
-                        'name' => $package['name']
-                    ];
+                if (isset($data['packages']) && is_array($data['packages'])) {
+                    foreach ($data['packages'] as $package) {
+                        $packages[] = [
+                            'id' => $package['id'],
+                            'name' => $package['name']
+                        ];
+                    }
                 }
+            } else {
+                Log::warning('CRM API request failed: ' . $response->status());
             }
 
             return $packages;
         }catch (Exception $exception){
-            return "Problem of KEOS getPackages Method.".$exception;
+            Log::error('Problem with KEOS getPackages Method: ' . $exception->getMessage());
+            return [];
         }
     }
 }
