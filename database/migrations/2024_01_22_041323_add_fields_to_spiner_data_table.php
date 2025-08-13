@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::table('spiner_data', function (Blueprint $table) {
             $table->after('cam_id', function () use ($table) {
-                $table->boolean('is_wining_label')->nullable()->default(false);
-                $table->unsignedBigInteger('init_prize')->nullable()->default(0);
-                $table->unsignedBigInteger('available_prize')->nullable()->default(0);
+                // $table->boolean('is_wining_label')->nullable()->default(false);
+                // $table->unsignedBigInteger('init_prize')->nullable()->default(0);
+                // $table->unsignedBigInteger('available_prize')->nullable()->default(0);
             });
         });
     }
